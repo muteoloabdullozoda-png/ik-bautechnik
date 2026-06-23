@@ -2,491 +2,753 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="IK Bautechnik"/>
+<meta name="theme-color" content="#0a1628"/>
 <title>IK Bautechnik GmbH</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{min-height:100vh;background:#0f172a;font-family:'Inter',system-ui,sans-serif;color:#f1f5f9}
+:root{
+  --bg:#0a1628;--bg2:#0f2040;--bg3:#162a4f;--border:#1e3a6e;
+  --accent:#2563eb;--accent2:#3b82f6;--accent3:#60a5fa;
+  --text:#e8f4fd;--text2:#93c5fd;--text3:#4a6a8a;
+  --green:#10b981;--red:#ef4444;--yellow:#f59e0b;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{min-height:100vh;background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--text)}
 input,select,textarea,button{font-family:inherit}
-.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%)}
-.login-box{background:#1e293b;border:1px solid #334155;border-radius:20px;padding:40px;width:100%;max-width:380px;text-align:center}
-.login-logo{font-size:48px;margin-bottom:16px}
-.login-title{font-size:22px;font-weight:800;margin-bottom:4px}
-.login-sub{font-size:13px;color:#64748b;margin-bottom:32px}
-.login-field{margin-bottom:16px;text-align:left}
-.login-field label{font-size:12px;font-weight:600;color:#94a3b8;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
-.login-field input{width:100%;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:12px 14px;color:#f1f5f9;font-size:15px;outline:none;transition:border-color 0.2s}
-.login-field input:focus{border-color:#f97316}
-.login-btn{width:100%;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px}
-.login-error{background:#ef444422;border:1px solid #ef4444;color:#ef4444;border-radius:8px;padding:10px;font-size:13px;margin-top:12px;display:none}
-.app{display:none}
-.header{background:#1e293b;border-bottom:1px solid #334155;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:200}
-.header-left{display:flex;align-items:center;gap:10px}
-.hlogo{width:34px;height:34px;background:linear-gradient(135deg,#f97316,#ea580c);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-.hname{font-weight:800;font-size:14px;letter-spacing:-0.2px}
-.hsub{font-size:10px;color:#64748b}
-.logout-btn{background:transparent;border:1px solid #334155;color:#94a3b8;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12px}
-.logout-btn:hover{border-color:#ef4444;color:#ef4444}
-.breadcrumb{background:#1e293b;border-bottom:1px solid #0f172a;padding:8px 20px;font-size:12px;color:#64748b;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.breadcrumb span{color:#94a3b8}
-.breadcrumb a{color:#f97316;cursor:pointer;text-decoration:none}
-.container{max-width:960px;margin:0 auto;padding:20px 14px}
-.page{display:none}
-.page.active{display:block}
-.toast{position:fixed;top:70px;right:20px;background:#10b981;color:#fff;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;z-index:999;display:none;box-shadow:0 4px 20px #0005}
-.toast.show{display:block}
-.toast.error{background:#ef4444}
-.sec-title{font-size:22px;font-weight:800;margin-bottom:4px}
-.sec-sub{font-size:14px;color:#64748b;margin-bottom:24px}
-.card{background:#1e293b;border-radius:16px;border:1px solid #334155;padding:22px}
-.city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:20px}
-.city-card{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:22px 18px;cursor:pointer;transition:all 0.2s;text-align:center}
-.city-card:hover{border-color:#f97316;transform:translateY(-2px);box-shadow:0 8px 24px #f9731622}
-.city-icon{font-size:36px;margin-bottom:12px}
-.city-name{font-weight:700;font-size:15px;margin-bottom:4px}
-.city-count{font-size:12px;color:#64748b}
-.add-city-card{background:transparent;border:2px dashed #334155;border-radius:16px;padding:22px 18px;cursor:pointer;transition:all 0.2s;text-align:center;color:#64748b}
-.add-city-card:hover{border-color:#f97316;color:#f97316}
-.work-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
-.work-card{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:24px 18px;cursor:pointer;transition:all 0.2s;text-align:center}
-.work-card:hover{border-color:#f97316;transform:translateY(-2px)}
-.work-icon{font-size:38px;margin-bottom:12px}
-.work-name{font-weight:700;font-size:14px}
-.day-list{display:flex;flex-direction:column;gap:10px}
-.day-item{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:border-color 0.2s}
-.day-item:hover{border-color:#f97316}
-.day-date{font-weight:700;font-size:15px}
-.day-meta{font-size:12px;color:#64748b;margin-top:2px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.form-full{grid-column:1/-1}
-.field-label{font-size:11px;font-weight:700;color:#94a3b8;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px}
-input[type=text],input[type=date],input[type=number],input[type=password],select,textarea{width:100%;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:10px 13px;color:#f1f5f9;font-size:14px;outline:none;transition:border-color 0.2s}
-input:focus,select:focus,textarea:focus{border-color:#f97316}
+
+#splash{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.5s}
+#splash.hide{opacity:0;pointer-events:none}
+.splash-logo{width:88px;height:88px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:40px;margin-bottom:18px;box-shadow:0 0 60px #3b82f655}
+.splash-title{font-size:21px;font-weight:800;margin-bottom:5px}
+.splash-sub{font-size:12px;color:var(--text2)}
+.splash-bar{width:50px;height:3px;background:var(--border);border-radius:3px;margin-top:30px;overflow:hidden}
+.splash-bar-inner{height:100%;background:var(--accent2);border-radius:3px;animation:load 2s ease forwards}
+@keyframes load{from{width:0}to{width:100%}}
+
+#login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 0%,#1d4ed833,var(--bg) 70%);padding:20px}
+.login-box{background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:36px 28px;width:100%;max-width:360px;text-align:center;box-shadow:0 0 80px #1d4ed818}
+.login-logo{width:68px;height:68px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 16px;box-shadow:0 0 30px #3b82f640}
+.login-title{font-size:19px;font-weight:800;margin-bottom:3px}
+.login-sub{font-size:11px;color:var(--text3);margin-bottom:24px}
+.lang-row{display:flex;gap:8px;justify-content:center;margin-bottom:20px}
+.lang-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s}
+.lang-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.lfield{margin-bottom:13px;text-align:left}
+.lfield label{font-size:10px;font-weight:700;color:var(--text2);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px}
+.lfield input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-size:15px;outline:none;transition:border-color 0.2s}
+.lfield input:focus{border-color:var(--accent2)}
+.login-btn{width:100%;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:11px;padding:13px;font-size:15px;font-weight:700;cursor:pointer;margin-top:5px;box-shadow:0 4px 20px #3b82f630}
+.login-err{background:#ef444415;border:1px solid var(--red);color:var(--red);border-radius:9px;padding:9px;font-size:12px;margin-top:10px;display:none}
+
+#app{display:none}
+.header{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:200}
+.hlogo{width:30px;height:30px;background:linear-gradient(135deg,#1d4ed8,#3b82f6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.hname{font-weight:800;font-size:12px}
+.hsub{font-size:9px;color:var(--text3)}
+.sync-wrap{display:flex;align-items:center;gap:5px}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.sync-dot.ing{background:var(--yellow);animation:blink 1s infinite}
+.sync-dot.err{background:var(--red)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.sync-lbl{font-size:10px;color:var(--text2)}
+.logout-btn{background:transparent;border:1px solid var(--border);color:var(--text3);border-radius:7px;padding:5px 9px;cursor:pointer;font-size:11px}
+
+.breadcrumb{background:var(--bg2);border-bottom:1px solid var(--bg3);padding:6px 14px;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px;flex-wrap:wrap;overflow-x:auto}
+.breadcrumb a{color:var(--accent3);cursor:pointer}
+
+.container{max-width:900px;margin:0 auto;padding:16px 12px}
+.page{display:none}.page.active{display:block}
+
+.toast{position:fixed;top:62px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;border-radius:10px;padding:9px 18px;font-size:12px;font-weight:600;z-index:999;display:none;box-shadow:0 4px 20px #0006;white-space:nowrap}
+.toast.show{display:block}.toast.err{background:var(--red)}.toast.inf{background:var(--accent)}
+
+.spinner-wrap{text-align:center;padding:40px;color:var(--text3)}
+.spinner{width:28px;height:28px;border:3px solid var(--border);border-top-color:var(--accent2);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.sec-title{font-size:19px;font-weight:800;margin-bottom:3px}
+.sec-sub{font-size:12px;color:var(--text3);margin-bottom:18px}
+
+.city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:11px;margin-bottom:14px}
+.city-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px 12px;cursor:pointer;transition:all 0.2s;text-align:center}
+.city-card:hover,.city-card:active{border-color:var(--accent2);box-shadow:0 4px 18px #3b82f620}
+.city-icon{font-size:30px;margin-bottom:9px}
+.city-name{font-weight:700;font-size:13px;margin-bottom:2px}
+.city-count{font-size:10px;color:var(--text3)}
+.add-city{background:transparent;border:2px dashed var(--border);border-radius:14px;padding:18px 12px;cursor:pointer;text-align:center;color:var(--text3);transition:all 0.2s}
+.add-city:hover{border-color:var(--accent2);color:var(--accent3)}
+
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.work-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:20px 12px;cursor:pointer;transition:all 0.2s;text-align:center}
+.work-card:hover{border-color:var(--accent2);transform:translateY(-1px)}
+.work-icon{font-size:32px;margin-bottom:9px}
+.work-name{font-weight:700;font-size:12px}
+
+.day-list{display:flex;flex-direction:column;gap:9px}
+.day-item{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:13px 14px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:border-color 0.2s}
+.day-item:hover{border-color:var(--accent2)}
+.day-date{font-weight:700;font-size:14px}
+.day-meta{font-size:10px;color:var(--text3);margin-top:2px}
+
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
+.ffull{grid-column:1/-1}
+.flabel{font-size:10px;font-weight:700;color:var(--text2);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
+input[type=text],input[type=date],input[type=number],input[type=password],select,textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:9px 12px;color:var(--text);font-size:13px;outline:none;transition:border-color 0.2s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent2)}
 textarea{resize:vertical}
-.btn-primary{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:700;cursor:pointer}
-.btn-secondary{background:#1e293b;border:1px solid #334155;color:#94a3b8;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer}
-.btn-danger{background:#ef444422;border:1px solid #ef4444;color:#ef4444;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
-.btn-green{background:#10b98122;border:1px solid #10b981;color:#10b981;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
-.nv-block{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:18px;margin-bottom:16px}
-.nv-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
-.nv-title{font-weight:800;font-size:16px;color:#f97316}
-.nv-actions{display:flex;gap:8px}
-.addr-row{background:#1e293b;border:1px solid #2d3748;border-radius:10px;padding:12px 14px;margin-bottom:8px}
-.addr-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
-.addr-num{width:28px;height:28px;background:#f9731622;color:#f97316;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
-.status-btn{border:1px solid #334155;background:transparent;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;font-weight:600;color:#94a3b8}
-.status-btn.active-done{background:#10b98122;border-color:#10b981;color:#10b981}
-.status-btn.active-partial{background:#f9731622;border-color:#f97316;color:#f97316}
-.status-btn.active-no{background:#ef444422;border-color:#ef4444;color:#ef4444}
-.file-drop{border:2px dashed #334155;border-radius:10px;padding:18px;text-align:center;cursor:pointer;transition:border-color 0.2s;margin-bottom:10px}
-.file-drop:hover{border-color:#f97316}
-.file-list{display:flex;flex-direction:column;gap:6px}
-.file-item{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px}
-.file-item-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.file-thumb{width:40px;height:40px;object-fit:cover;border-radius:6px;cursor:pointer}
-.modal-bg{position:fixed;inset:0;background:#000a;z-index:500;display:none;align-items:center;justify-content:center;padding:16px}
+
+.btn-p{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 2px 10px #3b82f630}
+.btn-s{background:var(--bg2);border:1px solid var(--border);color:var(--text2);border-radius:9px;padding:9px 15px;font-size:12px;font-weight:600;cursor:pointer}
+.btn-d{background:#ef444415;border:1px solid var(--red);color:var(--red);border-radius:7px;padding:5px 10px;font-size:11px;font-weight:600;cursor:pointer}
+.btn-g{background:#10b98115;border:1px solid var(--green);color:var(--green);border-radius:7px;padding:5px 10px;font-size:11px;font-weight:600;cursor:pointer}
+.btn-save{background:linear-gradient(135deg,#047857,#10b981);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 2px 10px #10b98130}
+.back-btn{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:12px;margin-bottom:12px;display:flex;align-items:center;gap:4px;padding:0}
+.back-btn:hover{color:var(--accent3)}
+
+.nv-block{background:var(--bg);border:1px solid var(--border);border-radius:13px;padding:14px;margin-bottom:12px}
+.nv-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:11px;gap:7px;flex-wrap:wrap}
+.nv-title{font-weight:800;font-size:14px;color:var(--accent3)}
+.nv-btns{display:flex;gap:5px;flex-shrink:0}
+
+.addr-row{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:10px 11px;margin-bottom:7px}
+.addr-top{display:flex;align-items:center;gap:7px;margin-bottom:7px}
+.addr-num{width:24px;height:24px;background:var(--accent)20;color:var(--accent3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0}
+.srow{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px}
+.sbtn{border:1px solid var(--border);background:transparent;border-radius:5px;padding:3px 8px;font-size:10px;cursor:pointer;font-weight:600;color:var(--text3);transition:all 0.15s}
+.sbtn.sd{background:#10b98115;border-color:var(--green);color:var(--green)}
+.sbtn.sp{background:#f59e0b15;border-color:var(--yellow);color:var(--yellow)}
+.sbtn.sn{background:#ef444415;border-color:var(--red);color:var(--red)}
+
+.file-drop{border:2px dashed var(--border);border-radius:9px;padding:13px;text-align:center;cursor:pointer;transition:border-color 0.2s;margin-bottom:7px}
+.file-drop:hover{border-color:var(--accent2)}
+.flist{display:flex;flex-direction:column;gap:5px}
+.fitem{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:6px 9px;display:flex;align-items:center;gap:7px;font-size:11px}
+.fitem-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text2)}
+.fthumb{width:32px;height:32px;object-fit:cover;border-radius:5px;cursor:pointer;flex-shrink:0}
+
+.entry-block{background:var(--bg);border:1px solid var(--border);border-radius:11px;padding:13px;margin-bottom:9px}
+.entry-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.entry-title{font-weight:700;font-size:12px;color:var(--accent3)}
+
+.modal-bg{position:fixed;inset:0;background:#000b;z-index:500;display:none;align-items:flex-end;justify-content:center}
 .modal-bg.show{display:flex}
-.modal{background:#1e293b;border:1px solid #334155;border-radius:18px;padding:28px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto}
-.modal-title{font-weight:800;font-size:17px;margin-bottom:20px}
-.back-btn{background:transparent;border:none;color:#94a3b8;cursor:pointer;font-size:13px;margin-bottom:16px;display:flex;align-items:center;gap:5px;padding:0}
-.entry-block{background:#0f172a;border:1px solid #334155;border-radius:12px;padding:16px;margin-bottom:12px}
-.entry-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.entry-title{font-weight:700;font-size:14px}
-@media(max-width:600px){.form-row{grid-template-columns:1fr}.form-full{grid-column:1}.city-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.work-grid{grid-template-columns:1fr 1fr}}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:18px 18px 0 0;padding:20px 18px 28px;width:100%;max-width:480px;max-height:88vh;overflow-y:auto}
+.modal-handle{width:34px;height:3px;background:var(--border);border-radius:2px;margin:0 auto 16px}
+.modal-title{font-weight:800;font-size:15px;margin-bottom:16px}
+
+.confirm-box{background:var(--bg2);border:1px solid var(--red);border-radius:15px;padding:22px;width:100%;max-width:320px;margin:auto}
+.confirm-icon{font-size:36px;text-align:center;margin-bottom:10px}
+.confirm-title{font-weight:800;font-size:15px;text-align:center;margin-bottom:5px}
+.confirm-sub{font-size:12px;color:var(--text3);text-align:center;margin-bottom:18px}
+.confirm-btns{display:flex;gap:8px}
+.confirm-btns button{flex:1;padding:11px;border-radius:9px;font-weight:700;font-size:13px;cursor:pointer;border:none}
+
+.empty{text-align:center;padding:44px 16px;color:var(--text3)}
+.empty-icon{font-size:36px;margin-bottom:10px}
+
+.install-bar{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.install-bar-text{flex:1;font-size:11px;color:var(--text2);line-height:1.5}
+.install-bar-close{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:17px}
+
+@media(min-width:560px){
+  .modal-bg{align-items:center}
+  .modal{border-radius:18px;max-height:90vh}
+  .work-grid{grid-template-columns:repeat(4,1fr)}
+}
 </style>
 </head>
 <body>
+
+<div id="splash">
+  <div class="splash-logo">🏗</div>
+  <div class="splash-title">IK Bautechnik GmbH</div>
+  <div class="splash-sub">Glasfaser Infrastruktur</div>
+  <div class="splash-bar"><div class="splash-bar-inner"></div></div>
+</div>
+
 <div class="toast" id="toast"></div>
-<div class="login-page" id="login-page">
+
+<div id="login-page" style="display:none">
   <div class="login-box">
     <div class="login-logo">🏗</div>
     <div class="login-title">IK Bautechnik GmbH</div>
-    <div class="login-sub">Система учёта строительных работ</div>
-    <div class="login-field"><label>Логин</label><input type="text" id="inp-login" placeholder="Введите логин" onkeydown="if(event.key==='Enter')doLogin()"/></div>
-    <div class="login-field"><label>Пароль</label><input type="password" id="inp-pass" placeholder="Введите пароль" onkeydown="if(event.key==='Enter')doLogin()"/></div>
-    <button class="login-btn" onclick="doLogin()">Войти →</button>
-    <div class="login-error" id="login-error">Неверный логин или пароль</div>
+    <div class="login-sub">Glasfaser Infrastruktur Management</div>
+    <div class="lang-row">
+      <button class="lang-btn active" onclick="setLang('de',this)">🇩🇪 DE</button>
+      <button class="lang-btn" onclick="setLang('ru',this)">🇷🇺 RU</button>
+    </div>
+    <div class="lfield"><label id="ll-login">Benutzername</label><input type="text" id="il" placeholder="Login" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <div class="lfield"><label id="ll-pass">Passwort</label><input type="password" id="ip" placeholder="Passwort" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <button class="login-btn" id="lb" onclick="doLogin()">Anmelden →</button>
+    <div class="login-err" id="le"></div>
   </div>
 </div>
-<div class="app" id="app">
+
+<div id="app">
   <div class="header">
-    <div class="header-left">
+    <div style="display:flex;align-items:center;gap:8px">
       <div class="hlogo">🏗</div>
-      <div><div class="hname">IK Bautechnik GmbH</div><div class="hsub">Учёт строительных работ</div></div>
+      <div><div class="hname">IK Bautechnik GmbH</div><div class="hsub">Glasfaser Management</div></div>
     </div>
-    <button class="logout-btn" onclick="doLogout()">Выйти</button>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="sync-wrap"><div class="sync-dot" id="sdot"></div><span class="sync-lbl" id="slbl"></span></div>
+      <button class="logout-btn" id="btn-logout" onclick="doLogout()">Abmelden</button>
+    </div>
   </div>
-  <div class="breadcrumb" id="breadcrumb"></div>
+  <div class="breadcrumb" id="bc"></div>
   <div class="container">
+
     <div class="page active" id="page-cities">
-      <div class="sec-title">Объекты</div>
-      <div class="sec-sub">Выберите объект для просмотра и внесения данных</div>
+      <div class="install-bar" id="ibar" style="display:none">
+        <div style="font-size:22px">📱</div>
+        <div class="install-bar-text" id="ibar-text"></div>
+        <button class="install-bar-close" onclick="this.parentElement.style.display='none'">×</button>
+      </div>
+      <div class="sec-title" id="t-objects">Objekte</div>
+      <div class="sec-sub" id="s-objects">Objekt auswählen</div>
       <div class="city-grid" id="city-grid"></div>
     </div>
+
     <div class="page" id="page-works">
-      <button class="back-btn" onclick="goTo('cities')">← Назад к объектам</button>
-      <div class="sec-title" id="work-city-title"></div>
-      <div class="sec-sub">Выберите вид работ</div>
+      <button class="back-btn" id="b-works" onclick="goTo('cities')">← Zurück</button>
+      <div class="sec-title" id="t-city"></div>
+      <div class="sec-sub" id="s-worktype">Arbeitsart auswählen</div>
       <div class="work-grid">
-        <div class="work-card" onclick="goToWork('Hausanschluss')"><div class="work-icon">🏠</div><div class="work-name">Hausanschluss</div></div>
-        <div class="work-card" onclick="goToWork('Einblasen')"><div class="work-icon">💨</div><div class="work-name">Einblasen und Aktivieren</div></div>
-        <div class="work-card" onclick="goToWork('Tiefbau')"><div class="work-icon">🚜</div><div class="work-name">Tiefbau</div></div>
-        <div class="work-card" onclick="goToWork('HK')"><div class="work-icon">🔌</div><div class="work-name">HK Einblasen</div></div>
+        <div class="work-card" onclick="goWork('Hausanschluss')"><div class="work-icon">🏠</div><div class="work-name">Hausanschluss</div></div>
+        <div class="work-card" onclick="goWork('Einblasen')"><div class="work-icon">💨</div><div class="work-name">Einblasen und Aktivieren</div></div>
+        <div class="work-card" onclick="goWork('Tiefbau')"><div class="work-icon">🚜</div><div class="work-name">Tiefbau</div></div>
+        <div class="work-card" onclick="goWork('HK')"><div class="work-icon">🔌</div><div class="work-name">HK Einblasen</div></div>
       </div>
     </div>
+
     <div class="page" id="page-days">
-      <button class="back-btn" id="days-back-btn">← Назад</button>
-      <div class="sec-title" id="days-title"></div>
-      <div class="sec-sub" id="days-sub"></div>
-      <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
-        <button class="btn-primary" onclick="openNewDayModal()">+ Новый день</button>
+      <button class="back-btn" id="b-days">← Zurück</button>
+      <div class="sec-title" id="t-days"></div>
+      <div class="sec-sub" id="s-days"></div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
+        <button class="btn-p" id="btn-newday" onclick="openDayModal()">+ Neuer Tag</button>
       </div>
-      <div class="day-list" id="day-list"></div>
+      <div id="day-list" class="day-list"></div>
     </div>
+
     <div class="page" id="page-einblasen">
-      <button class="back-btn" id="eb-back-btn">← Назад</button>
-      <div class="sec-title" id="eb-title"></div>
-      <div class="sec-sub" id="eb-date-sub"></div>
-      <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
-        <button class="btn-primary" onclick="addNV()">+ Netzverteiler</button>
+      <button class="back-btn" id="b-eb">← Zurück</button>
+      <div class="sec-title" id="t-eb"></div>
+      <div class="sec-sub" id="s-eb"></div>
+      <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
+        <button class="btn-save" id="btn-seb" onclick="saveEB()">💾 Speichern</button>
+        <button class="btn-p" id="btn-anv" onclick="addNV()">+ Netzverteiler</button>
       </div>
       <div id="nv-list"></div>
     </div>
+
     <div class="page" id="page-generic">
-      <button class="back-btn" id="gen-back-btn">← Назад</button>
-      <div class="sec-title" id="gen-title"></div>
-      <div class="sec-sub" id="gen-date-sub"></div>
-      <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
-        <button class="btn-primary" onclick="addGenEntry()">+ Добавить запись</button>
+      <button class="back-btn" id="b-gen">← Zurück</button>
+      <div class="sec-title" id="t-gen"></div>
+      <div class="sec-sub" id="s-gen"></div>
+      <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
+        <button class="btn-save" id="btn-sgen" onclick="saveGEN()">💾 Speichern</button>
+        <button class="btn-p" id="btn-aen" onclick="addEntry()">+ Eintrag</button>
       </div>
       <div id="gen-list"></div>
     </div>
+
   </div>
 </div>
-<div class="modal-bg" id="modal-city">
+
+<!-- Modal: City -->
+<div class="modal-bg" id="m-city">
   <div class="modal">
-    <div class="modal-title">Новый объект</div>
-    <div style="margin-bottom:14px"><label class="field-label">Название объекта</label><input type="text" id="new-city-name" placeholder="напр. Frankfurt"/></div>
-    <div style="display:flex;gap:10px;justify-content:flex-end">
-      <button class="btn-secondary" onclick="closeModal('modal-city')">Отмена</button>
-      <button class="btn-primary" onclick="saveNewCity()">Добавить</button>
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="mt-city">🏙 Neues Objekt</div>
+    <div style="margin-bottom:12px"><label class="flabel" id="ml-city">Objektname</label><input type="text" id="new-city" placeholder="z.B. Frankfurt"/></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn-s" onclick="closeM('m-city')" id="ml-cancel">Abbrechen</button>
+      <button class="btn-p" onclick="saveCity()" id="ml-add">Hinzufügen</button>
     </div>
   </div>
 </div>
-<div class="modal-bg" id="modal-day">
+
+<!-- Modal: Day -->
+<div class="modal-bg" id="m-day">
   <div class="modal">
-    <div class="modal-title">Новый рабочий день</div>
-    <div style="margin-bottom:14px"><label class="field-label">Дата</label><input type="date" id="new-day-date"/></div>
-    <div style="margin-bottom:14px"><label class="field-label">Комментарий (необязательно)</label><textarea id="new-day-comment" rows="3" placeholder="Общие замечания..."></textarea></div>
-    <div style="display:flex;gap:10px;justify-content:flex-end">
-      <button class="btn-secondary" onclick="closeModal('modal-day')">Отмена</button>
-      <button class="btn-primary" onclick="saveNewDay()">Создать</button>
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="mt-day">📅 Neuer Arbeitstag</div>
+    <div style="margin-bottom:12px"><label class="flabel" id="ml-date">Datum</label><input type="date" id="new-date"/></div>
+    <div style="margin-bottom:12px"><label class="flabel" id="ml-comment">Kommentar (optional)</label><textarea id="new-comment" rows="3"></textarea></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn-s" onclick="closeM('m-day')">Abbrechen</button>
+      <button class="btn-p" onclick="saveDay()">Erstellen</button>
     </div>
   </div>
 </div>
+
+<!-- Modal: Confirm -->
+<div class="modal-bg" id="m-confirm" style="align-items:center;padding:16px">
+  <div class="confirm-box">
+    <div class="confirm-icon">⚠️</div>
+    <div class="confirm-title" id="ct"></div>
+    <div class="confirm-sub" id="cs"></div>
+    <div class="confirm-btns">
+      <button style="background:var(--bg3);color:var(--text)" onclick="closeM('m-confirm')" id="cn">Nein</button>
+      <button style="background:var(--red);color:#fff" id="cy">Ja, löschen</button>
+    </div>
+  </div>
+</div>
+
 <script>
-const CRED={login:"Komroni",pass:"Ismon"};
-const DEFAULT_CITIES=["Altmanstein","Scheßlitz","Bad Griesbach","Hamburg","Mühlhausen"];
-const WORK_LABELS={Hausanschluss:"Hausanschluss",Einblasen:"Einblasen und Aktivieren",Tiefbau:"Tiefbau",HK:"HK Einblasen"};
-const WORK_ICONS={Hausanschluss:"🏠",Einblasen:"💨",Tiefbau:"🚜",HK:"🔌"};
+// ===== CONFIG =====
+const SB_URL = "https://eqahmdpouhchmuazvobi.supabase.co";
+const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxYWhtZHBvdWhjaG11YXp2b2JpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMDYyMDUsImV4cCI6MjA5Nzc4MjIwNX0.VuJFmgAaA7dBaIDqKKraJW6TH5I-mI7cL8EabASl5jk";
+const CRED = {login:"Komroni", pass:"Ismon"};
+const DEF_CITIES = ["Altmanstein","Scheßlitz","Bad Griesbach","Hamburg","Mühlhausen"];
+const WL = {Hausanschluss:"Hausanschluss",Einblasen:"Einblasen und Aktivieren",Tiefbau:"Tiefbau",HK:"HK Einblasen"};
+const WI = {Hausanschluss:"🏠",Einblasen:"💨",Tiefbau:"🚜",HK:"🔌"};
+const DB_ROW_ID = 1;
 
-function loadData(){return JSON.parse(localStorage.getItem("ikbt_v2")||"null");}
-function saveData(){localStorage.setItem("ikbt_v2",JSON.stringify(DB));}
+// ===== TRANSLATIONS =====
+const TR = {
+  de:{objects:"Objekte",selObj:"Objekt auswählen",selWork:"Arbeitsart auswählen",
+    newDay:"+ Neuer Tag",back:"← Zurück",save:"💾 Speichern",logout:"Abmelden",
+    addEntry:"+ Eintrag",addNV:"+ Netzverteiler",confirmDel:"Möchten Sie diesen Eintrag wirklich löschen?",
+    yes:"Ja, löschen",no:"Nein",saved:"Gespeichert ✓",syncing:"Sync...",synced:"Synchronisiert",
+    addr:"Adresse / Straße, Haus",comment:"Kommentar",vol:"Menge (m)",workers:"Arbeiter",hours:"Stunden",
+    done:"✓ Erledigt",partial:"⚡ Teilweise",notDone:"✗ Nicht erledigt",addFile:"Foto oder PDF hinzufügen",
+    installTxt:"Zum Startbildschirm: Teilen → 'Zum Home-Bildschirm'",
+    newObj:"Neues Objekt",objName:"Objektname",cancel:"Abbrechen",add:"Hinzufügen",
+    newWD:"Neuer Arbeitstag",date:"Datum",optCom:"Kommentar (optional)",create:"Erstellen",
+    nvNum:"NV-Nummer...",loginLbl:"Benutzername",passLbl:"Passwort",loginBtn:"Anmelden →",
+    loginErr:"Falscher Benutzername oder Passwort",
+    noNV:"Kein Netzverteiler vorhanden",noEntry:"Keine Einträge vorhanden",noDay:"Keine Einträge vorhanden",
+    recs:"Einträge",nvs:"Netzverteiler",delQ:"Löschen?",loading:"Daten werden geladen...",
+  },
+  ru:{objects:"Объекты",selObj:"Выберите объект",selWork:"Выберите вид работ",
+    newDay:"+ Новый день",back:"← Назад",save:"💾 Сохранить",logout:"Выйти",
+    addEntry:"+ Добавить запись",addNV:"+ Netzverteiler",confirmDel:"Вы действительно хотите удалить это?",
+    yes:"Да, удалить",no:"Нет",saved:"Сохранено ✓",syncing:"Синхронизация...",synced:"Синхронизировано",
+    addr:"Адрес / улица, дом",comment:"Комментарий",vol:"Объём (м)",workers:"Рабочих",hours:"Часы",
+    done:"✓ Выполнено",partial:"⚡ Частично",notDone:"✗ Не выполнено",addFile:"Добавить фото или PDF",
+    installTxt:"На главный экран: Поделиться → 'На экран Домой'",
+    newObj:"Новый объект",objName:"Название",cancel:"Отмена",add:"Добавить",
+    newWD:"Новый рабочий день",date:"Дата",optCom:"Комментарий (необязательно)",create:"Создать",
+    nvNum:"Номер NV...",loginLbl:"Логин",passLbl:"Пароль",loginBtn:"Войти →",
+    loginErr:"Неверный логин или пароль",
+    noNV:"Нет Netzverteiler",noEntry:"Нет записей",noDay:"Нет записей",
+    recs:"записей",nvs:"NV",delQ:"Удалить?",loading:"Загрузка данных...",
+  }
+};
 
-let DB=loadData()||{cities:DEFAULT_CITIES.map(n=>({name:n})),records:{}};
-let S={city:null,work:null,dayId:null};
+let LANG = localStorage.getItem("ik_lang")||"de";
+let DB = {cities:DEF_CITIES.map(n=>({name:n})),records:{}};
+let S = {city:null,work:null,day:null};
+let delFn = null;
+let saveTimer = null;
+let dbRowId = null;
 
+function t(k){ return TR[LANG][k]||k; }
+
+// ===== SUPABASE =====
+async function sbGet(){
+  try{
+    const r = await fetch(`${SB_URL}/rest/v1/ikbt_data?select=*&limit=1`,{
+      headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json"}
+    });
+    const rows = await r.json();
+    if(rows && rows.length>0){
+      dbRowId = rows[0].id;
+      const parsed = JSON.parse(rows[0].data);
+      if(parsed.cities) DB.cities = parsed.cities;
+      if(parsed.records) DB.records = parsed.records;
+      localStorage.setItem("ik_db", rows[0].data);
+      return true;
+    }
+    return false;
+  }catch(e){
+    const local = localStorage.getItem("ik_db");
+    if(local){ try{ const p=JSON.parse(local); if(p.cities)DB.cities=p.cities; if(p.records)DB.records=p.records; }catch{} }
+    return false;
+  }
+}
+
+async function sbSave(){
+  setSyncStatus("ing");
+  const payload = JSON.stringify({cities:DB.cities, records:stripFiles(DB.records)});
+  localStorage.setItem("ik_db", JSON.stringify({cities:DB.cities,records:DB.records}));
+  try{
+    let r;
+    if(dbRowId){
+      r = await fetch(`${SB_URL}/rest/v1/ikbt_data?id=eq.${dbRowId}`,{
+        method:"PATCH",
+        headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"return=minimal"},
+        body:JSON.stringify({data:payload})
+      });
+    } else {
+      r = await fetch(`${SB_URL}/rest/v1/ikbt_data`,{
+        method:"POST",
+        headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"return=representation"},
+        body:JSON.stringify({data:payload})
+      });
+      if(r.ok){ const rows=await r.json(); if(rows&&rows[0]) dbRowId=rows[0].id; }
+    }
+    setSyncStatus("ok");
+    toast(t("saved"));
+  }catch(e){
+    setSyncStatus("err");
+    toast("Sync-Fehler!","err");
+  }
+}
+
+function stripFiles(records){
+  // Store file metadata only in supabase, full data in localStorage
+  const r = JSON.parse(JSON.stringify(records));
+  Object.values(r).forEach(works=>{
+    Object.values(works).forEach(days=>{
+      Object.values(days).forEach(day=>{
+        (day.nvs||[]).forEach(nv=>{
+          (nv.addresses||[]).forEach(addr=>{
+            (addr.files||[]).forEach(f=>{ if(f.data&&f.data.length>100) f.data="[файл сохранён локально]"; });
+          });
+        });
+        (day.entries||[]).forEach(en=>{
+          (en.files||[]).forEach(f=>{ if(f.data&&f.data.length>100) f.data="[файл сохранён локально]"; });
+        });
+      });
+    });
+  });
+  return r;
+}
+function scheduleSave(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{ localStorage.setItem("ik_db",JSON.stringify({cities:DB.cities,records:DB.records})); },300);
+}
+
+// ===== AUTH =====
 function doLogin(){
-  const l=document.getElementById("inp-login").value.trim();
-  const p=document.getElementById("inp-pass").value.trim();
+  const l=document.getElementById("il").value.trim();
+  const p=document.getElementById("ip").value.trim();
   if(l===CRED.login&&p===CRED.pass){
+    localStorage.setItem("ik_sess","1");
     document.getElementById("login-page").style.display="none";
     document.getElementById("app").style.display="block";
-    renderCities();
+    initApp();
   } else {
-    document.getElementById("login-error").style.display="block";
-    setTimeout(()=>document.getElementById("login-error").style.display="none",3000);
+    const e=document.getElementById("le");
+    e.textContent=t("loginErr");
+    e.style.display="block";
+    setTimeout(()=>e.style.display="none",3000);
   }
 }
 
 function doLogout(){
-  document.getElementById("login-page").style.display="flex";
+  localStorage.removeItem("ik_sess");
   document.getElementById("app").style.display="none";
-  document.getElementById("inp-login").value="";
-  document.getElementById("inp-pass").value="";
-  goTo("cities");
+  document.getElementById("login-page").style.display="flex";
 }
 
-function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById("page-"+id).classList.add("active");}
-
-function setBreadcrumb(items){
-  document.getElementById("breadcrumb").innerHTML=items.map((item,i)=>{
-    if(i===items.length-1)return`<span>${item.label}</span>`;
-    return`<a onclick="${item.fn}">${item.label}</a> <span style="color:#475569">›</span>`;
-  }).join(" ");
+async function initApp(){
+  applyLang();
+  setSyncStatus("ing");
+  document.getElementById("city-grid").innerHTML=`<div class="spinner-wrap"><div class="spinner"></div><div>${t("loading")}</div></div>`;
+  await sbGet();
+  renderCities();
+  setSyncStatus("ok");
+  showInstallBar();
 }
+
+function setSyncStatus(s){
+  const d=document.getElementById("sdot");
+  const l=document.getElementById("slbl");
+  if(!d)return;
+  d.className="sync-dot"+(s==="ing"?" ing":s==="err"?" err":"");
+  if(l)l.textContent=s==="ing"?t("syncing"):s==="err"?"⚠":t("synced");
+}
+
+// ===== LANG =====
+function setLang(lang,btn){
+  LANG=lang;
+  localStorage.setItem("ik_lang",lang);
+  document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
+  if(btn)btn.classList.add("active");
+  applyLang();
+}
+
+function applyLang(){
+  const ids={
+    "ll-login":t("loginLbl"),"ll-pass":t("passLbl"),"lb":t("loginBtn"),"le":t("loginErr"),
+    "btn-logout":t("logout"),"btn-newday":t("newDay"),
+    "btn-seb":t("save"),"btn-anv":t("addNV"),
+    "btn-sgen":t("save"),"btn-aen":t("addEntry"),
+    "t-objects":t("objects"),"s-objects":t("selObj"),"s-worktype":t("selWork"),
+    "b-works":t("back"),"b-days":t("back"),"b-eb":t("back"),"b-gen":t("back"),
+    "mt-city":"🏙 "+t("newObj"),"ml-city":t("objName"),"ml-cancel":t("cancel"),"ml-add":t("add"),
+    "mt-day":"📅 "+t("newWD"),"ml-date":t("date"),"ml-comment":t("optCom"),
+    "ct":t("delQ"),"cs":t("confirmDel"),"cy":t("yes"),"cn":t("no"),
+    "ibar-text":t("installTxt"),
+  };
+  Object.entries(ids).forEach(([id,v])=>{ const el=document.getElementById(id); if(el)el.textContent=v; });
+}
+
+// ===== NAV =====
+function showPage(id){ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active")); document.getElementById("page-"+id).classList.add("active"); }
+function setBC(items){ document.getElementById("bc").innerHTML=items.map((it,i)=>i===items.length-1?`<span>${it.l}</span>`:`<a onclick="${it.fn}">${it.l}</a> <span style="color:#1e3a6e">›</span>`).join(" "); }
 
 function goTo(page){
-  if(page==="cities"){S={city:null,work:null,dayId:null};showPage("cities");setBreadcrumb([{label:"Объекты"}]);renderCities();}
-  if(page==="works"){showPage("works");document.getElementById("work-city-title").textContent=S.city;setBreadcrumb([{label:"Объекты",fn:"goTo('cities')"},{label:S.city}]);}
-  if(page==="days"){showPage("days");renderDayList();}
+  if(page==="cities"){ S={city:null,work:null,day:null}; showPage("cities"); setBC([{l:t("objects")}]); renderCities(); }
+  if(page==="works"){ showPage("works"); document.getElementById("t-city").textContent=S.city; setBC([{l:t("objects"),fn:"goTo('cities')"},{l:S.city}]); }
 }
 
-function goToWork(work){
+function goWork(work){
   S.work=work;
   showPage("days");
-  document.getElementById("days-title").textContent=WORK_ICONS[work]+" "+WORK_LABELS[work];
-  document.getElementById("days-sub").textContent="Объект: "+S.city+" · Выберите или создайте рабочий день";
-  document.getElementById("days-back-btn").onclick=()=>goTo("works");
-  setBreadcrumb([{label:"Объекты",fn:"goTo('cities')"},{label:S.city,fn:"goTo('works')"},{label:WORK_LABELS[work]}]);
-  renderDayList();
+  document.getElementById("t-days").textContent=WI[work]+" "+WL[work];
+  document.getElementById("s-days").textContent=S.city;
+  document.getElementById("b-days").onclick=()=>goTo("works");
+  setBC([{l:t("objects"),fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:WL[work]}]);
+  renderDays();
 }
 
+// ===== CITIES =====
 function renderCities(){
-  const grid=document.getElementById("city-grid");
-  grid.innerHTML=DB.cities.map((c,i)=>`
-    <div class="city-card" onclick="selectCity('${c.name}')">
-      <div class="city-icon">${["🏙","🏘","🌆","🏗","🌇"][i%5]}</div>
+  const g=document.getElementById("city-grid");
+  const icons=["🏙","🏘","🌆","🏗","🌇","🏛","🌃"];
+  g.innerHTML=DB.cities.map((c,i)=>`
+    <div class="city-card" onclick="selectCity('${esc(c.name)}')">
+      <div class="city-icon">${icons[i%icons.length]}</div>
       <div class="city-name">${c.name}</div>
-      <div class="city-count">${countRecords(c.name)} записей</div>
+      <div class="city-count">${countRecs(c.name)} ${t("recs")}</div>
     </div>`).join("")+
-    `<div class="add-city-card" onclick="openModal('modal-city')">
-      <div style="font-size:36px;margin-bottom:12px">＋</div>
-      <div style="font-weight:600;font-size:14px">Добавить объект</div>
+    `<div class="add-city" onclick="openM('m-city')">
+      <div style="font-size:28px;margin-bottom:8px">＋</div>
+      <div style="font-weight:600;font-size:12px">${t("newObj")}</div>
     </div>`;
 }
 
-function countRecords(city){
-  let n=0;
-  Object.values(DB.records[city]||{}).forEach(work=>Object.keys(work).forEach(()=>n++));
-  return n;
-}
+function countRecs(city){ let n=0; try{ Object.values(DB.records[city]||{}).forEach(w=>Object.keys(w).forEach(()=>n++)); }catch{} return n; }
+function selectCity(name){ S.city=name; goTo("works"); }
 
-function selectCity(name){S.city=name;goTo("works");}
-
-function saveNewCity(){
-  const name=document.getElementById("new-city-name").value.trim();
+function saveCity(){
+  const name=document.getElementById("new-city").value.trim();
   if(!name)return;
-  if(DB.cities.find(c=>c.name===name)){toast("Объект уже существует","error");return;}
-  DB.cities.push({name});saveData();closeModal("modal-city");
-  document.getElementById("new-city-name").value="";
-  renderCities();toast("Объект добавлен");
+  if(DB.cities.find(c=>c.name===name)){toast("Existiert bereits","err");return;}
+  DB.cities.push({name});
+  scheduleSave();
+  closeM("m-city");
+  document.getElementById("new-city").value="";
+  renderCities();
+  toast(name+" "+t("add")+" ✓");
 }
 
-function getDays(){return DB.records[S.city]?.[S.work]||{};}
+// ===== DAYS =====
+function getDays(){ return DB.records[S.city]?.[S.work]||{}; }
 
-function renderDayList(){
+function renderDays(){
   const days=getDays();
-  const list=document.getElementById("day-list");
   const keys=Object.keys(days).sort((a,b)=>b.localeCompare(a));
-  if(!keys.length){list.innerHTML=`<div style="text-align:center;padding:50px;color:#475569"><div style="font-size:36px;margin-bottom:12px">📅</div><div style="font-weight:600">Нет записей</div><div style="font-size:13px;margin-top:4px">Нажмите «Новый день»</div></div>`;return;}
+  const list=document.getElementById("day-list");
+  if(!keys.length){list.innerHTML=`<div class="empty"><div class="empty-icon">📅</div><div>${t("noDay")}</div></div>`;return;}
   list.innerHTML=keys.map(k=>{
     const d=days[k];
-    const nv=d.nvs?d.nvs.length:0;
-    const en=d.entries?d.entries.length:0;
+    const info=S.work==="Einblasen"?`${(d.nvs||[]).length} ${t("nvs")}`:`${(d.entries||[]).length} ${t("recs")}`;
     return`<div class="day-item" onclick="openDay('${k}')">
-      <div>
-        <div class="day-date">${fmtDate(k)}</div>
-        <div class="day-meta">${d.comment||""} ${S.work==="Einblasen"?"· "+nv+" Netzverteiler":"· "+en+" записей"}</div>
-      </div>
-      <div style="color:#f97316;font-size:18px">›</div>
+      <div><div class="day-date">${fmtD(k)}</div><div class="day-meta">${d.comment?d.comment+" · ":""}${info}</div></div>
+      <div style="color:var(--accent3);font-size:17px">›</div>
     </div>`;
   }).join("");
 }
 
-function openNewDayModal(){
-  document.getElementById("new-day-date").value=new Date().toISOString().split("T")[0];
-  document.getElementById("new-day-comment").value="";
-  openModal("modal-day");
+function openDayModal(){
+  document.getElementById("new-date").value=new Date().toISOString().split("T")[0];
+  document.getElementById("new-comment").value="";
+  openM("m-day");
 }
 
-function saveNewDay(){
-  const date=document.getElementById("new-day-date").value;
-  const comment=document.getElementById("new-day-comment").value.trim();
+function saveDay(){
+  const date=document.getElementById("new-date").value;
+  const comment=document.getElementById("new-comment").value.trim();
   if(!date)return;
   if(!DB.records[S.city])DB.records[S.city]={};
   if(!DB.records[S.city][S.work])DB.records[S.city][S.work]={};
   if(!DB.records[S.city][S.work][date])DB.records[S.city][S.work][date]={comment,nvs:[],entries:[]};
-  saveData();closeModal("modal-day");renderDayList();
-  S.dayId=date;openDay(date);toast("День создан");
+  scheduleSave();
+  closeM("m-day");
+  renderDays();
+  S.day=date;
+  openDay(date);
 }
 
-function openDay(dateId){
-  S.dayId=dateId;
-  if(S.work==="Einblasen")openEinblasen(dateId);
-  else openGeneric(dateId);
-}
+function openDay(d){ S.day=d; S.work==="Einblasen"?openEB(d):openGEN(d); }
 
-function openEinblasen(dateId){
-  const d=DB.records[S.city][S.work][dateId];
-  document.getElementById("eb-title").textContent="💨 Einblasen und Aktivieren";
-  document.getElementById("eb-date-sub").textContent=S.city+" · "+fmtDate(dateId)+(d.comment?" · "+d.comment:"");
-  document.getElementById("eb-back-btn").onclick=()=>{showPage("days");renderDayList();};
-  setBreadcrumb([{label:"Объекты",fn:"goTo('cities')"},{label:S.city,fn:"goTo('works')"},{label:"Einblasen",fn:"goToWork('Einblasen')"},{label:fmtDate(dateId)}]);
-  showPage("einblasen");renderNVs();
+// ===== EINBLASEN =====
+function openEB(d){
+  const day=getDay();
+  document.getElementById("t-eb").textContent="💨 Einblasen und Aktivieren";
+  document.getElementById("s-eb").textContent=S.city+" · "+fmtD(d)+(day.comment?" · "+day.comment:"");
+  document.getElementById("b-eb").onclick=()=>{showPage("days");renderDays();};
+  setBC([{l:t("objects"),fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:"Einblasen",fn:"goWork('Einblasen')"},{l:fmtD(d)}]);
+  showPage("einblasen");
+  renderNVs();
 }
 
 function renderNVs(){
-  const d=DB.records[S.city][S.work][S.dayId];
-  const nvs=d.nvs||[];
-  const container=document.getElementById("nv-list");
-  if(!nvs.length){container.innerHTML=`<div style="text-align:center;padding:40px;color:#475569"><div style="font-size:36px;margin-bottom:10px">📦</div><div style="font-weight:600">Нет Netzverteiler</div><div style="font-size:13px;margin-top:4px">Нажмите «+ Netzverteiler»</div></div>`;return;}
-  container.innerHTML=nvs.map((nv,ni)=>`
+  const nvs=getDay().nvs||[];
+  const c=document.getElementById("nv-list");
+  if(!nvs.length){c.innerHTML=`<div class="empty"><div class="empty-icon">📦</div><div>${t("noNV")}</div></div>`;return;}
+  c.innerHTML=nvs.map((nv,ni)=>`
     <div class="nv-block">
       <div class="nv-header">
-        <div>
+        <div style="flex:1">
           <div class="nv-title">Netzverteiler ${nv.number||ni+1}</div>
-          <input type="text" value="${nv.number||""}" placeholder="Номер NV..." style="margin-top:6px;max-width:220px;font-weight:700" oninput="updateNV(${ni},'number',this.value)"/>
+          <input type="text" value="${esc(nv.number||"")}" placeholder="${t("nvNum")}" style="margin-top:5px;max-width:190px;font-weight:700" oninput="updNV(${ni},'number',this.value)"/>
         </div>
-        <div class="nv-actions">
-          <button class="btn-green" onclick="addAddress(${ni})">+ Адрес</button>
-          <button class="btn-danger" onclick="removeNV(${ni})">🗑</button>
+        <div class="nv-btns">
+          <button class="btn-g" onclick="addAddr(${ni})">+ Adresse</button>
+          <button class="btn-d" onclick="confirmDel(()=>removeNV(${ni}))">🗑</button>
         </div>
       </div>
-      <div id="addr-list-${ni}">
-        ${(nv.addresses||[]).map((addr,ai)=>renderAddr(ni,ai,addr)).join("")}
-      </div>
+      ${(nv.addresses||[]).map((a,ai)=>renderAddr(ni,ai,a)).join("")}
     </div>`).join("");
 }
 
 function renderAddr(ni,ai,addr){
-  const statusBtns=[{key:"done",label:"✓ Выполнено",cls:"active-done"},{key:"partial",label:"⚡ Частично",cls:"active-partial"},{key:"no",label:"✗ Не выполнено",cls:"active-no"}];
+  const sbs=[{k:"done",l:t("done"),c:"sd"},{k:"partial",l:t("partial"),c:"sp"},{k:"no",l:t("notDone"),c:"sn"}];
   const files=(addr.files||[]).map((f,fi)=>`
-    <div class="file-item">
-      ${f.type==="image"?`<img src="${f.data}" class="file-thumb" onclick="viewImage('${f.data}')"/>`:`<span style="font-size:20px">📄</span>`}
-      <span class="file-item-name">${f.name}</span>
-      <button class="btn-green" onclick="downloadFile(${ni},${ai},${fi})">⬇</button>
-      <button class="btn-danger" onclick="removeFile(${ni},${ai},${fi})">🗑</button>
+    <div class="fitem">
+      ${f.type==="image"&&f.data&&!f.data.includes("локально")?`<img src="${f.data}" class="fthumb" onclick="viewImg('${f.data}')"/>`:`<span style="font-size:20px">${f.type==="image"?"🖼":"📄"}</span>`}
+      <span class="fitem-name">${esc(f.name)}</span>
+      ${f.data&&!f.data.includes("локально")?`<button class="btn-g" onclick="dlFile(${ni},${ai},${fi})">⬇</button>`:""}
+      <button class="btn-d" onclick="confirmDel(()=>rmFile(${ni},${ai},${fi}))">🗑</button>
     </div>`).join("");
   return`<div class="addr-row">
     <div class="addr-top">
       <div class="addr-num">${ai+1}</div>
-      <input type="text" value="${addr.street||""}" placeholder="Адрес / улица, дом..." style="flex:1" oninput="updateAddr(${ni},${ai},'street',this.value)"/>
-      <button class="btn-danger" onclick="removeAddr(${ni},${ai})">🗑</button>
+      <input type="text" value="${esc(addr.street||"")}" placeholder="${t("addr")}" style="flex:1" oninput="updAddr(${ni},${ai},'street',this.value)"/>
+      <button class="btn-d" onclick="confirmDel(()=>rmAddr(${ni},${ai}))">🗑</button>
     </div>
-    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
-      ${statusBtns.map(s=>`<button class="status-btn ${addr.status===s.key?s.cls:""}" onclick="setAddrStatus(${ni},${ai},'${s.key}')">${s.label}</button>`).join("")}
+    <div class="srow">${sbs.map(s=>`<button class="sbtn ${addr.status===s.k?s.c:""}" onclick="setStatus(${ni},${ai},'${s.k}')">${s.l}</button>`).join("")}</div>
+    <div style="margin-bottom:7px"><textarea placeholder="${t("comment")}" rows="2" style="font-size:12px" oninput="updAddr(${ni},${ai},'comment',this.value)">${esc(addr.comment||"")}</textarea></div>
+    <div class="file-drop" onclick="document.getElementById('fu${ni}_${ai}').click()">
+      <div style="font-size:18px;margin-bottom:3px">📎</div>
+      <div style="font-size:11px;color:var(--text3)">${t("addFile")}</div>
     </div>
-    <div style="margin-bottom:8px">
-      <textarea placeholder="Комментарий к адресу..." rows="2" style="font-size:13px" oninput="updateAddr(${ni},${ai},'comment',this.value)">${addr.comment||""}</textarea>
-    </div>
-    <div class="file-drop" onclick="document.getElementById('fu-${ni}-${ai}').click()">
-      <div style="font-size:22px;margin-bottom:4px">📎</div>
-      <div style="font-size:12px;color:#94a3b8">Добавить фото или PDF</div>
-    </div>
-    <input type="file" id="fu-${ni}-${ai}" accept="image/*,.pdf" multiple style="display:none" onchange="handleFiles(event,${ni},${ai})"/>
-    <div class="file-list">${files}</div>
+    <input type="file" id="fu${ni}_${ai}" accept="image/*,.pdf" multiple style="display:none" onchange="handleFiles(event,${ni},${ai})"/>
+    <div class="flist">${files}</div>
   </div>`;
 }
 
-function addNV(){const d=getDay();if(!d.nvs)d.nvs=[];d.nvs.push({number:"",addresses:[]});saveData();renderNVs();}
-function removeNV(ni){if(!confirm("Удалить Netzverteiler?"))return;const d=getDay();d.nvs.splice(ni,1);saveData();renderNVs();}
-function updateNV(ni,key,val){getDay().nvs[ni][key]=val;saveData();}
-function addAddress(ni){const d=getDay();if(!d.nvs[ni].addresses)d.nvs[ni].addresses=[];d.nvs[ni].addresses.push({street:"",status:null,comment:"",files:[]});saveData();renderNVs();}
-function removeAddr(ni,ai){getDay().nvs[ni].addresses.splice(ai,1);saveData();renderNVs();}
-function updateAddr(ni,ai,key,val){getDay().nvs[ni].addresses[ai][key]=val;saveData();}
-function setAddrStatus(ni,ai,status){getDay().nvs[ni].addresses[ai].status=status;saveData();renderNVs();}
-
+async function saveEB(){ scheduleSave(); await sbSave(); }
+function addNV(){ const d=getDay(); d.nvs.push({number:"",addresses:[]}); scheduleSave(); renderNVs(); }
+function removeNV(ni){ getDay().nvs.splice(ni,1); scheduleSave(); renderNVs(); }
+function updNV(ni,k,v){ getDay().nvs[ni][k]=v; scheduleSave(); }
+function addAddr(ni){ getDay().nvs[ni].addresses.push({street:"",status:null,comment:"",files:[]}); scheduleSave(); renderNVs(); }
+function rmAddr(ni,ai){ getDay().nvs[ni].addresses.splice(ai,1); scheduleSave(); renderNVs(); }
+function updAddr(ni,ai,k,v){ getDay().nvs[ni].addresses[ai][k]=v; scheduleSave(); }
+function setStatus(ni,ai,s){ getDay().nvs[ni].addresses[ai].status=s; scheduleSave(); renderNVs(); }
 function handleFiles(e,ni,ai){
-  const d=getDay();
   Array.from(e.target.files).forEach(file=>{
-    const isImg=file.type.startsWith("image/");
-    const isPDF=file.type==="application/pdf";
-    if(!isImg&&!isPDF){toast("Только фото и PDF","error");return;}
-    const reader=new FileReader();
-    reader.onload=ev=>{
-      if(!d.nvs[ni].addresses[ai].files)d.nvs[ni].addresses[ai].files=[];
-      d.nvs[ni].addresses[ai].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});
-      saveData();renderNVs();
-    };
-    reader.readAsDataURL(file);
+    const isImg=file.type.startsWith("image/"),isPDF=file.type==="application/pdf";
+    if(!isImg&&!isPDF){toast(t("addFile"),"err");return;}
+    const r=new FileReader();
+    r.onload=ev=>{ getDay().nvs[ni].addresses[ai].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"}); scheduleSave(); renderNVs(); };
+    r.readAsDataURL(file);
   });
 }
+function rmFile(ni,ai,fi){ getDay().nvs[ni].addresses[ai].files.splice(fi,1); scheduleSave(); renderNVs(); }
+function dlFile(ni,ai,fi){ const f=getDay().nvs[ni].addresses[ai].files[fi]; const a=document.createElement("a"); a.href=f.data; a.download=f.name; a.click(); }
 
-function removeFile(ni,ai,fi){getDay().nvs[ni].addresses[ai].files.splice(fi,1);saveData();renderNVs();}
-function downloadFile(ni,ai,fi){const f=getDay().nvs[ni].addresses[ai].files[fi];const a=document.createElement("a");a.href=f.data;a.download=f.name;a.click();}
-
-function viewImage(src){
-  const d=document.createElement("div");
-  d.style.cssText="position:fixed;inset:0;background:#000c;z-index:999;display:flex;align-items:center;justify-content:center;cursor:pointer";
-  d.onclick=()=>d.remove();
-  d.innerHTML=`<img src="${src}" style="max-width:95vw;max-height:90vh;border-radius:12px"/>`;
-  document.body.appendChild(d);
+// ===== GENERIC =====
+function openGEN(d){
+  const day=getDay();
+  document.getElementById("t-gen").textContent=WI[S.work]+" "+WL[S.work];
+  document.getElementById("s-gen").textContent=S.city+" · "+fmtD(d)+(day.comment?" · "+day.comment:"");
+  document.getElementById("b-gen").onclick=()=>{showPage("days");renderDays();};
+  setBC([{l:t("objects"),fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:WL[S.work],fn:"goWork('"+S.work+"')"},{l:fmtD(d)}]);
+  showPage("generic"); renderGEN();
 }
 
-function openGeneric(dateId){
-  const d=DB.records[S.city][S.work][dateId];
-  document.getElementById("gen-title").textContent=WORK_ICONS[S.work]+" "+WORK_LABELS[S.work];
-  document.getElementById("gen-date-sub").textContent=S.city+" · "+fmtDate(dateId)+(d.comment?" · "+d.comment:"");
-  document.getElementById("gen-back-btn").onclick=()=>{showPage("days");renderDayList();};
-  setBreadcrumb([{label:"Объекты",fn:"goTo('cities')"},{label:S.city,fn:"goTo('works')"},{label:WORK_LABELS[S.work],fn:"goToWork('"+S.work+"')"},{label:fmtDate(dateId)}]);
-  showPage("generic");renderGenEntries();
-}
-
-function renderGenEntries(){
-  const d=getDay();const entries=d.entries||[];
-  const container=document.getElementById("gen-list");
-  if(!entries.length){container.innerHTML=`<div style="text-align:center;padding:40px;color:#475569"><div style="font-size:36px;margin-bottom:10px">📝</div><div style="font-weight:600">Нет записей</div><div style="font-size:13px;margin-top:4px">Нажмите «+ Добавить запись»</div></div>`;return;}
-  container.innerHTML=entries.map((en,i)=>{
+function renderGEN(){
+  const entries=getDay().entries||[];
+  const c=document.getElementById("gen-list");
+  if(!entries.length){c.innerHTML=`<div class="empty"><div class="empty-icon">📝</div><div>${t("noEntry")}</div></div>`;return;}
+  c.innerHTML=entries.map((en,i)=>{
     const files=(en.files||[]).map((f,fi)=>`
-      <div class="file-item">
-        ${f.type==="image"?`<img src="${f.data}" class="file-thumb" onclick="viewImage('${f.data}')"/>`:`<span style="font-size:20px">📄</span>`}
-        <span class="file-item-name">${f.name}</span>
-        <button class="btn-green" onclick="downloadGenFile(${i},${fi})">⬇</button>
-        <button class="btn-danger" onclick="removeGenFile(${i},${fi})">🗑</button>
+      <div class="fitem">
+        ${f.type==="image"&&f.data&&!f.data.includes("локально")?`<img src="${f.data}" class="fthumb" onclick="viewImg('${f.data}')"/>`:`<span style="font-size:20px">${f.type==="image"?"🖼":"📄"}</span>`}
+        <span class="fitem-name">${esc(f.name)}</span>
+        ${f.data&&!f.data.includes("локально")?`<button class="btn-g" onclick="dlGenFile(${i},${fi})">⬇</button>`:""}
+        <button class="btn-d" onclick="confirmDel(()=>rmGenFile(${i},${fi}))">🗑</button>
       </div>`).join("");
     return`<div class="entry-block">
-      <div class="entry-header">
-        <div class="entry-title">${WORK_ICONS[S.work]} Запись ${i+1}</div>
-        <button class="btn-danger" onclick="removeGenEntry(${i})">🗑 Удалить</button>
+      <div class="entry-hdr">
+        <div class="entry-title">${WI[S.work]} Eintrag ${i+1}</div>
+        <button class="btn-d" onclick="confirmDel(()=>rmEntry(${i}))">🗑</button>
       </div>
-      <div class="form-row" style="margin-bottom:10px">
-        <div><label class="field-label">Адрес / Описание</label><input type="text" value="${en.address||""}" placeholder="Адрес..." oninput="updateGenEntry(${i},'address',this.value)"/></div>
-        <div><label class="field-label">Объём (м)</label><input type="number" value="${en.volume||""}" placeholder="напр. 45" oninput="updateGenEntry(${i},'volume',this.value)"/></div>
-        <div><label class="field-label">Рабочих</label><input type="number" value="${en.workers||""}" placeholder="напр. 3" oninput="updateGenEntry(${i},'workers',this.value)"/></div>
-        <div><label class="field-label">Часы</label><input type="number" value="${en.hours||""}" placeholder="напр. 8" oninput="updateGenEntry(${i},'hours',this.value)"/></div>
-        <div class="form-full"><label class="field-label">Комментарий</label><textarea rows="2" placeholder="Замечания..." oninput="updateGenEntry(${i},'comment',this.value)">${en.comment||""}</textarea></div>
+      <div class="frow" style="margin-bottom:9px">
+        <div><label class="flabel">${t("addr")}</label><input type="text" value="${esc(en.address||"")}" placeholder="${t("addr")}" oninput="updEntry(${i},'address',this.value)"/></div>
+        <div><label class="flabel">${t("vol")}</label><input type="number" value="${en.volume||""}" placeholder="45" oninput="updEntry(${i},'volume',this.value)"/></div>
+        <div><label class="flabel">${t("workers")}</label><input type="number" value="${en.workers||""}" placeholder="3" oninput="updEntry(${i},'workers',this.value)"/></div>
+        <div><label class="flabel">${t("hours")}</label><input type="number" value="${en.hours||""}" placeholder="8" oninput="updEntry(${i},'hours',this.value)"/></div>
+        <div class="ffull"><label class="flabel">${t("comment")}</label><textarea rows="2" placeholder="${t("comment")}" oninput="updEntry(${i},'comment',this.value)">${esc(en.comment||"")}</textarea></div>
       </div>
-      <div class="file-drop" onclick="document.getElementById('gfu-${i}').click()">
-        <div style="font-size:22px;margin-bottom:4px">📎</div>
-        <div style="font-size:12px;color:#94a3b8">Добавить фото или PDF</div>
+      <div class="file-drop" onclick="document.getElementById('gfu${i}').click()">
+        <div style="font-size:18px;margin-bottom:3px">📎</div>
+        <div style="font-size:11px;color:var(--text3)">${t("addFile")}</div>
       </div>
-      <input type="file" id="gfu-${i}" accept="image/*,.pdf" multiple style="display:none" onchange="handleGenFiles(event,${i})"/>
-      <div class="file-list">${files}</div>
+      <input type="file" id="gfu${i}" accept="image/*,.pdf" multiple style="display:none" onchange="handleGenFiles(event,${i})"/>
+      <div class="flist">${files}</div>
     </div>`;
   }).join("");
 }
 
-function addGenEntry(){const d=getDay();if(!d.entries)d.entries=[];d.entries.push({address:"",volume:"",workers:"",hours:"",comment:"",files:[]});saveData();renderGenEntries();}
-function removeGenEntry(i){if(!confirm("Удалить запись?"))return;getDay().entries.splice(i,1);saveData();renderGenEntries();}
-function updateGenEntry(i,key,val){getDay().entries[i][key]=val;saveData();}
-
+async function saveGEN(){ scheduleSave(); await sbSave(); }
+function addEntry(){ const d=getDay(); d.entries.push({address:"",volume:"",workers:"",hours:"",comment:"",files:[]}); scheduleSave(); renderGEN(); }
+function rmEntry(i){ getDay().entries.splice(i,1); scheduleSave(); renderGEN(); }
+function updEntry(i,k,v){ getDay().entries[i][k]=v; scheduleSave(); }
 function handleGenFiles(e,i){
-  const d=getDay();
   Array.from(e.target.files).forEach(file=>{
-    const isImg=file.type.startsWith("image/");
-    const isPDF=file.type==="application/pdf";
-    if(!isImg&&!isPDF){toast("Только фото и PDF","error");return;}
-    const reader=new FileReader();
-    reader.onload=ev=>{
-      if(!d.entries[i].files)d.entries[i].files=[];
-      d.entries[i].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});
-      saveData();renderGenEntries();
-    };
-    reader.readAsDataURL(file);
+    const isImg=file.type.startsWith("image/"),isPDF=file.type==="application/pdf";
+    if(!isImg&&!isPDF){toast(t("addFile"),"err");return;}
+    const r=new FileReader();
+    r.onload=ev=>{ getDay().entries[i].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"}); scheduleSave(); renderGEN(); };
+    r.readAsDataURL(file);
   });
 }
+function rmGenFile(i,fi){ getDay().entries[i].files.splice(fi,1); scheduleSave(); renderGEN(); }
+function dlGenFile(i,fi){ const f=getDay().entries[i].files[fi]; const a=document.createElement("a"); a.href=f.data; a.download=f.name; a.click(); }
 
-function removeGenFile(i,fi){getDay().entries[i].files.splice(fi,1);saveData();renderGenEntries();}
-function downloadGenFile(i,fi){const f=getDay().entries[i].files[fi];const a=document.createElement("a");a.href=f.data;a.download=f.name;a.click();}
-
-function getDay(){return DB.records[S.city][S.work][S.dayId];}
-function fmtDate(d){try{return new Date(d+"T00:00:00").toLocaleDateString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric"});}catch{return d;}}
-function toast(msg,type="ok"){const t=document.getElementById("toast");t.textContent=(type==="ok"?"✓ ":"✗ ")+msg;t.className="toast show"+(type==="error"?" error":"");clearTimeout(t._t);t._t=setTimeout(()=>t.className="toast",2500);}
-function openModal(id){document.getElementById(id).classList.add("show");}
-function closeModal(id){document.getElementById(id).classList.remove("show");}
+// ===== HELPERS =====
+function getDay(){ return DB.records[S.city][S.work][S.day]; }
+function fmtD(d){ try{return new Date(d+"T00:00:00").toLocaleDateString(LANG==="de"?"de-DE":"ru-RU",{day:"2-digit",month:"2-digit",year:"numeric"});}catch{return d;} }
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function toast(msg,type="ok"){ const t2=document.getElementById("toast"); t2.textContent=msg; t2.className="toast show"+(type==="err"?" err":type==="inf"?" inf":""); clearTimeout(t2._t); t2._t=setTimeout(()=>t2.className="toast",2500); }
+function openM(id){ document.getElementById(id).classList.add("show"); }
+function closeM(id){ document.getElementById(id).classList.remove("show"); }
+function confirmDel(fn){ delFn=fn; openM("m-confirm"); document.getElementById("cy").onclick=()=>{ if(delFn)delFn(); closeM("m-confirm"); delFn=null; }; }
+function viewImg(src){ const d=document.createElement("div"); d.style.cssText="position:fixed;inset:0;background:#000d;z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer"; d.onclick=()=>d.remove(); d.innerHTML=`<img src="${src}" style="max-width:95vw;max-height:90vh;border-radius:12px"/>`; document.body.appendChild(d); }
+function showInstallBar(){ const isIOS=/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase()); if(isIOS&&!window.navigator.standalone&&!localStorage.getItem("ik_ibclosed")){ const b=document.getElementById("ibar"); if(b)b.style.display="flex"; } }
 document.querySelectorAll(".modal-bg").forEach(m=>m.addEventListener("click",function(e){if(e.target===this)this.classList.remove("show");}));
-setBreadcrumb([{label:"Объекты"}]);
+
+// ===== INIT =====
+window.addEventListener("load",()=>{
+  LANG=localStorage.getItem("ik_lang")||"de";
+  document.querySelectorAll(".lang-btn").forEach(b=>{ b.classList.toggle("active",b.textContent.includes(LANG.toUpperCase())); });
+  applyLang();
+  setTimeout(()=>{
+    document.getElementById("splash").classList.add("hide");
+    setTimeout(()=>{
+      document.getElementById("splash").style.display="none";
+      if(localStorage.getItem("ik_sess")==="1"){
+        document.getElementById("login-page").style.display="none";
+        document.getElementById("app").style.display="block";
+        initApp();
+      } else {
+        document.getElementById("login-page").style.display="flex";
+      }
+    },500);
+  },2000);
+});
 </script>
 </body>
 </html>
