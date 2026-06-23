@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>IK Bautechnik GmbH</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:#0f172a;font-family:'Inter',system-ui,sans-serif;color:#f1f5f9}
+input,select,textarea,button{font-family:inherit}
+.login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%)}
+.login-box{background:#1e293b;border:1px solid #334155;border-radius:20px;padding:40px;width:100%;max-width:380px;text-align:center}
+.login-logo{font-size:48px;margin-bottom:16px}
+.login-title{font-size:22px;font-weight:800;margin-bottom:4px}
+.login-sub{font-size:13px;color:#64748b;margin-bottom:32px}
+.login-field{margin-bottom:16px;text-align:left}
+.login-field label{font-size:12px;font-weight:600;color:#94a3b8;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+.login-field input{width:100%;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:12px 14px;color:#f1f5f9;font-size:15px;outline:none;transition:border-color 0.2s}
+.login-field input:focus{border-color:#f97316}
+.login-btn{width:100%;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px}
+.login-error{background:#ef444422;border:1px solid #ef4444;color:#ef4444;border-radius:8px;padding:10px;font-size:13px;margin-top:12px;display:none}
+.app{display:none}
+.header{background:#1e293b;border-bottom:1px solid #334155;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:200}
+.header-left{display:flex;align-items:center;gap:10px}
+.hlogo{width:34px;height:34px;background:linear-gradient(135deg,#f97316,#ea580c);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.hname{font-weight:800;font-size:14px;letter-spacing:-0.2px}
+.hsub{font-size:10px;color:#64748b}
+.logout-btn{background:transparent;border:1px solid #334155;color:#94a3b8;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:12px}
+.logout-btn:hover{border-color:#ef4444;color:#ef4444}
+.breadcrumb{background:#1e293b;border-bottom:1px solid #0f172a;padding:8px 20px;font-size:12px;color:#64748b;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.breadcrumb span{color:#94a3b8}
+.breadcrumb a{color:#f97316;cursor:pointer;text-decoration:none}
+.container{max-width:960px;margin:0 auto;padding:20px 14px}
+.page{display:none}
+.page.active{display:block}
+.toast{position:fixed;top:70px;right:20px;background:#10b981;color:#fff;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;z-index:999;display:none;box-shadow:0 4px 20px #0005}
+.toast.show{display:block}
+.toast.error{background:#ef4444}
+.sec-title{font-size:22px;font-weight:800;margin-bottom:4px}
+.sec-sub{font-size:14px;color:#64748b;margin-bottom:24px}
+.card{background:#1e293b;border-radius:16px;border:1px solid #334155;padding:22px}
+.city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:20px}
+.city-card{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:22px 18px;cursor:pointer;transition:all 0.2s;text-align:center}
+.city-card:hover{border-color:#f97316;transform:translateY(-2px);box-shadow:0 8px 24px #f9731622}
+.city-icon{font-size:36px;margin-bottom:12px}
+.city-name{font-weight:700;font-size:15px;margin-bottom:4px}
+.city-count{font-size:12px;color:#64748b}
+.add-city-card{background:transparent;border:2px dashed #334155;border-radius:16px;padding:22px 18px;cursor:pointer;transition:all 0.2s;text-align:center;color:#64748b}
+.add-city-card:hover{border-color:#f97316;color:#f97316}
+.work-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.work-card{background:#1e293b;border:1px solid #334155;border-radius:16px;padding:24px 18px;cursor:pointer;transition:all 0.2s;text-align:center}
+.work-card:hover{border-color:#f97316;transform:translateY(-2px)}
+.work-icon{font-size:38px;margin-bottom:12px}
+.work-name{font-weight:700;font-size:14px}
+.day-list{display:flex;flex-direction:column;gap:10px}
+.day-item{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:border-color 0.2s}
+.day-item:hover{border-color:#f97316}
+.day-date{font-weight:700;font-size:15px}
+.day-meta{font-size:12px;color:#64748b;margin-top:2px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-full{grid-column:1/-1}
+.field-label{font-size:11px;font-weight:700;color:#94a3b8;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.5px}
+input[type=text],input[type=date],input[type=number],input[type=password],select,textarea{width:100%;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:10px 13px;color:#f1f5f9;font-size:14px;outline:none;transition:border-color 0.2s}
+input:focus,select:focus,textarea:focus{border-color:#f97316}
+textarea{resize:vertical}
+.btn-primary{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:700;cursor:pointer}
+.btn-secondary{background:#1e293b;border:1px solid #334155;color:#94a3b8;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer}
+.btn-danger{background:#ef444422;border:1px solid #ef4444;color:#ef4444;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
+.btn-green{background:#10b98122;border:1px solid #10b981;color:#10b981;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:600;cursor:pointer}
+.nv-block{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:18px;margin-bottom:16px}
+.nv-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.nv-title{font-weight:800;font-size:16px;color:#f97316}
+.nv-actions{display:flex;gap:8px}
+.addr-row{background:#1e293b;border:1px solid #2d3748;border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.addr-top{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.addr-num{width:28px;height:28px;background:#f9731622;color:#f97316;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
+.status-btn{border:1px solid #334155;background:transparent;border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer;font-weight:600;color:#94a3b8}
+.status-btn.active-done{background:#10b98122;border-color:#10b981;color:#10b981}
+.status-btn.active-partial{background:#f9731622;border-color:#f97316;color:#f97316}
+.status-btn.active-no{background:#ef444422;border-color:#ef4444;color:#ef4444}
+.file-drop{border:2px dashed #334155;border-radius:10px;padding:18px;text-align:center;cursor:pointer;transition:border-color 0.2s;margin-bottom:10px}
+.file-drop:hover{border-color:#f97316}
+.file-list{display:flex;flex-direction:column;gap:6px}
+.file-item{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px 12px;display:flex;align-items:center;gap:10px;font-size:13px}
+.file-item-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-thumb{width:40px;height:40px;object-fit:cover;border-radius:6px;cursor:pointer}
+.modal-bg{position:fixed;inset:0;background:#000a;z-index:500;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-bg.show{display:flex}
+.modal{background:#1e293b;border:1px solid #334155;border-radius:18px;padding:28px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto}
+.modal-title{font-weight:800;font-size:17px;margin-bottom:20px}
+.back-btn{background:transparent;border:none;color:#94a3b8;cursor:pointer;font-size:13px;margin-bottom:16px;display:flex;align-items:center;gap:5px;padding:0}
+.entry-block{background:#0f172a;border:1px solid #334155;border-radius:12px;padding:16px;margin-bottom:12px}
+.entry-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.entry-title{font-weight:700;font-size:14px}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}.form-full{grid-column:1}.city-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}.work-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="login-page" id="login-page">
+  <div class="login-box">
+    <div class="login-logo">🏗</div>
+    <div class="login-title">IK Bautechnik GmbH</div>
+    <div class="login-sub">Система учёта строительных работ</div>
+    <div class="login-field"><label>Логин</label><input type="text" id="inp-login" placeholder="Введите логин" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <div class="login-field"><label>Пароль</label><input type="password" id="inp-pass" placeholder="Введите пароль" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <button class="login-btn" onclick="doLogin()">Войти →</button>
+    <div class="login-error" id="login-error">Неверный логин или пароль</div>
+  </div>
+</div>
+<div class="app" id="app">
+  <div class="header">
+    <div class="header-left">
+      <div class="hlogo">🏗</div>
+      <div><div class="hname">IK Bautechnik GmbH</div><div class="hsub">Учёт строительных работ</div></div>
+    </div>
+    <button class="logout-btn" onclick="doLogout()">Выйти</button>
+  </div>
+  <div class="breadcrumb" id="breadcrumb"></div>
+  <div class="container">
+    <div class="page active" id="page-cities">
+      <div class="sec-title">Объекты</div>
+      <div class="sec-sub">Выберите объект для просмотра и внесения данных</div>
+      <div class="city-grid" id="city-grid"></div>
+    </div>
+    <div class="page" id="page-works">
+      <button class="back-btn" onclick="goTo('cities')">← Назад к объектам</button>
+      <div class="sec-title" id="work-city-title"></div>
+      <div class="sec-sub">Выберите вид работ</div>
+      <div class="work-grid">
+        <div class="work-card" onclick="goToWork('Hausanschluss')"><div class="work-icon">🏠</div><div class="work-name">Hausanschluss</div></div>
+        <div class="work-card" onclick="goToWork('Einblasen')"><div class="work-icon">💨</div><div class="work-name">Einblasen und Aktivieren</div></div>
+        <div class="work-card" onclick="goToWork('Tiefbau')"><div class="work-icon">🚜</div><div class="work-name">Tiefbau</div></div>
+        <div class="work-card" onclick="goToWork('HK')"><div class="work-icon">🔌</div><div class="work-name">HK Einblasen</div></div>
+      </div>
+    </div>
+    <div class="page" id="page-days">
+      <button class="back-btn" id="days-back-btn">← Назад</button>
+      <div class="sec-title" id="days-title"></div>
+      <div class="sec-sub" id="days-sub"></div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+        <button class="btn-primary" onclick="openNewDayModal()">+ Новый день</button>
+      </div>
+      <div class="day-list" id="day-list"></div>
+    </div>
+    <div class="page" id="page-einblasen">
+      <button class="back-btn" id="eb-back-btn">← Назад</button>
+      <div class="sec-title" id="eb-title"></div>
+      <div class="sec-sub" id="eb-date-sub"></div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+        <button class="btn-primary" onclick="addNV()">+ Netzverteiler</button>
+      </div>
+      <div id="nv-list"></div>
+    </div>
+    <div class="page" id="page-generic">
+      <button class="back-btn" id="gen-back-btn">← Назад</button>
+      <div class="sec-title" id="gen-title"></div>
+      <div class="sec-sub" id="gen-date-sub"></div>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+        <button class="btn-primary" onclick="addGenEntry()">+ Добавить запись</button>
+      </div>
+      <div id="gen-list"></div>
+    </div>
+  </div>
+</div>
+<div class="modal-bg" id="modal-city">
+  <div class="modal">
+    <div class="modal-title">Новый объект</div>
+    <div style="margin-bottom:14px"><label class="field-label">Название объекта</label><input type="text" id="new-city-name" placeholder="напр. Frankfurt"/></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn-secondary" onclick="closeModal('modal-city')">Отмена</button>
+      <button class="btn-primary" onclick="saveNewCity()">Добавить</button>
+    </div>
+  </div>
+</div>
+<div class="modal-bg" id="modal-day">
+  <div class="modal">
+    <div class="modal-title">Новый рабочий день</div>
+    <div style="margin-bottom:14px"><label class="field-label">Дата</label><input type="date" id="new-day-date"/></div>
+    <div style="margin-bottom:14px"><label class="field-label">Комментарий (необязательно)</label><textarea id="new-day-comment" rows="3" placeholder="Общие замечания..."></textarea></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end">
+      <button class="btn-secondary" onclick="closeModal('modal-day')">Отмена</button>
+      <button class="btn-primary" onclick="saveNewDay()">Создать</button>
+    </div>
+  </div>
+</div>
+<script>
+const CRED={login:"Komroni",pass:"Ismon"};
+const DEFAULT_CITIES=["Altmanstein","Scheßlitz","Bad Griesbach","Hamburg","Mühlhausen"];
+const WORK_LABELS={Hausanschluss:"Hausanschluss",Einblasen:"Einblasen und Aktivieren",Tiefbau:"Tiefbau",HK:"HK Einblasen"};
+const WORK_ICONS={Hausanschluss:"🏠",Einblasen:"💨",Tiefbau:"🚜",HK:"🔌"};
+
+function loadData(){return JSON.parse(localStorage.getItem("ikbt_v2")||"null");}
+function saveData(){localStorage.setItem("ikbt_v2",JSON.stringify(DB));}
+
+let DB=loadData()||{cities:DEFAULT_CITIES.map(n=>({name:n})),records:{}};
+let S={city:null,work:null,dayId:null};
+
+function doLogin(){
+  const l=document.getElementById("inp-login").value.trim();
+  const p=document.getElementById("inp-pass").value.trim();
+  if(l===CRED.login&&p===CRED.pass){
+    document.getElementById("login-page").style.display="none";
+    document.getElementById("app").style.display="block";
+    renderCities();
+  } else {
+    document.getElementById("login-error").style.display="block";
+    setTimeout(()=>document.getElementById("login-error").style.display="none",3000);
+  }
+}
+
+function doLogout(){
+  document.getElementById("login-page").style.display="flex";
+  document.getElementById("app").style.display="none";
+  document.getElementById("inp-login").value="";
+  document.getElementById("inp-pass").value="";
+  goTo("cities");
+}
+
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById("page-"+id).classList.add("active");}
+
+function setBreadcrumb(items){
+  document.getElementById("breadcrumb").innerHTML=items.map((item,i)=>{
+    if(i===items.length-1)return`<span>${item.label}</span>`;
+    return`<a onclick="${item.fn}">${item.label}</a> <span style="color:#475569">›</span>`;
+  }).join(" ");
+}
+
+function goTo(page){
+  if(page==="cities"){S={city:null,work:null,dayId:null};showPage("cities");setBreadcrumb([{label:"Объекты"}]);renderCities();}
+  if(page==="works"){showPage("works");document.getElementById("work-city-title").textContent=S.city;setBreadcrumb([{label:"Объекты",fn:"goTo('cities')"},{label:S.city}]);}
+  if(page==="days"){showPage("days");renderDayList();}
+}
+
+function goToWork(work){
+  S.work=work;
+  showPage("days");
+  document.getElementById("days-title").textContent=WORK_ICONS[work]+" "+WORK_LABELS[work];
+  document.getElementById("days-sub").textContent="Объект: "+S.city+" · Выберите или создайте рабочий день";
+  document.getElementById("days-back-btn").onclick=()=>goTo("works");
+  setBreadcrumb([{label:"Объекты",fn:"goTo('cities')"},{label:S.city,fn:"goTo('works')"},{label:WORK_LABELS[work]}]);
+  renderDayList();
+}
+
+function renderCities(){
+  const grid=document.getElementById("city-grid");
+  grid.innerHTML=DB.cities.map((c,i)=>`
+    <div class="city-card" onclick="selectCity('${c.name}')">
+      <div class="city-icon">${["🏙","🏘","🌆","🏗","🌇"][i%5]}</div>
+      <div class="city-name">${c.name}</div>
+      <div class="city-count">${countRecords(c.name)} записей</div>
+    </div>`).join("")+
+    `<div class="add-city-card" onclick="openModal('modal-city')">
+      <div style="font-size:36px;margin-bottom:12px">＋</div>
+      <div style="font-weight:600;font-size:14px">Добавить объект</div>
+    </div>`;
+}
+
+function countRecords(city){
+  let n=0;
+  Object.values(DB.records[city]||{}).forEach(work=>Object.keys(work).forEach(()=>n++));
+  return n;
+}
+
+function selectCity(name){S.city=name;goTo("works");}
+
+function saveNewCity(){
+  const name=document.getElementById("new-city-name").value.trim();
+  if(!name)return;
+  if(DB.cities.find(c=>c.name===name)){toast("Объект уже существует","error");return;}
+  DB.cities.push({name});saveData();closeModal("modal-city");
+  document.getElementById("new-city-name").value="";
+  renderCities();toast("Объект добавлен");
+}
+
+function getDays(){return DB.records[S.city]?.[S.work]||{};}
+
+function renderDayList(){
+  const days=getDays();
+  const list=document.getElementById("day-list");
+  const keys=Object.keys(days).sort((a,b)=>b.localeCompare(a));
+  if(!keys.length){list.innerHTML=`<div style="text-align:center;padding:50px;color:#475569"><div style="font-size:36px;margin-bottom:12px">📅</div><div style="font-weight:600">Нет записей</div><div style="font-size:13px;margin-top:4px">Нажмите «Новый день»</div></div>`;return;}
+  list.innerHTML=keys.map(k=>{
+    const d=days[k];
+    const nv=d.nvs?d.nvs.length:0;
+    const en=d.entries?d.entries.length:0;
+    return`<div class="day-item" onclick="openDay('${k}')">
+      <div>
+        <div class="day-date">${fmtDate(k)}</div>
+        <div class="day-meta">${d.comment||""} ${S.work==="Einblasen"?"· "+nv+" Netzverteiler":"· "+en+" записей"}</div>
+      </div>
+      <div style="color:#f97316;font-size:18px">›</div>
+    </div>`;
+  }).join("");
+}
+
+function openNewDayModal(){
+  document.getElementById("new-day-date").value=new Date().toISOString().split("T")[0];
+  document.getElementById("new-day-comment").value="";
+  openModal("modal-day");
+}
+
+function saveNewDay(){
+  const date=document.getElementById("new-day-date").value;
+  const comment=document.getElementById("new-day-comment").value.trim();
+  if(!date)return;
+  if(!DB.records[S.city])DB.records[S.city]={};
+  if(!DB.records[S.city][S.work])DB.records[S.city][S.work]={};
+  if(!DB.records[S.city][S.work][date])DB.records[S.city][S.work][date]={comment,nvs:[],entries:[]};
+  saveData();closeModal("modal-day");renderDayList();
+  S.dayId=date;openDay(date);toast("День создан");
+}
+
+function openDay(dateId){
+  S.dayId=dateId;
+  if(S.work==="Einblasen")openEinblasen(dateId);
+  else openGeneric(dateId);
+}
+
+function openEinblasen(dateId){
+  const d=DB.records[S.city][S.work][dateId];
+  document.getElementById("eb-title").textContent="💨 Einblasen und Aktivieren";
+  document.getElementById("eb-date-sub").textContent=S.city+" · "+fmtDate(dateId)+(d.comment?" · "+d.comment:"");
+  document.getElementById("eb-back-btn").onclick=()=>{showPage("days");renderDayList();};
+  setBreadcrumb([{label:"Объекты",fn:"goTo('cities')"},{label:S.city,fn:"goTo('works')"},{label:"Einblasen",fn:"goToWork('Einblasen')"},{label:fmtDate(dateId)}]);
+  showPage("einblasen");renderNVs();
+}
+
+function renderNVs(){
+  const d=DB.records[S.city][S.work][S.dayId];
+  const nvs=d.nvs||[];
+  const container=document.getElementById("nv-list");
+  if(!nvs.length){container.innerHTML=`<div style="text-align:center;padding:40px;color:#475569"><div style="font-size:36px;margin-bottom:10px">📦</div><div style="font-weight:600">Нет Netzverteiler</div><div style="font-size:13px;margin-top:4px">Нажмите «+ Netzverteiler»</div></div>`;return;}
+  container.innerHTML=nvs.map((nv,ni)=>`
+    <div class="nv-block">
+      <div class="nv-header">
+        <div>
+          <div class="nv-title">Netzverteiler ${nv.number||ni+1}</div>
+          <input type="text" value="${nv.number||""}" placeholder="Номер NV..." style="margin-top:6px;max-width:220px;font-weight:700" oninput="updateNV(${ni},'number',this.value)"/>
+        </div>
+        <div class="nv-actions">
+          <button class="btn-green" onclick="addAddress(${ni})">+ Адрес</button>
+          <button class="btn-danger" onclick="removeNV(${ni})">🗑</button>
+        </div>
+      </div>
+      <div id="addr-list-${ni}">
+        ${(nv.addresses||[]).map((addr,ai)=>renderAddr(ni,ai,addr)).join("")}
+      </div>
+    </div>`).join("");
+}
+
+function renderAddr(ni,ai,addr){
+  const statusBtns=[{key:"done",label:"✓ Выполнено",cls:"active-done"},{key:"partial",label:"⚡ Частично",cls:"active-partial"},{key:"no",label:"✗ Не выполнено",cls:"active-no"}];
+  const files=(addr.files||[]).map((f,fi)=>`
+    <div class="file-item">
+      ${f.type==="image"?`<img src="${f.data}" class="file-thumb" onclick="viewImage('${f.data}')"/>`:`<span style="font-size:20px">📄</span>`}
+      <span class="file-item-name">${f.name}</span>
+      <button class="btn-green" onclick="downloadFile(${ni},${ai},${fi})">⬇</button>
+      <button class="btn-danger" onclick="removeFile(${ni},${ai},${fi})">🗑</button>
+    </div>`).join("");
+  return`<div class="addr-row">
+    <div class="addr-top">
+      <div class="addr-num">${ai+1}</div>
+      <input type="text" value="${addr.street||""}" placeholder="Адрес / улица, дом..." style="flex:1" oninput="updateAddr(${ni},${ai},'street',this.value)"/>
+      <button class="btn-danger" onclick="removeAddr(${ni},${ai})">🗑</button>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+      ${statusBtns.map(s=>`<button class="status-btn ${addr.status===s.key?s.cls:""}" onclick="setAddrStatus(${ni},${ai},'${s.key}')">${s.label}</button>`).join("")}
+    </div>
+    <div style="margin-bottom:8px">
+      <textarea placeholder="Комментарий к адресу..." rows="2" style="font-size:13px" oninput="updateAddr(${ni},${ai},'comment',this.value)">${addr.comment||""}</textarea>
+    </div>
+    <div class="file-drop" onclick="document.getElementById('fu-${ni}-${ai}').click()">
+      <div style="font-size:22px;margin-bottom:4px">📎</div>
+      <div style="font-size:12px;color:#94a3b8">Добавить фото или PDF</div>
+    </div>
+    <input type="file" id="fu-${ni}-${ai}" accept="image/*,.pdf" multiple style="display:none" onchange="handleFiles(event,${ni},${ai})"/>
+    <div class="file-list">${files}</div>
+  </div>`;
+}
+
+function addNV(){const d=getDay();if(!d.nvs)d.nvs=[];d.nvs.push({number:"",addresses:[]});saveData();renderNVs();}
+function removeNV(ni){if(!confirm("Удалить Netzverteiler?"))return;const d=getDay();d.nvs.splice(ni,1);saveData();renderNVs();}
+function updateNV(ni,key,val){getDay().nvs[ni][key]=val;saveData();}
+function addAddress(ni){const d=getDay();if(!d.nvs[ni].addresses)d.nvs[ni].addresses=[];d.nvs[ni].addresses.push({street:"",status:null,comment:"",files:[]});saveData();renderNVs();}
+function removeAddr(ni,ai){getDay().nvs[ni].addresses.splice(ai,1);saveData();renderNVs();}
+function updateAddr(ni,ai,key,val){getDay().nvs[ni].addresses[ai][key]=val;saveData();}
+function setAddrStatus(ni,ai,status){getDay().nvs[ni].addresses[ai].status=status;saveData();renderNVs();}
+
+function handleFiles(e,ni,ai){
+  const d=getDay();
+  Array.from(e.target.files).forEach(file=>{
+    const isImg=file.type.startsWith("image/");
+    const isPDF=file.type==="application/pdf";
+    if(!isImg&&!isPDF){toast("Только фото и PDF","error");return;}
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      if(!d.nvs[ni].addresses[ai].files)d.nvs[ni].addresses[ai].files=[];
+      d.nvs[ni].addresses[ai].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});
+      saveData();renderNVs();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function removeFile(ni,ai,fi){getDay().nvs[ni].addresses[ai].files.splice(fi,1);saveData();renderNVs();}
+function downloadFile(ni,ai,fi){const f=getDay().nvs[ni].addresses[ai].files[fi];const a=document.createElement("a");a.href=f.data;a.download=f.name;a.click();}
+
+function viewImage(src){
+  const d=document.createElement("div");
+  d.style.cssText="position:fixed;inset:0;background:#000c;z-index:999;display:flex;align-items:center;justify-content:center;cursor:pointer";
+  d.onclick=()=>d.remove();
+  d.innerHTML=`<img src="${src}" style="max-width:95vw;max-height:90vh;border-radius:12px"/>`;
+  document.body.appendChild(d);
+}
+
+function openGeneric(dateId){
+  const d=DB.records[S.city][S.work][dateId];
+  document.getElementById("gen-title").textContent=WORK_ICONS[S.work]+" "+WORK_LABELS[S.work];
+  document.getElementById("gen-date-sub").textContent=S.city+" · "+fmtDate(dateId)+(d.comment?" · "+d.comment:"");
+  document.getElementById("gen-back-btn").onclick=()=>{showPage("days");renderDayList();};
+  setBreadcrumb([{label:"Объекты",fn:"goTo('cities')"},{label:S.city,fn:"goTo('works')"},{label:WORK_LABELS[S.work],fn:"goToWork('"+S.work+"')"},{label:fmtDate(dateId)}]);
+  showPage("generic");renderGenEntries();
+}
+
+function renderGenEntries(){
+  const d=getDay();const entries=d.entries||[];
+  const container=document.getElementById("gen-list");
+  if(!entries.length){container.innerHTML=`<div style="text-align:center;padding:40px;color:#475569"><div style="font-size:36px;margin-bottom:10px">📝</div><div style="font-weight:600">Нет записей</div><div style="font-size:13px;margin-top:4px">Нажмите «+ Добавить запись»</div></div>`;return;}
+  container.innerHTML=entries.map((en,i)=>{
+    const files=(en.files||[]).map((f,fi)=>`
+      <div class="file-item">
+        ${f.type==="image"?`<img src="${f.data}" class="file-thumb" onclick="viewImage('${f.data}')"/>`:`<span style="font-size:20px">📄</span>`}
+        <span class="file-item-name">${f.name}</span>
+        <button class="btn-green" onclick="downloadGenFile(${i},${fi})">⬇</button>
+        <button class="btn-danger" onclick="removeGenFile(${i},${fi})">🗑</button>
+      </div>`).join("");
+    return`<div class="entry-block">
+      <div class="entry-header">
+        <div class="entry-title">${WORK_ICONS[S.work]} Запись ${i+1}</div>
+        <button class="btn-danger" onclick="removeGenEntry(${i})">🗑 Удалить</button>
+      </div>
+      <div class="form-row" style="margin-bottom:10px">
+        <div><label class="field-label">Адрес / Описание</label><input type="text" value="${en.address||""}" placeholder="Адрес..." oninput="updateGenEntry(${i},'address',this.value)"/></div>
+        <div><label class="field-label">Объём (м)</label><input type="number" value="${en.volume||""}" placeholder="напр. 45" oninput="updateGenEntry(${i},'volume',this.value)"/></div>
+        <div><label class="field-label">Рабочих</label><input type="number" value="${en.workers||""}" placeholder="напр. 3" oninput="updateGenEntry(${i},'workers',this.value)"/></div>
+        <div><label class="field-label">Часы</label><input type="number" value="${en.hours||""}" placeholder="напр. 8" oninput="updateGenEntry(${i},'hours',this.value)"/></div>
+        <div class="form-full"><label class="field-label">Комментарий</label><textarea rows="2" placeholder="Замечания..." oninput="updateGenEntry(${i},'comment',this.value)">${en.comment||""}</textarea></div>
+      </div>
+      <div class="file-drop" onclick="document.getElementById('gfu-${i}').click()">
+        <div style="font-size:22px;margin-bottom:4px">📎</div>
+        <div style="font-size:12px;color:#94a3b8">Добавить фото или PDF</div>
+      </div>
+      <input type="file" id="gfu-${i}" accept="image/*,.pdf" multiple style="display:none" onchange="handleGenFiles(event,${i})"/>
+      <div class="file-list">${files}</div>
+    </div>`;
+  }).join("");
+}
+
+function addGenEntry(){const d=getDay();if(!d.entries)d.entries=[];d.entries.push({address:"",volume:"",workers:"",hours:"",comment:"",files:[]});saveData();renderGenEntries();}
+function removeGenEntry(i){if(!confirm("Удалить запись?"))return;getDay().entries.splice(i,1);saveData();renderGenEntries();}
+function updateGenEntry(i,key,val){getDay().entries[i][key]=val;saveData();}
+
+function handleGenFiles(e,i){
+  const d=getDay();
+  Array.from(e.target.files).forEach(file=>{
+    const isImg=file.type.startsWith("image/");
+    const isPDF=file.type==="application/pdf";
+    if(!isImg&&!isPDF){toast("Только фото и PDF","error");return;}
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      if(!d.entries[i].files)d.entries[i].files=[];
+      d.entries[i].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});
+      saveData();renderGenEntries();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function removeGenFile(i,fi){getDay().entries[i].files.splice(fi,1);saveData();renderGenEntries();}
+function downloadGenFile(i,fi){const f=getDay().entries[i].files[fi];const a=document.createElement("a");a.href=f.data;a.download=f.name;a.click();}
+
+function getDay(){return DB.records[S.city][S.work][S.dayId];}
+function fmtDate(d){try{return new Date(d+"T00:00:00").toLocaleDateString("ru-RU",{day:"2-digit",month:"2-digit",year:"numeric"});}catch{return d;}}
+function toast(msg,type="ok"){const t=document.getElementById("toast");t.textContent=(type==="ok"?"✓ ":"✗ ")+msg;t.className="toast show"+(type==="error"?" error":"");clearTimeout(t._t);t._t=setTimeout(()=>t.className="toast",2500);}
+function openModal(id){document.getElementById(id).classList.add("show");}
+function closeModal(id){document.getElementById(id).classList.remove("show");}
+document.querySelectorAll(".modal-bg").forEach(m=>m.addEventListener("click",function(e){if(e.target===this)this.classList.remove("show");}));
+setBreadcrumb([{label:"Объекты"}]);
+</script>
+</body>
+</html>
