@@ -9,47 +9,42 @@
 <meta name="theme-color" content="#0a1628"/>
 <title>IK Bautechnik GmbH</title>
 <style>
-/* ── TOKENS ── */
 :root{
   --bg:#0a1628;--bg2:#0f2040;--bg3:#162a4f;--bg4:#1a3060;
   --border:#1e3a6e;--border2:#2a4a8a;
   --accent:#2563eb;--accent2:#3b82f6;--accent3:#60a5fa;--accent4:#93c5fd;
-  --text:#e8f4fd;--text2:#93c5fd;--text3:#4a6a9a;--text4:#2a4a7a;
-  --green:#10b981;--red:#ef4444;--yellow:#f59e0b;--orange:#f97316;
-  --card-shadow:0 4px 24px rgba(0,0,0,0.4);
-  --glass:rgba(15,32,64,0.8);
+  --text:#e8f4fd;--text2:#93c5fd;--text3:#4a6a9a;
+  --green:#10b981;--red:#ef4444;--yellow:#f59e0b;
+  --shadow:0 4px 24px rgba(0,0,0,0.4);
+  --glass:rgba(10,22,40,0.85);
 }
 [data-theme="light"]{
   --bg:#f0f6ff;--bg2:#ffffff;--bg3:#e8f0fe;--bg4:#dbeafe;
   --border:#bfdbfe;--border2:#93c5fd;
   --accent:#1d4ed8;--accent2:#2563eb;--accent3:#3b82f6;--accent4:#60a5fa;
-  --text:#0f172a;--text2:#1e40af;--text3:#64748b;--text4:#94a3b8;
-  --card-shadow:0 4px 24px rgba(37,99,235,0.12);
-  --glass:rgba(255,255,255,0.9);
+  --text:#0f172a;--text2:#1e40af;--text3:#64748b;
+  --shadow:0 4px 24px rgba(37,99,235,0.12);
+  --glass:rgba(255,255,255,0.92);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{min-height:100vh;background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--text);transition:background 0.3s,color 0.3s}
 input,select,textarea,button{font-family:inherit}
-img{display:block}
 
-/* ── SPLASH ── */
-#splash{position:fixed;inset:0;background:linear-gradient(160deg,#050e1f 0%,#0a1628 50%,#0d1f40 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.6s}
+/* SPLASH */
+#splash{position:fixed;inset:0;background:linear-gradient(160deg,#050e1f,#0a1628,#0d1f40);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.6s}
 #splash.hide{opacity:0;pointer-events:none}
-.splash-cable{width:120px;height:120px;border-radius:28px;overflow:hidden;margin-bottom:20px;box-shadow:0 0 60px #3b82f655,0 0 120px #1d4ed833;position:relative}
-.splash-cable img{width:100%;height:100%;object-fit:cover}
-.splash-cable::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#3b82f620,transparent);border-radius:28px}
-.splash-name{font-size:22px;font-weight:900;letter-spacing:-0.5px;color:#e8f4fd;margin-bottom:4px}
-.splash-tagline{font-size:12px;color:#60a5fa;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:36px}
-.splash-progress{width:120px;height:2px;background:#1e3a6e;border-radius:2px;overflow:hidden}
-.splash-bar{height:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);border-radius:2px;animation:prog 2.2s ease forwards}
+.splash-logo{width:110px;height:110px;border-radius:26px;margin-bottom:22px;box-shadow:0 0 60px #3b82f655,0 0 120px #1d4ed820}
+.splash-name{font-size:22px;font-weight:900;color:#e8f4fd;margin-bottom:4px;letter-spacing:-0.5px}
+.splash-tag{font-size:11px;color:#60a5fa;letter-spacing:2px;text-transform:uppercase;margin-bottom:36px}
+.splash-prog{width:100px;height:2px;background:#1e3a6e;border-radius:2px;overflow:hidden}
+.splash-bar{height:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);animation:prog 2.2s ease forwards}
 @keyframes prog{from{width:0}to{width:100%}}
 
-/* ── LOGIN ── */
-#login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg);background-image:radial-gradient(ellipse at 30% 20%,var(--accent)15,transparent 60%),radial-gradient(ellipse at 70% 80%,var(--accent2)10,transparent 60%)}
-.login-card{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:36px 28px;width:100%;max-width:360px;box-shadow:var(--card-shadow)}
-.login-logo{width:72px;height:72px;border-radius:20px;overflow:hidden;margin:0 auto 18px;box-shadow:0 0 30px #3b82f640}
-.login-logo img{width:100%;height:100%;object-fit:cover}
-.login-co{font-size:18px;font-weight:900;text-align:center;margin-bottom:3px;letter-spacing:-0.3px}
+/* LOGIN */
+#login-page{min-height:100vh;display:none;align-items:center;justify-content:center;padding:20px;background:var(--bg);background-image:radial-gradient(ellipse at 30% 20%,var(--accent)15,transparent 60%)}
+.login-card{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:36px 28px;width:100%;max-width:360px;box-shadow:var(--shadow)}
+.login-logo-wrap{width:72px;height:72px;border-radius:20px;margin:0 auto 16px;overflow:hidden;box-shadow:0 0 30px #3b82f640}
+.login-co{font-size:18px;font-weight:900;text-align:center;margin-bottom:3px}
 .login-sub{font-size:11px;color:var(--text3);text-align:center;margin-bottom:22px;letter-spacing:0.5px;text-transform:uppercase}
 .lang-row{display:flex;gap:6px;justify-content:center;margin-bottom:20px}
 .lang-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:5px 14px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s}
@@ -58,143 +53,141 @@ img{display:block}
 .lfield label{font-size:10px;font-weight:700;color:var(--text3);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.8px}
 .lfield input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:11px;padding:12px 15px;color:var(--text);font-size:15px;outline:none;transition:border-color 0.2s}
 .lfield input:focus{border-color:var(--accent2)}
-.login-btn{width:100%;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;margin-top:4px;letter-spacing:0.3px;box-shadow:0 4px 20px #3b82f640;transition:opacity 0.2s}
+.login-btn{width:100%;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px #3b82f640;transition:opacity 0.2s}
 .login-btn:active{opacity:0.85}
 .login-err{background:#ef444415;border:1px solid var(--red);color:var(--red);border-radius:9px;padding:9px 12px;font-size:12px;margin-top:10px;display:none;text-align:center}
 
-/* ── APP SHELL ── */
+/* APP */
 #app{display:none;min-height:100vh}
-.header{background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:200}
-.header-brand{display:flex;align-items:center;gap:10px}
-.hlogo{width:36px;height:36px;border-radius:10px;overflow:hidden;box-shadow:0 0 14px #3b82f640;flex-shrink:0}
-.hlogo img{width:100%;height:100%;object-fit:cover}
-.hname{font-weight:900;font-size:13px;letter-spacing:-0.2px}
+.header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:200}
+.hbrand{display:flex;align-items:center;gap:10px}
+.hlogo{width:36px;height:36px;border-radius:10px;overflow:hidden;flex-shrink:0;box-shadow:0 0 14px #3b82f640}
+.hname{font-weight:900;font-size:13px}
 .hsub{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px}
-.header-right{display:flex;align-items:center;gap:6px}
-.theme-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all 0.2s}
-.theme-btn:hover{border-color:var(--accent2)}
+.hright{display:flex;align-items:center;gap:6px}
+.theme-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px}
 .sync-chip{display:flex;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 9px}
-.sync-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
-.sync-dot.ing{background:var(--yellow);animation:blink 0.9s infinite}
-.sync-dot.err{background:var(--red)}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;transition:background 0.3s}
+.sdot.ing{background:var(--yellow);animation:blink 0.9s infinite}
+.sdot.err{background:var(--red)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-.sync-lbl{font-size:9px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.slbl{font-size:9px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
 .logout-btn{background:transparent;border:1px solid var(--border);color:var(--text3);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:11px;font-weight:600}
 
-/* ── BREADCRUMB ── */
-.breadcrumb{background:var(--bg2);border-bottom:1px solid var(--border);padding:6px 14px;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+/* BACK BTN - улучшенный */
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:8px 14px;cursor:pointer;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:14px;transition:all 0.2s;box-shadow:var(--shadow)}
+.back-btn:hover{border-color:var(--accent2);color:var(--accent3);transform:translateX(-2px)}
+.back-btn svg{width:14px;height:14px;flex-shrink:0}
+
+/* BREADCRUMB */
+.breadcrumb{background:var(--bg2);border-bottom:1px solid var(--border);padding:6px 14px;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px;flex-wrap:wrap;overflow-x:auto}
 .breadcrumb a{color:var(--accent3);cursor:pointer;font-weight:600}
-.breadcrumb a:hover{text-decoration:underline}
 
 .container{max-width:900px;margin:0 auto;padding:16px 12px}
 .page{display:none}.page.active{display:block}
 
-/* ── TOAST ── */
-.toast{position:fixed;top:64px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;border-radius:10px;padding:9px 18px;font-size:12px;font-weight:700;z-index:999;display:none;box-shadow:0 4px 20px #0008;white-space:nowrap}
+/* TOAST */
+.toast{position:fixed;top:64px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;border-radius:10px;padding:9px 18px;font-size:12px;font-weight:700;z-index:999;display:none;box-shadow:0 4px 20px #0008;white-space:nowrap;max-width:90vw;text-align:center}
 .toast.show{display:block}.toast.err{background:var(--red)}.toast.inf{background:var(--accent)}
 
-/* ── LOADING ── */
-.loading-wrap{text-align:center;padding:50px;color:var(--text3)}
+.spinner-wrap{text-align:center;padding:50px;color:var(--text3)}
 .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent2);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ── PAGE TITLES ── */
 .sec-title{font-size:20px;font-weight:900;margin-bottom:3px;letter-spacing:-0.3px}
 .sec-sub{font-size:12px;color:var(--text3);margin-bottom:18px}
 
-/* ── CITY GRID ── */
-.city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:14px}
-.city-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all 0.2s;box-shadow:var(--card-shadow)}
+/* CITY GRID */
+.city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;margin-bottom:14px}
+.city-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;cursor:pointer;transition:all 0.2s;box-shadow:var(--shadow)}
 .city-card:hover{border-color:var(--accent2);transform:translateY(-3px);box-shadow:0 8px 32px rgba(37,99,235,0.25)}
-.city-img{width:100%;height:110px;object-fit:cover;display:block}
-.city-img-placeholder{width:100%;height:110px;background:linear-gradient(135deg,var(--bg3),var(--bg4));display:flex;align-items:center;justify-content:center;font-size:36px}
+.city-img{width:100%;height:110px;object-fit:cover}
+.city-img-ph{width:100%;height:110px;background:linear-gradient(135deg,var(--bg3),var(--bg4));display:flex;align-items:center;justify-content:center;font-size:36px}
 .city-info{padding:12px}
 .city-name{font-weight:800;font-size:13px;margin-bottom:2px}
 .city-count{font-size:10px;color:var(--text3)}
-.add-city-card{background:var(--bg2);border:2px dashed var(--border);border-radius:16px;cursor:pointer;transition:all 0.2s;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;color:var(--text3)}
+.add-city-card{background:var(--bg2);border:2px dashed var(--border);border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;color:var(--text3);transition:all 0.2s}
 .add-city-card:hover{border-color:var(--accent2);color:var(--accent3)}
 
-/* ── WORK GRID ── */
+/* WORK GRID */
 .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.work-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:22px 14px;cursor:pointer;transition:all 0.2s;text-align:center;box-shadow:var(--card-shadow);position:relative;overflow:hidden}
-.work-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--accent)08,transparent);opacity:0;transition:opacity 0.2s}
+.work-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:22px 14px;cursor:pointer;text-align:center;box-shadow:var(--shadow);transition:all 0.2s;position:relative;overflow:hidden}
 .work-card:hover{border-color:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,0.2)}
-.work-card:hover::before{opacity:1}
 .work-icon{font-size:34px;margin-bottom:10px}
 .work-name{font-weight:800;font-size:13px;line-height:1.3}
 
-/* ── DAY LIST ── */
+/* DAYS */
 .day-list{display:flex;flex-direction:column;gap:9px}
-.day-item{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all 0.2s;box-shadow:var(--card-shadow)}
+.day-item{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow);transition:all 0.2s}
 .day-item:hover{border-color:var(--accent2);transform:translateX(3px)}
 .day-date{font-weight:800;font-size:14px}
 .day-meta{font-size:10px;color:var(--text3);margin-top:2px}
-.day-arrow{color:var(--accent3);font-size:20px}
 
-/* ── TABS ── */
+/* TABS */
 .tabs-row{display:flex;gap:0;margin-bottom:16px;background:var(--bg3);border-radius:12px;padding:3px}
-.tab-btn{flex:1;background:transparent;border:none;color:var(--text3);border-radius:9px;padding:9px 8px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:center}
+.tab-btn{flex:1;background:transparent;border:none;color:var(--text3);border-radius:9px;padding:9px 8px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s}
 .tab-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 10px #3b82f640}
 .tab-content{display:none}.tab-content.active{display:block}
 
-/* ── FORMS ── */
+/* FORMS */
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
 .ffull{grid-column:1/-1}
 .flabel{font-size:10px;font-weight:700;color:var(--text3);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.8px}
 input[type=text],input[type=date],input[type=number],input[type=password],select{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-size:13px;outline:none;transition:border-color 0.2s}
 input:focus,select:focus{border-color:var(--accent2)}
-textarea.auto-grow{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-size:13px;outline:none;transition:border-color 0.2s;resize:none;overflow:hidden;min-height:60px;line-height:1.5}
-textarea.auto-grow:focus{border-color:var(--accent2)}
+textarea.ag{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-size:13px;outline:none;resize:none;overflow:hidden;min-height:60px;line-height:1.5;transition:border-color 0.2s}
+textarea.ag:focus{border-color:var(--accent2)}
+textarea.bulk{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-size:13px;outline:none;resize:vertical;min-height:160px;line-height:1.8;transition:border-color 0.2s;font-family:monospace}
+textarea.bulk:focus{border-color:var(--accent2)}
 
-/* ── BUTTONS ── */
-.btn-p{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 2px 12px #3b82f640;transition:opacity 0.2s;letter-spacing:0.2px}
+/* BUTTONS */
+.btn-p{background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 2px 12px #3b82f640;transition:opacity 0.2s}
 .btn-p:active{opacity:0.85}
-.btn-s{background:var(--bg2);border:1.5px solid var(--border);color:var(--text2);border-radius:10px;padding:9px 16px;font-size:12px;font-weight:600;cursor:pointer;transition:border-color 0.2s}
-.btn-s:hover{border-color:var(--accent2)}
-.btn-d{background:#ef444412;border:1px solid var(--red);color:var(--red);border-radius:7px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer;transition:opacity 0.2s}
-.btn-d:active{opacity:0.7}
+.btn-s{background:var(--bg2);border:1.5px solid var(--border);color:var(--text2);border-radius:10px;padding:9px 16px;font-size:12px;font-weight:600;cursor:pointer}
+.btn-d{background:#ef444412;border:1px solid var(--red);color:var(--red);border-radius:7px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer}
 .btn-g{background:#10b98112;border:1px solid var(--green);color:var(--green);border-radius:7px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer}
-.btn-save{background:linear-gradient(135deg,#047857,#10b981);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 2px 12px #10b98140;letter-spacing:0.2px}
-.back-btn{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:12px;margin-bottom:12px;display:flex;align-items:center;gap:4px;padding:0;font-weight:600}
-.back-btn:hover{color:var(--accent3)}
+.btn-save{background:linear-gradient(135deg,#047857,#10b981);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 2px 12px #10b98140}
+.btn-import{width:100%;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:10px;padding:12px;font-size:13px;font-weight:800;cursor:pointer;margin-top:10px;box-shadow:0 2px 12px #3b82f640;display:flex;align-items:center;justify-content:center;gap:8px}
 
-/* ── NV BLOCKS ── */
-.nv-block{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:var(--card-shadow)}
+/* NV */
+.nv-block{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:var(--shadow)}
 .nv-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:8px;flex-wrap:wrap}
-.nv-label{font-weight:900;font-size:14px;color:var(--accent3);letter-spacing:-0.2px}
+.nv-label{font-weight:900;font-size:14px;color:var(--accent3)}
 .nv-btns{display:flex;gap:5px;flex-shrink:0}
 
-/* ── ADDRESS ── */
+/* ADDRESS */
 .addr-row{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:11px 12px;margin-bottom:7px}
 .addr-top{display:flex;align-items:center;gap:7px;margin-bottom:8px}
-.addr-num{width:24px;height:24px;background:var(--accent)22;color:var(--accent3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0}
+.addr-num{width:24px;height:24px;background:#3b82f620;color:var(--accent3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;flex-shrink:0}
 .srow{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
 .sbtn{border:1.5px solid var(--border);background:transparent;border-radius:6px;padding:3px 9px;font-size:10px;cursor:pointer;font-weight:700;color:var(--text3);transition:all 0.15s}
 .sbtn.sd{background:#10b98118;border-color:var(--green);color:var(--green)}
 .sbtn.sp{background:#f59e0b18;border-color:var(--yellow);color:var(--yellow)}
 .sbtn.sn{background:#ef444418;border-color:var(--red);color:var(--red)}
 
-/* ── FILES ── */
+/* FILES */
 .file-drop{border:2px dashed var(--border);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:8px}
-.file-drop:hover{border-color:var(--accent2);background:var(--accent)08}
+.file-drop:hover{border-color:var(--accent2);background:#3b82f608}
 .flist{display:flex;flex-direction:column;gap:5px}
 .fitem{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:7px 10px;display:flex;align-items:center;gap:7px;font-size:11px}
 .fitem-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text2);font-weight:600}
 .fthumb{width:34px;height:34px;object-fit:cover;border-radius:6px;cursor:pointer;flex-shrink:0}
+.upload-progress{height:3px;background:var(--border);border-radius:3px;margin-top:5px;overflow:hidden;display:none}
+.upload-progress-bar{height:100%;background:var(--accent2);border-radius:3px;transition:width 0.3s}
 
-/* ── ENTRY BLOCK ── */
-.entry-block{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:var(--card-shadow)}
+/* ENTRY */
+.entry-block{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:var(--shadow)}
 .entry-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.entry-label{font-weight:800;font-size:12px;color:var(--accent3)}
+.entry-lbl{font-weight:800;font-size:12px;color:var(--accent3)}
 
-/* ── SIMPLE LIST ── */
-.list-items{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
-.list-item-row{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
-.list-item-num{width:22px;height:22px;background:var(--accent)20;color:var(--accent3);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0}
-.list-item-input{flex:1;background:transparent;border:none;color:var(--text);font-size:13px;outline:none}
-.list-item-input::placeholder{color:var(--text3)}
+/* BULK IMPORT */
+.bulk-wrap{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
+.bulk-title{font-weight:800;font-size:14px;margin-bottom:4px;color:var(--accent3)}
+.bulk-sub{font-size:11px;color:var(--text3);margin-bottom:12px;line-height:1.5}
+.bulk-stats{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.bulk-stat{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:700;color:var(--text2)}
 
-/* ── MODAL ── */
+/* MODAL */
 .modal-bg{position:fixed;inset:0;background:#000c;z-index:500;display:none;align-items:flex-end;justify-content:center}
 .modal-bg.show{display:flex}
 .modal{background:var(--bg2);border:1px solid var(--border);border-radius:20px 20px 0 0;padding:20px 18px 30px;width:100%;max-width:500px;max-height:88vh;overflow-y:auto}
@@ -207,22 +200,17 @@ textarea.auto-grow:focus{border-color:var(--accent2)}
 .confirm-btns{display:flex;gap:8px}
 .confirm-btns button{flex:1;padding:12px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;border:none}
 
-/* ── EMPTY ── */
 .empty{text-align:center;padding:44px 16px;color:var(--text3)}
 .empty-icon{font-size:40px;margin-bottom:10px}
 .empty-title{font-weight:700;font-size:14px;margin-bottom:4px}
-.empty-sub{font-size:12px}
 
-/* ── INSTALL BAR ── */
-.install-bar{background:linear-gradient(135deg,var(--accent)15,var(--bg2));border:1px solid var(--border);border-radius:13px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.install-bar-text{flex:1;font-size:11px;color:var(--text2);line-height:1.5}
-.install-bar-close{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:18px}
+.install-bar{background:linear-gradient(135deg,#3b82f615,var(--bg2));border:1px solid var(--border);border-radius:13px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.install-bar-txt{flex:1;font-size:11px;color:var(--text2);line-height:1.5}
 
 @media(min-width:560px){
   .modal-bg{align-items:center}
   .modal{border-radius:20px}
   .work-grid{grid-template-columns:repeat(4,1fr)}
-  .city-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
 }
 </style>
 </head>
@@ -230,21 +218,61 @@ textarea.auto-grow:focus{border-color:var(--accent2)}
 
 <!-- SPLASH -->
 <div id="splash">
-  <div class="splash-cable">
-    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=80" alt="Glasfaser" onerror="this.parentElement.innerHTML='🔵'"/>
-  </div>
+  <svg class="splash-logo" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#050e1f"/><stop offset="100%" stop-color="#0d1f40"/></linearGradient>
+      <linearGradient id="fiber" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3b82f6" stop-opacity="0"/><stop offset="20%" stop-color="#3b82f6"/><stop offset="50%" stop-color="#93c5fd"/><stop offset="80%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/></linearGradient>
+      <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="glow2"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+    <rect width="110" height="110" fill="url(#bg)" rx="24"/>
+    <!-- outer jacket -->
+    <rect x="8" y="42" width="94" height="26" rx="13" fill="#0a1930" stroke="#1e3a6e" stroke-width="1.5"/>
+    <rect x="8" y="42" width="94" height="10" rx="10" fill="#162a4f" opacity="0.5"/>
+    <!-- fibers -->
+    <line x1="5" y1="55" x2="105" y2="55" stroke="url(#fiber)" stroke-width="3" filter="url(#glow)"/>
+    <line x1="5" y1="50" x2="105" y2="50" stroke="#93c5fd" stroke-width="1" opacity="0.4"/>
+    <line x1="5" y1="60" x2="105" y2="60" stroke="#93c5fd" stroke-width="1" opacity="0.4"/>
+    <!-- left end -->
+    <circle cx="8" cy="55" r="11" fill="#0a1930" stroke="#1e3a6e" stroke-width="1.5"/>
+    <circle cx="8" cy="55" r="6" fill="#0f2040"/>
+    <circle cx="8" cy="55" r="3.5" fill="#3b82f6" filter="url(#glow2)"/>
+    <!-- right end -->
+    <circle cx="102" cy="55" r="11" fill="#0a1930" stroke="#1e3a6e" stroke-width="1.5"/>
+    <circle cx="102" cy="55" r="6" fill="#0f2040"/>
+    <circle cx="102" cy="55" r="3.5" fill="#3b82f6" filter="url(#glow2)"/>
+    <!-- light pulses -->
+    <circle cx="30" cy="55" r="2.5" fill="#60a5fa" filter="url(#glow2)"/>
+    <circle cx="55" cy="55" r="3" fill="#93c5fd" filter="url(#glow2)"/>
+    <circle cx="80" cy="55" r="2.5" fill="#60a5fa" filter="url(#glow2)"/>
+    <!-- label -->
+    <text x="55" y="89" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="900" fill="#60a5fa" letter-spacing="2.5">GLASFASER</text>
+    <text x="55" y="100" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="600" fill="#3b82f6" letter-spacing="1" opacity="0.7">OPTIK · KABEL</text>
+  </svg>
   <div class="splash-name">IK Bautechnik GmbH</div>
-  <div class="splash-tagline">Glasfaser Infrastruktur</div>
-  <div class="splash-progress"><div class="splash-bar"></div></div>
+  <div class="splash-tag">Glasfaser Infrastruktur</div>
+  <div class="splash-prog"><div class="splash-bar"></div></div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <!-- LOGIN -->
-<div id="login-page" style="display:none">
+<div id="login-page">
   <div class="login-card">
-    <div class="login-logo">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=150&q=80" alt="Logo" onerror="this.parentElement.style.background='#1d4ed8';this.parentElement.innerHTML='🏗'"/>
+    <div class="login-logo-wrap">
+      <svg viewBox="0 0 72 72" width="72" height="72" xmlns="http://www.w3.org/2000/svg">
+        <rect width="72" height="72" fill="#0a1628" rx="18"/>
+        <rect x="6" y="28" width="60" height="18" rx="9" fill="#0f2040" stroke="#1e3a6e" stroke-width="1.2"/>
+        <line x1="3" y1="37" x2="69" y2="37" stroke="#3b82f6" stroke-width="2.5" opacity="0.9"/>
+        <circle cx="6" cy="37" r="8" fill="#0a1930" stroke="#1e3a6e" stroke-width="1.2"/>
+        <circle cx="6" cy="37" r="3.5" fill="#3b82f6"/>
+        <circle cx="66" cy="37" r="8" fill="#0a1930" stroke="#1e3a6e" stroke-width="1.2"/>
+        <circle cx="66" cy="37" r="3.5" fill="#3b82f6"/>
+        <circle cx="22" cy="37" r="2" fill="#60a5fa"/>
+        <circle cx="36" cy="37" r="2.5" fill="#93c5fd"/>
+        <circle cx="50" cy="37" r="2" fill="#60a5fa"/>
+        <text x="36" y="58" text-anchor="middle" font-family="sans-serif" font-size="6.5" font-weight="900" fill="#60a5fa" letter-spacing="1.5">GLASFASER</text>
+      </svg>
     </div>
     <div class="login-co">IK Bautechnik GmbH</div>
     <div class="login-sub">Glasfaser · Infrastruktur</div>
@@ -262,13 +290,24 @@ textarea.auto-grow:focus{border-color:var(--accent2)}
 <!-- APP -->
 <div id="app">
   <div class="header">
-    <div class="header-brand">
-      <div class="hlogo"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=80&q=80" alt="" onerror="this.parentElement.style.background='#1d4ed8';this.parentElement.innerHTML='🏗'"/></div>
+    <div class="hbrand">
+      <div class="hlogo">
+        <svg viewBox="0 0 36 36" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="36" fill="#0a1628" rx="10"/>
+          <rect x="3" y="13" width="30" height="10" rx="5" fill="#0f2040" stroke="#1e3a6e" stroke-width="1"/>
+          <line x1="1" y1="18" x2="35" y2="18" stroke="#3b82f6" stroke-width="2"/>
+          <circle cx="3" cy="18" r="4" fill="#0a1930" stroke="#1e3a6e" stroke-width="1"/>
+          <circle cx="3" cy="18" r="2" fill="#3b82f6"/>
+          <circle cx="33" cy="18" r="4" fill="#0a1930" stroke="#1e3a6e" stroke-width="1"/>
+          <circle cx="33" cy="18" r="2" fill="#3b82f6"/>
+          <circle cx="18" cy="18" r="1.5" fill="#93c5fd"/>
+        </svg>
+      </div>
       <div><div class="hname">IK Bautechnik GmbH</div><div class="hsub">Glasfaser Management</div></div>
     </div>
-    <div class="header-right">
-      <button class="theme-btn" onclick="toggleTheme()" id="theme-btn" title="Modus wechseln">🌙</button>
-      <div class="sync-chip"><div class="sync-dot" id="sdot"></div><span class="sync-lbl" id="slbl">Sync</span></div>
+    <div class="hright">
+      <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">🌙</button>
+      <div class="sync-chip"><div class="sdot" id="sdot"></div><span class="slbl" id="slbl">Sync</span></div>
       <button class="logout-btn" id="btn-logout" onclick="doLogout()">Abmelden</button>
     </div>
   </div>
@@ -279,8 +318,8 @@ textarea.auto-grow:focus{border-color:var(--accent2)}
     <div class="page active" id="page-cities">
       <div class="install-bar" id="ibar" style="display:none">
         <div style="font-size:22px">📱</div>
-        <div class="install-bar-text" id="ibar-txt"></div>
-        <button class="install-bar-close" onclick="this.parentElement.style.display='none'">×</button>
+        <div class="install-bar-txt" id="ibar-txt"></div>
+        <button style="background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:18px" onclick="this.parentElement.style.display='none'">×</button>
       </div>
       <div class="sec-title" id="t-obj">Objekte</div>
       <div class="sec-sub" id="s-obj">Objekt auswählen</div>
@@ -289,7 +328,10 @@ textarea.auto-grow:focus{border-color:var(--accent2)}
 
     <!-- WORKS -->
     <div class="page" id="page-works">
-      <button class="back-btn" id="b-works" onclick="goTo('cities')">← Zurück</button>
+      <button class="back-btn" id="b-works" onclick="goTo('cities')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <span id="b-works-lbl">Zurück</span>
+      </button>
       <div class="sec-title" id="t-city"></div>
       <div class="sec-sub" id="s-work">Arbeitsart auswählen</div>
       <div class="work-grid">
@@ -302,7 +344,10 @@ textarea.auto-grow:focus{border-color:var(--accent2)}
 
     <!-- DAYS -->
     <div class="page" id="page-days">
-      <button class="back-btn" id="b-days">← Zurück</button>
+      <button class="back-btn" id="b-days">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <span id="b-days-lbl">Zurück</span>
+      </button>
       <div class="sec-title" id="t-days"></div>
       <div class="sec-sub" id="s-days"></div>
       <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
@@ -313,51 +358,69 @@ textarea.auto-grow:focus{border-color:var(--accent2)}
 
     <!-- EINBLASEN -->
     <div class="page" id="page-einblasen">
-      <button class="back-btn" id="b-eb">← Zurück</button>
+      <button class="back-btn" id="b-eb">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <span id="b-eb-lbl">Zurück</span>
+      </button>
       <div class="sec-title" id="t-eb"></div>
       <div class="sec-sub" id="s-eb"></div>
       <div class="tabs-row">
-        <button class="tab-btn active" onclick="switchTab('eb','main',this)" id="tab-eb-main">Netzverteiler</button>
-        <button class="tab-btn" onclick="switchTab('eb','list',this)" id="tab-eb-list" id="tab-eb-list-btn">📋 Liste</button>
+        <button class="tab-btn active" onclick="switchTab('eb','bulk',this)" id="tab-eb-bulk">📋 Adressen einfügen</button>
+        <button class="tab-btn" onclick="switchTab('eb','main',this)" id="tab-eb-main">Netzverteiler</button>
       </div>
-      <div class="tab-content active" id="tc-eb-main">
+      <div class="tab-content active" id="tc-eb-bulk">
+        <div class="bulk-wrap">
+          <div class="bulk-title" id="bulk-eb-title">Adressen einfügen</div>
+          <div class="bulk-sub" id="bulk-eb-sub">Fügen Sie alle Adressen ein — eine pro Zeile. Nach dem Import werden sie automatisch in der Netzverteiler-Ansicht erstellt.</div>
+          <label class="flabel" id="bulk-eb-lbl">Adressen (eine pro Zeile)</label>
+          <textarea class="bulk" id="bulk-eb-ta" placeholder="Hauptstraße 1&#10;Bahnhofstraße 5&#10;Gartenweg 12&#10;..."></textarea>
+          <div class="bulk-stats" id="bulk-eb-stats"></div>
+          <button class="btn-import" onclick="bulkImport('eb')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+            <span id="btn-import-eb-lbl">Importieren & Erstellen</span>
+          </button>
+        </div>
+      </div>
+      <div class="tab-content" id="tc-eb-main">
         <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
           <button class="btn-save" id="btn-seb" onclick="saveEB()">💾 Speichern</button>
           <button class="btn-p" id="btn-anv" onclick="addNV()">+ Netzverteiler</button>
         </div>
         <div id="nv-list"></div>
       </div>
-      <div class="tab-content" id="tc-eb-list">
-        <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
-          <button class="btn-save" onclick="saveEB()">💾 Speichern</button>
-          <button class="btn-p" onclick="addListItem('eb')">+ Element</button>
-        </div>
-        <div id="list-eb" class="list-items"></div>
-      </div>
     </div>
 
-    <!-- GENERIC (Hausanschluss / Tiefbau / HK) -->
+    <!-- GENERIC -->
     <div class="page" id="page-generic">
-      <button class="back-btn" id="b-gen">← Zurück</button>
+      <button class="back-btn" id="b-gen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <span id="b-gen-lbl">Zurück</span>
+      </button>
       <div class="sec-title" id="t-gen"></div>
       <div class="sec-sub" id="s-gen"></div>
       <div class="tabs-row">
-        <button class="tab-btn active" onclick="switchTab('gen','main',this)">Einträge</button>
-        <button class="tab-btn" onclick="switchTab('gen','list',this)">📋 Liste</button>
+        <button class="tab-btn active" onclick="switchTab('gen','bulk',this)">📋 Adressen einfügen</button>
+        <button class="tab-btn" onclick="switchTab('gen','main',this)">Einträge</button>
       </div>
-      <div class="tab-content active" id="tc-gen-main">
+      <div class="tab-content active" id="tc-gen-bulk">
+        <div class="bulk-wrap">
+          <div class="bulk-title" id="bulk-gen-title">Adressen einfügen</div>
+          <div class="bulk-sub" id="bulk-gen-sub">Fügen Sie alle Adressen ein — eine pro Zeile. Nach dem Import werden sie automatisch als Einträge erstellt.</div>
+          <label class="flabel" id="bulk-gen-lbl">Adressen (eine pro Zeile)</label>
+          <textarea class="bulk" id="bulk-gen-ta" placeholder="Hauptstraße 1&#10;Bahnhofstraße 5&#10;Gartenweg 12&#10;..."></textarea>
+          <div class="bulk-stats" id="bulk-gen-stats"></div>
+          <button class="btn-import" onclick="bulkImport('gen')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+            <span id="btn-import-gen-lbl">Importieren & Erstellen</span>
+          </button>
+        </div>
+      </div>
+      <div class="tab-content" id="tc-gen-main">
         <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
           <button class="btn-save" id="btn-sgen" onclick="saveGEN()">💾 Speichern</button>
           <button class="btn-p" id="btn-ae" onclick="addEntry()">+ Eintrag</button>
         </div>
         <div id="gen-list"></div>
-      </div>
-      <div class="tab-content" id="tc-gen-list">
-        <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
-          <button class="btn-save" onclick="saveGEN()">💾 Speichern</button>
-          <button class="btn-p" onclick="addListItem('gen')">+ Element</button>
-        </div>
-        <div id="list-gen" class="list-items"></div>
       </div>
     </div>
 
@@ -383,7 +446,7 @@ textarea.auto-grow:focus{border-color:var(--accent2)}
     <div class="modal-handle"></div>
     <div class="modal-title" id="mt-day">📅 Neuer Arbeitstag</div>
     <div style="margin-bottom:12px"><label class="flabel" id="ml-dt">Datum</label><input type="date" id="new-date"/></div>
-    <div style="margin-bottom:12px"><label class="flabel" id="ml-cm">Kommentar (optional)</label><textarea class="auto-grow" id="new-comment" oninput="autoGrow(this)"></textarea></div>
+    <div style="margin-bottom:12px"><label class="flabel" id="ml-cm">Kommentar (optional)</label><textarea class="ag" id="new-comment" oninput="ag(this)"></textarea></div>
     <div style="display:flex;gap:8px;justify-content:flex-end">
       <button class="btn-s" onclick="closeM('m-day')">Abbrechen</button>
       <button class="btn-p" onclick="saveDay()">Erstellen</button>
@@ -405,56 +468,17 @@ textarea.auto-grow:focus{border-color:var(--accent2)}
 </div>
 
 <script>
-// ═══ CONFIG ═══
 const SB_URL="https://eqahmdpouhchmuazvobi.supabase.co";
 const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxYWhtZHBvdWhjaG11YXp2b2JpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMDYyMDUsImV4cCI6MjA5Nzc4MjIwNX0.VuJFmgAaA7dBaIDqKKraJW6TH5I-mI7cL8EabASl5jk";
 const CRED={login:"Komroni",pass:"Ismon"};
 const DEF_CITIES=["Altmanstein","Scheßlitz","Bad Griesbach","Hamburg","Mühlhausen"];
-const CITY_PHOTOS={
-  "Altmanstein":"https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&q=80",
-  "Scheßlitz":"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=80",
-  "Bad Griesbach":"https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&q=80",
-  "Hamburg":"https://images.unsplash.com/photo-1554254648-2d58a1bc3fd5?w=400&q=80",
-  "Mühlhausen":"https://images.unsplash.com/photo-1481018085669-2bc6e4f00eed?w=400&q=80",
-};
+const CITY_PHOTOS={"Altmanstein":"https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&q=80","Scheßlitz":"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=80","Bad Griesbach":"https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&q=80","Hamburg":"https://images.unsplash.com/photo-1554254648-2d58a1bc3fd5?w=400&q=80","Mühlhausen":"https://images.unsplash.com/photo-1481018085669-2bc6e4f00eed?w=400&q=80"};
 const WL={Hausanschluss:"Hausanschluss",Einblasen:"Einblasen und Aktivieren",Tiefbau:"Tiefbau",HK:"HK Einblasen"};
 const WI={Hausanschluss:"🏠",Einblasen:"💨",Tiefbau:"🚜",HK:"🔌"};
 
 const TR={
-  de:{obj:"Objekte",selObj:"Objekt auswählen",selWork:"Arbeitsart auswählen",
-    newDay:"+ Neuer Tag",back:"← Zurück",save:"💾 Speichern",logout:"Abmelden",
-    addE:"+ Eintrag",addNV:"+ Netzverteiler",
-    confDel:"Möchten Sie diesen Eintrag wirklich löschen?",yes:"Ja, löschen",no:"Nein",
-    saved:"Gespeichert ✓",syncing:"Sync...",synced:"Synchronisiert",
-    addr:"Adresse / Straße, Haus",comment:"Kommentar",vol:"Menge (m)",
-    done:"✓ Erledigt",partial:"⚡ Teilweise",notDone:"✗ Nicht erledigt",
-    addFile:"Foto oder PDF hinzufügen",installTxt:"Zum Startbildschirm: Teilen → 'Zum Home-Bildschirm'",
-    newObj:"Neues Objekt",objName:"Objektname",cancel:"Abbrechen",add:"Hinzufügen",
-    newWD:"Neuer Arbeitstag",date:"Datum",optCom:"Kommentar (optional)",
-    nvNum:"NV-Nummer...",loginLbl:"Benutzername",passLbl:"Passwort",loginBtn:"Anmelden →",
-    loginErr:"Falscher Benutzername oder Passwort",
-    noNV:"Kein Netzverteiler — klicken Sie auf '+ Netzverteiler'",
-    noEntry:"Keine Einträge — klicken Sie auf '+ Eintrag'",
-    noDay:"Keine Einträge — klicken Sie auf '+ Neuer Tag'",
-    recs:"Einträge",nvs:"NV",delQ:"Löschen?",loading:"Wird geladen...",
-    listPlaceholder:"Element eingeben...",uploading:"Datei wird hochgeladen...",
-  },
-  ru:{obj:"Объекты",selObj:"Выберите объект",selWork:"Выберите вид работ",
-    newDay:"+ Новый день",back:"← Назад",save:"💾 Сохранить",logout:"Выйти",
-    addE:"+ Добавить",addNV:"+ Netzverteiler",
-    confDel:"Вы действительно хотите удалить это?",yes:"Да, удалить",no:"Нет",
-    saved:"Сохранено ✓",syncing:"Синхронизация...",synced:"Синхронизировано",
-    addr:"Адрес / улица, дом",comment:"Комментарий",vol:"Объём (м)",
-    done:"✓ Выполнено",partial:"⚡ Частично",notDone:"✗ Не выполнено",
-    addFile:"Добавить фото или PDF",installTxt:"На главный экран: Поделиться → 'На экран Домой'",
-    newObj:"Новый объект",objName:"Название",cancel:"Отмена",add:"Добавить",
-    newWD:"Новый рабочий день",date:"Дата",optCom:"Комментарий (необязательно)",
-    nvNum:"Номер NV...",loginLbl:"Логин",passLbl:"Пароль",loginBtn:"Войти →",
-    loginErr:"Неверный логин или пароль",
-    noNV:"Нет Netzverteiler",noEntry:"Нет записей",noDay:"Нет записей",
-    recs:"записей",nvs:"NV",delQ:"Удалить?",loading:"Загрузка...",
-    listPlaceholder:"Введите элемент...",uploading:"Загрузка файла...",
-  }
+  de:{obj:"Objekte",selObj:"Objekt auswählen",selWork:"Arbeitsart auswählen",newDay:"+ Neuer Tag",back:"Zurück",save:"💾 Speichern",logout:"Abmelden",addE:"+ Eintrag",addNV:"+ Netzverteiler",confDel:"Möchten Sie diesen Eintrag wirklich löschen?",yes:"Ja, löschen",no:"Nein",saved:"Gespeichert ✓",syncing:"Sync...",synced:"Synchronisiert",addr:"Adresse / Straße, Haus",comment:"Kommentar",vol:"Menge (m)",done:"✓ Erledigt",partial:"⚡ Teilweise",notDone:"✗ Nicht erledigt",addFile:"Foto oder PDF hinzufügen",installTxt:"Zum Startbildschirm: Teilen → 'Zum Home-Bildschirm'",newObj:"Neues Objekt",objName:"Objektname",cancel:"Abbrechen",add:"Hinzufügen",newWD:"Neuer Arbeitstag",date:"Datum",optCom:"Kommentar (optional)",nvNum:"NV-Nummer...",loginLbl:"Benutzername",passLbl:"Passwort",loginBtn:"Anmelden →",loginErr:"Falscher Benutzername oder Passwort",noNV:"Kein Netzverteiler — klicken Sie auf '+ Netzverteiler'",noEntry:"Keine Einträge",noDay:"Keine Einträge — klicken Sie auf '+ Neuer Tag'",recs:"Einträge",nvs:"NV",delQ:"Löschen?",loading:"Wird geladen...",uploading:"Wird hochgeladen...",bulkTitle:"Adressen einfügen",bulkSub:"Fügen Sie alle Adressen ein — eine pro Zeile. Nach dem Import werden sie automatisch erstellt.",bulkLbl:"Adressen (eine pro Zeile)",importBtn:"Importieren & Erstellen",imported:"Einträge importiert"},
+  ru:{obj:"Объекты",selObj:"Выберите объект",selWork:"Выберите вид работ",newDay:"+ Новый день",back:"Назад",save:"💾 Сохранить",logout:"Выйти",addE:"+ Добавить",addNV:"+ Netzverteiler",confDel:"Вы действительно хотите удалить это?",yes:"Да, удалить",no:"Нет",saved:"Сохранено ✓",syncing:"Синхронизация...",synced:"Синхронизировано",addr:"Адрес / улица, дом",comment:"Комментарий",vol:"Объём (м)",done:"✓ Выполнено",partial:"⚡ Частично",notDone:"✗ Не выполнено",addFile:"Добавить фото или PDF",installTxt:"На главный экран: Поделиться → 'На экран Домой'",newObj:"Новый объект",objName:"Название",cancel:"Отмена",add:"Добавить",newWD:"Новый рабочий день",date:"Дата",optCom:"Комментарий (необязательно)",nvNum:"Номер NV...",loginLbl:"Логин",passLbl:"Пароль",loginBtn:"Войти →",loginErr:"Неверный логин или пароль",noNV:"Нет Netzverteiler",noEntry:"Нет записей",noDay:"Нет записей",recs:"записей",nvs:"NV",delQ:"Удалить?",loading:"Загрузка...",uploading:"Загрузка...",bulkTitle:"Вставить адреса",bulkSub:"Вставьте все адреса — по одному на строку. После импорта они автоматически создадутся.",bulkLbl:"Адреса (по одному на строку)",importBtn:"Импортировать и создать",imported:"записей создано"}
 };
 
 let LANG=localStorage.getItem("ik_lang")||"de";
@@ -465,55 +489,63 @@ let delFn=null,saveTimer=null,dbRowId=null;
 
 function t(k){return TR[LANG][k]||k;}
 
-// ═══ THEME ═══
+// THEME
 function applyTheme(){
   document.documentElement.setAttribute("data-theme",THEME);
   const btn=document.getElementById("theme-btn");
   if(btn)btn.textContent=THEME==="dark"?"☀️":"🌙";
 }
-function toggleTheme(){
-  THEME=THEME==="dark"?"light":"dark";
-  localStorage.setItem("ik_theme",THEME);
-  applyTheme();
-}
+function toggleTheme(){THEME=THEME==="dark"?"light":"dark";localStorage.setItem("ik_theme",THEME);applyTheme();}
 
-// ═══ AUTO-GROW TEXTAREA ═══
-function autoGrow(el){
-  el.style.height="auto";
-  el.style.height=(el.scrollHeight)+"px";
-}
+// AUTO-GROW
+function ag(el){el.style.height="auto";el.style.height=el.scrollHeight+"px";}
 
-// ═══ TABS ═══
+// TABS
 function switchTab(page,tab,btn){
   document.querySelectorAll(`#page-${page} .tab-btn`).forEach(b=>b.classList.remove("active"));
   document.querySelectorAll(`#page-${page} .tab-content`).forEach(c=>c.classList.remove("active"));
   btn.classList.add("active");
   document.getElementById(`tc-${page}-${tab}`).classList.add("active");
-  if(tab==="list") renderListItems(page);
+  if(tab==="main"){if(page==="eb")renderNVs();else renderGEN();}
+  if(tab==="bulk"){updateBulkStats(page);}
 }
 
-function renderListItems(page){
+// BULK IMPORT
+function updateBulkStats(page){
+  const ta=document.getElementById(`bulk-${page}-ta`);
+  const stats=document.getElementById(`bulk-${page}-stats`);
+  if(!ta||!stats)return;
+  const lines=ta.value.split("\n").map(l=>l.trim()).filter(l=>l.length>0);
+  const day=S.city&&S.work&&S.day?DB.records[S.city]?.[S.work]?.[S.day]:null;
+  const existing=day?(page==="eb"?(day.nvs||[]).reduce((s,nv)=>s+(nv.addresses||[]).length,0):(day.entries||[]).length):0;
+  stats.innerHTML=lines.length>0?`
+    <div class="bulk-stat">📋 ${lines.length} ${LANG==="de"?"Zeilen":"строк"}</div>
+    <div class="bulk-stat">✅ ${existing} ${LANG==="de"?"vorhanden":"уже есть"}</div>`:"";}
+
+function bulkImport(page){
+  const ta=document.getElementById(`bulk-${page}-ta`);
+  const lines=ta.value.split("\n").map(l=>l.trim()).filter(l=>l.length>0);
+  if(!lines.length){toast(LANG==="de"?"Keine Adressen eingegeben":"Нет адресов","err");return;}
   const day=getDay();
-  const items=day[`list_${page}`]||[];
-  const container=document.getElementById(`list-${page}`);
-  container.innerHTML=items.map((item,i)=>`
-    <div class="list-item-row">
-      <div class="list-item-num">${i+1}</div>
-      <input class="list-item-input" type="text" value="${esc(item)}" placeholder="${t("listPlaceholder")}" oninput="updateListItem('${page}',${i},this.value)"/>
-      <button class="btn-d" onclick="confirmDel(()=>removeListItem('${page}',${i}))">🗑</button>
-    </div>`).join("")||`<div class="empty"><div class="empty-icon">📋</div><div class="empty-title">${t("noEntry")}</div></div>`;
+  if(page==="eb"){
+    if(!day.nvs)day.nvs=[];
+    if(day.nvs.length===0)day.nvs.push({number:"1",addresses:[]});
+    const nv=day.nvs[day.nvs.length-1];
+    lines.forEach(addr=>nv.addresses.push({street:addr,status:null,comment:"",files:[]}));
+  }else{
+    if(!day.entries)day.entries=[];
+    lines.forEach(addr=>day.entries.push({address:addr,volume:"",workers:"",hours:"",comment:"",files:[]}));
+  }
+  scheduleSave();
+  ta.value="";
+  updateBulkStats(page);
+  toast(`${lines.length} ${t("imported")} ✓`);
+  // Switch to main tab
+  const mainBtn=document.querySelector(`#page-${page==="eb"?"einblasen":"generic"} .tab-btn:nth-child(2)`);
+  if(mainBtn)switchTab(page==="eb"?"eb":"gen","main",mainBtn);
 }
 
-function addListItem(page){
-  const day=getDay();
-  if(!day[`list_${page}`])day[`list_${page}`]=[];
-  day[`list_${page}`].push("");
-  scheduleSave();renderListItems(page);
-}
-function updateListItem(page,i,v){const day=getDay();if(!day[`list_${page}`])day[`list_${page}`]=[];day[`list_${page}`][i]=v;scheduleSave();}
-function removeListItem(page,i){const day=getDay();day[`list_${page}`].splice(i,1);scheduleSave();renderListItems(page);}
-
-// ═══ SUPABASE ═══
+// SUPABASE
 async function sbGet(){
   try{
     const r=await fetch(`${SB_URL}/rest/v1/ikbt_data?select=*&limit=1`,{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
@@ -526,69 +558,66 @@ async function sbGet(){
       localStorage.setItem("ik_db",rows[0].data);
       return true;
     }
-    return false;
-  }catch(e){
-    const loc=localStorage.getItem("ik_db");
-    if(loc){try{const p=JSON.parse(loc);if(p.cities)DB.cities=p.cities;if(p.records)DB.records=p.records;}catch{}}
-    return false;
-  }
+  }catch(e){}
+  const loc=localStorage.getItem("ik_db");
+  if(loc){try{const p=JSON.parse(loc);if(p.cities)DB.cities=p.cities;if(p.records)DB.records=p.records;}catch{}}
+  return false;
 }
 
 async function sbSave(){
   setSS("ing");
-  // Strip large base64 for DB, keep in localStorage
   const payload=JSON.stringify({cities:DB.cities,records:stripB64(DB.records)});
   localStorage.setItem("ik_db",JSON.stringify({cities:DB.cities,records:DB.records}));
   try{
-    let r;
+    const headers={"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json"};
     if(dbRowId){
-      r=await fetch(`${SB_URL}/rest/v1/ikbt_data?id=eq.${dbRowId}`,{method:"PATCH",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"return=minimal"},body:JSON.stringify({data:payload})});
+      await fetch(`${SB_URL}/rest/v1/ikbt_data?id=eq.${dbRowId}`,{method:"PATCH",headers:{...headers,"Prefer":"return=minimal"},body:JSON.stringify({data:payload})});
     }else{
-      r=await fetch(`${SB_URL}/rest/v1/ikbt_data`,{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":"application/json","Prefer":"return=representation"},body:JSON.stringify({data:payload})});
+      const r=await fetch(`${SB_URL}/rest/v1/ikbt_data`,{method:"POST",headers:{...headers,"Prefer":"return=representation"},body:JSON.stringify({data:payload})});
       if(r.ok){const rows=await r.json();if(rows&&rows[0])dbRowId=rows[0].id;}
     }
     setSS("ok");toast(t("saved"));
   }catch(e){setSS("err");toast("Sync-Fehler!","err");}
 }
 
-// Upload file to Supabase Storage
-async function uploadToStorage(file,path){
-  try{
-    const r=await fetch(`${SB_URL}/storage/v1/object/files/${path}`,{
-      method:"POST",
-      headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":file.type,"x-upsert":"true"},
-      body:file
-    });
-    if(r.ok){
-      return `${SB_URL}/storage/v1/object/public/files/${path}`;
-    }
-    return null;
-  }catch(e){return null;}
-}
-
 function stripB64(records){
   const r=JSON.parse(JSON.stringify(records));
+  const strip=files=>(files||[]).forEach(f=>{if(f.storageUrl){delete f.data;}else if(f.data&&f.data.length>500)f.data="[local]";});
   Object.values(r).forEach(works=>Object.values(works).forEach(days=>Object.values(days).forEach(day=>{
-    (day.nvs||[]).forEach(nv=>(nv.addresses||[]).forEach(addr=>(addr.files||[]).forEach(f=>{if(f.storageUrl)delete f.data;else if(f.data&&f.data.length>500)f.data="[local]";})));
-    (day.entries||[]).forEach(en=>(en.files||[]).forEach(f=>{if(f.storageUrl)delete f.data;else if(f.data&&f.data.length>500)f.data="[local]";}));
+    (day.nvs||[]).forEach(nv=>(nv.addresses||[]).forEach(a=>strip(a.files)));
+    (day.entries||[]).forEach(en=>strip(en.files));
   })));
   return r;
 }
 
+// Upload to Supabase Storage with retry
+async function uploadFile(file){
+  const path=`${S.city}/${S.work}/${S.day}/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;
+  for(let attempt=0;attempt<3;attempt++){
+    try{
+      const r=await fetch(`${SB_URL}/storage/v1/object/files/${path}`,{
+        method:"POST",
+        headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":file.type,"x-upsert":"true"},
+        body:file
+      });
+      if(r.ok)return`${SB_URL}/storage/v1/object/public/files/${path}`;
+    }catch(e){if(attempt===2)break;await new Promise(res=>setTimeout(res,1000));}
+  }
+  return null;
+}
+
 function scheduleSave(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>localStorage.setItem("ik_db",JSON.stringify({cities:DB.cities,records:DB.records})),300);}
 
-// ═══ AUTH ═══
+// AUTH
 function doLogin(){
-  const l=document.getElementById("il").value.trim();
-  const p=document.getElementById("ip").value.trim();
+  const l=document.getElementById("il").value.trim(),p=document.getElementById("ip").value.trim();
   if(l===CRED.login&&p===CRED.pass){
     localStorage.setItem("ik_sess","1");
     document.getElementById("login-page").style.display="none";
     document.getElementById("app").style.display="block";
     initApp();
   }else{
-    const e=document.getElementById("le");
-    e.textContent=t("loginErr");e.style.display="block";
+    const e=document.getElementById("le");e.textContent=t("loginErr");e.style.display="block";
     setTimeout(()=>e.style.display="none",3000);
   }
 }
@@ -596,7 +625,7 @@ function doLogout(){localStorage.removeItem("ik_sess");document.getElementById("
 
 async function initApp(){
   applyLang();applyTheme();setSS("ing");
-  document.getElementById("city-grid").innerHTML=`<div class="loading-wrap"><div class="spinner"></div><div>${t("loading")}</div></div>`;
+  document.getElementById("city-grid").innerHTML=`<div class="spinner-wrap"><div class="spinner"></div><div>${t("loading")}</div></div>`;
   await sbGet();renderCities();setSS("ok");
   const isIOS=/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
   if(isIOS&&!window.navigator.standalone){const b=document.getElementById("ibar");if(b){b.style.display="flex";document.getElementById("ibar-txt").textContent=t("installTxt");}}
@@ -605,11 +634,11 @@ async function initApp(){
 function setSS(s){
   const d=document.getElementById("sdot"),l=document.getElementById("slbl");
   if(!d)return;
-  d.className="sync-dot"+(s==="ing"?" ing":s==="err"?" err":"");
+  d.className="sdot"+(s==="ing"?" ing":s==="err"?" err":"");
   if(l)l.textContent=s==="ing"?t("syncing"):s==="err"?"⚠":t("synced");
 }
 
-// ═══ LANG ═══
+// LANG
 function setLang(lang,btn){
   LANG=lang;localStorage.setItem("ik_lang",lang);
   document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
@@ -617,21 +646,11 @@ function setLang(lang,btn){
   applyLang();
 }
 function applyLang(){
-  const m={
-    "ll-l":t("loginLbl"),"ll-p":t("passLbl"),"lb":t("loginBtn"),
-    "btn-logout":t("logout"),"btn-nd":t("newDay"),
-    "btn-seb":t("save"),"btn-anv":t("addNV"),
-    "btn-sgen":t("save"),"btn-ae":t("addE"),
-    "t-obj":t("obj"),"s-obj":t("selObj"),"s-work":t("selWork"),
-    "b-works":t("back"),"b-days":t("back"),"b-eb":t("back"),"b-gen":t("back"),
-    "mt-city":"🏙 "+t("newObj"),"ml-cn":t("objName"),"ml-ca":t("cancel"),"ml-ad":t("add"),
-    "mt-day":"📅 "+t("newWD"),"ml-dt":t("date"),"ml-cm":t("optCom"),
-    "ct":t("delQ"),"cs":t("confDel"),"cy":t("yes"),"cn":t("no"),
-  };
+  const m={"ll-l":t("loginLbl"),"ll-p":t("passLbl"),"lb":t("loginBtn"),"btn-logout":t("logout"),"btn-nd":t("newDay"),"btn-seb":t("save"),"btn-anv":t("addNV"),"btn-sgen":t("save"),"btn-ae":t("addE"),"t-obj":t("obj"),"s-obj":t("selObj"),"s-work":t("selWork"),"b-works-lbl":t("back"),"b-days-lbl":t("back"),"b-eb-lbl":t("back"),"b-gen-lbl":t("back"),"mt-city":"🏙 "+t("newObj"),"ml-cn":t("objName"),"ml-ca":t("cancel"),"ml-ad":t("add"),"mt-day":"📅 "+t("newWD"),"ml-dt":t("date"),"ml-cm":t("optCom"),"ct":t("delQ"),"cs":t("confDel"),"cy":t("yes"),"cn":t("no"),"bulk-eb-title":t("bulkTitle"),"bulk-eb-sub":t("bulkSub"),"bulk-eb-lbl":t("bulkLbl"),"btn-import-eb-lbl":t("importBtn"),"bulk-gen-title":t("bulkTitle"),"bulk-gen-sub":t("bulkSub"),"bulk-gen-lbl":t("bulkLbl"),"btn-import-gen-lbl":t("importBtn")};
   Object.entries(m).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.textContent=v;});
 }
 
-// ═══ NAV ═══
+// NAV
 function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById("page-"+id).classList.add("active");}
 function setBC(items){document.getElementById("bc").innerHTML=items.map((it,i)=>i===items.length-1?`<span>${it.l}</span>`:`<a onclick="${it.fn}">${it.l}</a> <span style="color:var(--border2)">›</span>`).join(" ");}
 
@@ -648,38 +667,28 @@ function goWork(work){
   renderDays();
 }
 
-// ═══ CITIES ═══
+// CITIES
 function renderCities(){
   const g=document.getElementById("city-grid");
+  const icons=["🏙","🏘","🌆","🏗","🌇","🏛","🌃"];
   g.innerHTML=DB.cities.map((c,i)=>{
-    const photo=CITY_PHOTOS[c.name]||null;
-    const imgHtml=photo
-      ?`<img class="city-img" src="${photo}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="city-img-placeholder" style="display:none">${["🏙","🏘","🌆","🏗","🌇"][i%5]}</div>`
-      :`<div class="city-img-placeholder">${["🏙","🏘","🌆","🏗","🌇"][i%5]}</div>`;
+    const ph=CITY_PHOTOS[c.name];
     return`<div class="city-card" onclick="selectCity('${esc(c.name)}')">
-      ${imgHtml}
-      <div class="city-info">
-        <div class="city-name">${c.name}</div>
-        <div class="city-count">${countR(c.name)} ${t("recs")}</div>
-      </div>
+      ${ph?`<img class="city-img" src="${ph}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="city-img-ph" style="display:none">${icons[i%icons.length]}</div>`:`<div class="city-img-ph">${icons[i%icons.length]}</div>`}
+      <div class="city-info"><div class="city-name">${c.name}</div><div class="city-count">${countR(c.name)} ${t("recs")}</div></div>
     </div>`;
-  }).join("")+
-  `<div class="add-city-card" onclick="openM('m-city')">
-    <div style="font-size:28px;margin-bottom:8px">＋</div>
-    <div style="font-weight:700;font-size:12px">${t("newObj")}</div>
-  </div>`;
+  }).join("")+`<div class="add-city-card" onclick="openM('m-city')"><div style="font-size:28px;margin-bottom:8px">＋</div><div style="font-weight:700;font-size:12px">${t("newObj")}</div></div>`;
 }
-
 function countR(city){let n=0;try{Object.values(DB.records[city]||{}).forEach(w=>Object.keys(w).forEach(()=>n++));}catch{}return n;}
 function selectCity(name){S.city=name;goTo("works");}
 function saveCity(){
   const name=document.getElementById("new-city").value.trim();
   if(!name)return;
-  if(DB.cities.find(c=>c.name===name)){toast("Existiert bereits","err");return;}
+  if(DB.cities.find(c=>c.name===name)){toast(LANG==="de"?"Existiert bereits":"Уже существует","err");return;}
   DB.cities.push({name});scheduleSave();closeM("m-city");document.getElementById("new-city").value="";renderCities();
 }
 
-// ═══ DAYS ═══
+// DAYS
 function renderDays(){
   const days=DB.records[S.city]?.[S.work]||{};
   const keys=Object.keys(days).sort((a,b)=>b.localeCompare(a));
@@ -687,37 +696,38 @@ function renderDays(){
   if(!keys.length){l.innerHTML=`<div class="empty"><div class="empty-icon">📅</div><div class="empty-title">${t("noDay")}</div></div>`;return;}
   l.innerHTML=keys.map(k=>{
     const d=days[k];
-    const info=S.work==="Einblasen"?`${(d.nvs||[]).length} ${t("nvs")}`:`${(d.entries||[]).length} ${t("recs")}`;
+    const nv=(d.nvs||[]).reduce((s,nv)=>s+(nv.addresses||[]).length,0);
+    const en=(d.entries||[]).length;
+    const info=S.work==="Einblasen"?`${(d.nvs||[]).length} NV · ${nv} ${t("addr").split("/")[0].trim()}`:`${en} ${t("recs")}`;
     return`<div class="day-item" onclick="openDay('${k}')">
       <div><div class="day-date">${fmtD(k)}</div><div class="day-meta">${d.comment?d.comment+" · ":""}${info}</div></div>
-      <div class="day-arrow">›</div>
+      <div style="color:var(--accent3);font-size:20px">›</div>
     </div>`;
   }).join("");
 }
-
 function openDayM(){document.getElementById("new-date").value=new Date().toISOString().split("T")[0];document.getElementById("new-comment").value="";openM("m-day");}
 function saveDay(){
-  const date=document.getElementById("new-date").value;
-  const comment=document.getElementById("new-comment").value.trim();
+  const date=document.getElementById("new-date").value,comment=document.getElementById("new-comment").value.trim();
   if(!date)return;
   if(!DB.records[S.city])DB.records[S.city]={};
   if(!DB.records[S.city][S.work])DB.records[S.city][S.work]={};
-  if(!DB.records[S.city][S.work][date])DB.records[S.city][S.work][date]={comment,nvs:[],entries:[],list_eb:[],list_gen:[]};
+  if(!DB.records[S.city][S.work][date])DB.records[S.city][S.work][date]={comment,nvs:[],entries:[]};
   scheduleSave();closeM("m-day");renderDays();S.day=date;openDay(date);
 }
 function openDay(d){S.day=d;S.work==="Einblasen"?openEB(d):openGEN(d);}
 
-// ═══ EINBLASEN ═══
+// EINBLASEN
 function openEB(d){
   const day=getDay();
   document.getElementById("t-eb").textContent="💨 Einblasen und Aktivieren";
   document.getElementById("s-eb").textContent=S.city+" · "+fmtD(d)+(day.comment?" · "+day.comment:"");
   document.getElementById("b-eb").onclick=()=>{showPage("days");renderDays();};
   setBC([{l:t("obj"),fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:"Einblasen",fn:"goWork('Einblasen')"},{l:fmtD(d)}]);
-  // Reset tabs
+  // Reset to bulk tab
   document.querySelectorAll("#page-einblasen .tab-btn").forEach((b,i)=>b.classList.toggle("active",i===0));
   document.querySelectorAll("#page-einblasen .tab-content").forEach((c,i)=>c.classList.toggle("active",i===0));
-  showPage("einblasen");renderNVs();
+  showPage("einblasen");
+  updateBulkStats("eb");
 }
 
 function renderNVs(){
@@ -742,13 +752,7 @@ function renderNVs(){
 
 function renderAddr(ni,ai,addr){
   const sbs=[{k:"done",l:t("done"),c:"sd"},{k:"partial",l:t("partial"),c:"sp"},{k:"no",l:t("notDone"),c:"sn"}];
-  const files=(addr.files||[]).map((f,fi)=>`
-    <div class="fitem">
-      ${f.type==="image"&&(f.storageUrl||f.data)&&!String(f.data||"").includes("local")?`<img src="${f.storageUrl||f.data}" class="fthumb" onclick="viewImg('${f.storageUrl||f.data}')"/>`:`<span style="font-size:20px">${f.type==="image"?"🖼":"📄"}</span>`}
-      <span class="fitem-name">${esc(f.name)}</span>
-      ${f.storageUrl||f.data?`<button class="btn-g" onclick="dlF('${f.storageUrl||f.data}','${esc(f.name)}')">⬇</button>`:""}
-      <button class="btn-d" onclick="confirmDel(()=>rmFile(${ni},${ai},${fi}))">🗑</button>
-    </div>`).join("");
+  const files=(addr.files||[]).map((f,fi)=>renderFileItem(f,fi,`rmFile(${ni},${ai},${fi})`,`dlF('${f.storageUrl||f.data||""}','${esc(f.name)}')`)).join("");
   return`<div class="addr-row">
     <div class="addr-top">
       <div class="addr-num">${ai+1}</div>
@@ -756,13 +760,23 @@ function renderAddr(ni,ai,addr){
       <button class="btn-d" onclick="confirmDel(()=>rmAddr(${ni},${ai}))">🗑</button>
     </div>
     <div class="srow">${sbs.map(s=>`<button class="sbtn ${addr.status===s.k?s.c:""}" onclick="setS(${ni},${ai},'${s.k}')">${s.l}</button>`).join("")}</div>
-    <textarea class="auto-grow" placeholder="${t("comment")}" oninput="updAddr(${ni},${ai},'comment',this.value);autoGrow(this)" style="margin-bottom:8px">${esc(addr.comment||"")}</textarea>
+    <textarea class="ag" placeholder="${t("comment")}" oninput="updAddr(${ni},${ai},'comment',this.value);ag(this)" style="margin-bottom:8px">${esc(addr.comment||"")}</textarea>
     <div class="file-drop" onclick="document.getElementById('fu${ni}_${ai}').click()">
       <div style="font-size:18px;margin-bottom:3px">📎</div>
       <div style="font-size:11px;color:var(--text3)">${t("addFile")}</div>
     </div>
     <input type="file" id="fu${ni}_${ai}" accept="image/*,.pdf" multiple style="display:none" onchange="handleFiles(event,${ni},${ai})"/>
-    <div class="flist">${files}</div>
+    <div class="flist" id="flist-${ni}-${ai}">${files}</div>
+  </div>`;
+}
+
+function renderFileItem(f,fi,rmFn,dlFn){
+  const src=f.storageUrl||(f.data&&!f.data.includes("[local]")?f.data:null);
+  return`<div class="fitem">
+    ${f.type==="image"&&src?`<img src="${src}" class="fthumb" onclick="viewImg('${src}')"/>`:`<span style="font-size:20px">${f.type==="image"?"🖼":"📄"}</span>`}
+    <span class="fitem-name">${esc(f.name)}</span>
+    ${src?`<button class="btn-g" onclick="${dlFn}">⬇</button>`:`<span style="font-size:10px;color:var(--text3)">local</span>`}
+    <button class="btn-d" onclick="confirmDel(()=>${rmFn})">🗑</button>
   </div>`;
 }
 
@@ -780,23 +794,24 @@ async function handleFiles(e,ni,ai){
     const isImg=file.type.startsWith("image/"),isPDF=file.type==="application/pdf";
     if(!isImg&&!isPDF){toast(t("addFile"),"err");continue;}
     toast(t("uploading"),"inf");
-    const path=`${S.city}/${S.work}/${S.day}/${Date.now()}_${file.name}`;
-    const url=await uploadToStorage(file,path);
+    const url=await uploadFile(file);
     if(url){
       getDay().nvs[ni].addresses[ai].files.push({name:file.name,storageUrl:url,type:isImg?"image":"pdf"});
+      scheduleSave();renderNVs();
     }else{
+      // Fallback to base64
       const reader=new FileReader();
-      reader.onload=ev=>{getDay().nvs[ni].addresses[ai].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});scheduleSave();renderNVs();};
-      reader.readAsDataURL(file);continue;
+      reader.onload=ev=>{
+        getDay().nvs[ni].addresses[ai].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});
+        scheduleSave();renderNVs();
+      };
+      reader.readAsDataURL(file);
     }
-    scheduleSave();renderNVs();
   }
 }
-
 function rmFile(ni,ai,fi){getDay().nvs[ni].addresses[ai].files.splice(fi,1);scheduleSave();renderNVs();}
-function dlF(url,name){const a=document.createElement("a");a.href=url;a.download=name;a.target="_blank";a.click();}
 
-// ═══ GENERIC ═══
+// GENERIC
 function openGEN(d){
   const day=getDay();
   document.getElementById("t-gen").textContent=WI[S.work]+" "+WL[S.work];
@@ -805,7 +820,8 @@ function openGEN(d){
   setBC([{l:t("obj"),fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:WL[S.work],fn:"goWork('"+S.work+"')"},{l:fmtD(d)}]);
   document.querySelectorAll("#page-generic .tab-btn").forEach((b,i)=>b.classList.toggle("active",i===0));
   document.querySelectorAll("#page-generic .tab-content").forEach((c,i)=>c.classList.toggle("active",i===0));
-  showPage("generic");renderGEN();
+  showPage("generic");
+  updateBulkStats("gen");
 }
 
 function renderGEN(){
@@ -814,16 +830,10 @@ function renderGEN(){
   const isHA=S.work==="Hausanschluss";
   if(!entries.length){c.innerHTML=`<div class="empty"><div class="empty-icon">📝</div><div class="empty-title">${t("noEntry")}</div></div>`;return;}
   c.innerHTML=entries.map((en,i)=>{
-    const files=(en.files||[]).map((f,fi)=>`
-      <div class="fitem">
-        ${f.type==="image"&&(f.storageUrl||f.data)&&!String(f.data||"").includes("local")?`<img src="${f.storageUrl||f.data}" class="fthumb" onclick="viewImg('${f.storageUrl||f.data}')"/>`:`<span style="font-size:20px">${f.type==="image"?"🖼":"📄"}</span>`}
-        <span class="fitem-name">${esc(f.name)}</span>
-        ${f.storageUrl||f.data?`<button class="btn-g" onclick="dlF('${f.storageUrl||f.data}','${esc(f.name)}')">⬇</button>`:""}
-        <button class="btn-d" onclick="confirmDel(()=>rmGF(${i},${fi}))">🗑</button>
-      </div>`).join("");
+    const files=(en.files||[]).map((f,fi)=>renderFileItem(f,fi,`rmGF(${i},${fi})`,`dlF('${f.storageUrl||f.data||""}','${esc(f.name)}')`)).join("");
     return`<div class="entry-block">
       <div class="entry-hdr">
-        <div class="entry-label">${WI[S.work]} Eintrag ${i+1}</div>
+        <div class="entry-lbl">${WI[S.work]} Eintrag ${i+1}</div>
         <button class="btn-d" onclick="confirmDel(()=>rmEntry(${i}))">🗑</button>
       </div>
       <div class="frow" style="margin-bottom:10px">
@@ -831,9 +841,8 @@ function renderGEN(){
         <div><label class="flabel">${t("vol")}</label><input type="number" value="${en.volume||""}" placeholder="45" oninput="updE(${i},'volume',this.value)"/></div>
         ${!isHA?`
         <div><label class="flabel">${LANG==="de"?"Arbeiter":"Рабочих"}</label><input type="number" value="${en.workers||""}" placeholder="3" oninput="updE(${i},'workers',this.value)"/></div>
-        <div><label class="flabel">${LANG==="de"?"Stunden":"Часы"}</label><input type="number" value="${en.hours||""}" placeholder="8" oninput="updE(${i},'hours',this.value)"/></div>
-        `:""}
-        <div class="ffull"><label class="flabel">${t("comment")}</label><textarea class="auto-grow" placeholder="${t("comment")}" oninput="updE(${i},'comment',this.value);autoGrow(this)">${esc(en.comment||"")}</textarea></div>
+        <div><label class="flabel">${LANG==="de"?"Stunden":"Часы"}</label><input type="number" value="${en.hours||""}" placeholder="8" oninput="updE(${i},'hours',this.value)"/></div>`:""}
+        <div class="ffull"><label class="flabel">${t("comment")}</label><textarea class="ag" placeholder="${t("comment")}" oninput="updE(${i},'comment',this.value);ag(this)">${esc(en.comment||"")}</textarea></div>
       </div>
       <div class="file-drop" onclick="document.getElementById('gfu${i}').click()">
         <div style="font-size:18px;margin-bottom:3px">📎</div>
@@ -855,24 +864,24 @@ async function handleGFiles(e,i){
     const isImg=file.type.startsWith("image/"),isPDF=file.type==="application/pdf";
     if(!isImg&&!isPDF){toast(t("addFile"),"err");continue;}
     toast(t("uploading"),"inf");
-    const path=`${S.city}/${S.work}/${S.day}/${Date.now()}_${file.name}`;
-    const url=await uploadToStorage(file,path);
+    const url=await uploadFile(file);
     if(url){
       getDay().entries[i].files.push({name:file.name,storageUrl:url,type:isImg?"image":"pdf"});
+      scheduleSave();renderGEN();
     }else{
       const reader=new FileReader();
       reader.onload=ev=>{getDay().entries[i].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});scheduleSave();renderGEN();};
-      reader.readAsDataURL(file);continue;
+      reader.readAsDataURL(file);
     }
-    scheduleSave();renderGEN();
   }
 }
 function rmGF(i,fi){getDay().entries[i].files.splice(fi,1);scheduleSave();renderGEN();}
 
-// ═══ HELPERS ═══
+// HELPERS
 function getDay(){return DB.records[S.city][S.work][S.day];}
 function fmtD(d){try{return new Date(d+"T00:00:00").toLocaleDateString(LANG==="de"?"de-DE":"ru-RU",{day:"2-digit",month:"2-digit",year:"numeric"});}catch{return d;}}
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function dlF(url,name){if(!url||url==="undefined")return;const a=document.createElement("a");a.href=url;a.download=name;a.target="_blank";a.click();}
 function toast(msg,type="ok"){const t2=document.getElementById("toast");t2.textContent=msg;t2.className="toast show"+(type==="err"?" err":type==="inf"?" inf":"");clearTimeout(t2._t);t2._t=setTimeout(()=>t2.className="toast",2500);}
 function openM(id){document.getElementById(id).classList.add("show");}
 function closeM(id){document.getElementById(id).classList.remove("show");}
@@ -880,7 +889,7 @@ function confirmDel(fn){delFn=fn;document.getElementById("ct").textContent=t("de
 function viewImg(src){const d=document.createElement("div");d.style.cssText="position:fixed;inset:0;background:#000d;z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer";d.onclick=()=>d.remove();d.innerHTML=`<img src="${src}" style="max-width:95vw;max-height:90vh;border-radius:12px"/>`;document.body.appendChild(d);}
 document.querySelectorAll(".modal-bg").forEach(m=>m.addEventListener("click",function(e){if(e.target===this)this.classList.remove("show");}));
 
-// ═══ INIT ═══
+// INIT
 window.addEventListener("load",()=>{
   LANG=localStorage.getItem("ik_lang")||"de";
   THEME=localStorage.getItem("ik_theme")||"dark";
