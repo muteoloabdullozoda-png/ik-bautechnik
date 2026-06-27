@@ -1170,24 +1170,27 @@ function viewImg(src){const d=document.createElement("div");d.style.cssText="pos
 document.querySelectorAll(".modal-bg").forEach(m=>m.addEventListener("click",function(e){if(e.target===this)this.classList.remove("show");}));
 
 // ═══ INIT ═══
+function hideSplash(){
+  const s=document.getElementById("splash");
+  if(s&&s.style.display!=="none"){s.style.display="none";}
+  if(localStorage.getItem("ik_sess")==="1"){
+    document.getElementById("login-page").style.display="none";
+    document.getElementById("app").style.display="block";
+    initApp();
+  }else{
+    document.getElementById("login-page").style.display="flex";
+  }
+}
 window.addEventListener("load",()=>{
   LANG=localStorage.getItem("ik_lang")||"de";
   THEME=localStorage.getItem("ik_theme")||"dark";
   applyTheme();
   document.querySelectorAll(".lang-btn").forEach(b=>b.classList.toggle("active",b.textContent.includes(LANG.toUpperCase())));
-  setTimeout(()=>{
-    document.getElementById("splash").classList.add("hide");
-    setTimeout(()=>{
-      document.getElementById("splash").style.display="none";
-      if(localStorage.getItem("ik_sess")==="1"){
-        document.getElementById("login-page").style.display="none";
-        document.getElementById("app").style.display="block";
-        initApp();
-      }else{
-        document.getElementById("login-page").style.display="flex";
-      }
-    },500);
-  },2200);
+  setTimeout(hideSplash,1800);
+  setTimeout(hideSplash,3500);
+});
+document.addEventListener("DOMContentLoaded",()=>{
+  document.getElementById("splash").addEventListener("click",hideSplash);
 });
 </script>
 </body>
