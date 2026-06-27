@@ -14,7 +14,7 @@
   --border:#1e3a6e;--border2:#2a4a8a;
   --accent:#2563eb;--accent2:#3b82f6;--accent3:#60a5fa;--accent4:#93c5fd;
   --text:#e8f4fd;--text2:#93c5fd;--text3:#4a6a9a;
-  --green:#10b981;--red:#ef4444;--yellow:#f59e0b;
+  --green:#10b981;--red:#ef4444;--yellow:#f59e0b;--purple:#8b5cf6;
   --shadow:0 4px 24px rgba(0,0,0,0.4);
   --glass:rgba(10,22,40,0.85);
 }
@@ -27,25 +27,25 @@
   --glass:rgba(255,255,255,0.92);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{min-height:100vh;background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--text);transition:background 0.3s,color 0.3s}
+body{min-height:100vh;background:var(--bg);font-family:'Inter',system-ui,sans-serif;color:var(--text);transition:background 0.3s,color 0.3s;overflow-x:hidden}
 input,select,textarea,button{font-family:inherit}
 
 /* SPLASH */
 #splash{position:fixed;inset:0;background:linear-gradient(160deg,#050e1f,#0a1628,#0d1f40);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.6s}
 #splash.hide{opacity:0;pointer-events:none}
-.splash-logo{width:110px;height:110px;border-radius:26px;margin-bottom:22px;box-shadow:0 0 60px #3b82f655,0 0 120px #1d4ed820}
-.splash-name{font-size:22px;font-weight:900;color:#e8f4fd;margin-bottom:4px;letter-spacing:-0.5px}
+.splash-logo{width:110px;height:110px;border-radius:26px;margin-bottom:22px;box-shadow:0 0 60px #3b82f655}
+.splash-name{font-size:22px;font-weight:900;color:#e8f4fd;margin-bottom:4px}
 .splash-tag{font-size:11px;color:#60a5fa;letter-spacing:2px;text-transform:uppercase;margin-bottom:36px}
 .splash-prog{width:100px;height:2px;background:#1e3a6e;border-radius:2px;overflow:hidden}
 .splash-bar{height:100%;background:linear-gradient(90deg,#3b82f6,#60a5fa);animation:prog 2.2s ease forwards}
 @keyframes prog{from{width:0}to{width:100%}}
 
 /* LOGIN */
-#login-page{min-height:100vh;display:none;align-items:center;justify-content:center;padding:20px;background:var(--bg);background-image:radial-gradient(ellipse at 30% 20%,var(--accent)15,transparent 60%)}
+#login-page{min-height:100vh;display:none;align-items:center;justify-content:center;padding:20px;background:var(--bg)}
 .login-card{background:var(--bg2);border:1px solid var(--border);border-radius:24px;padding:36px 28px;width:100%;max-width:360px;box-shadow:var(--shadow)}
-.login-logo-wrap{width:72px;height:72px;border-radius:20px;margin:0 auto 16px;overflow:hidden;box-shadow:0 0 30px #3b82f640}
+.login-logo-wrap{width:72px;height:72px;border-radius:20px;margin:0 auto 16px;overflow:hidden}
 .login-co{font-size:18px;font-weight:900;text-align:center;margin-bottom:3px}
-.login-sub{font-size:11px;color:var(--text3);text-align:center;margin-bottom:22px;letter-spacing:0.5px;text-transform:uppercase}
+.login-sub{font-size:11px;color:var(--text3);text-align:center;margin-bottom:22px;text-transform:uppercase;letter-spacing:0.5px}
 .lang-row{display:flex;gap:6px;justify-content:center;margin-bottom:20px}
 .lang-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:5px 14px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s}
 .lang-btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -53,48 +53,40 @@ input,select,textarea,button{font-family:inherit}
 .lfield label{font-size:10px;font-weight:700;color:var(--text3);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.8px}
 .lfield input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:11px;padding:12px 15px;color:var(--text);font-size:15px;outline:none;transition:border-color 0.2s}
 .lfield input:focus{border-color:var(--accent2)}
-.login-btn{width:100%;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px #3b82f640;transition:opacity 0.2s}
-.login-btn:active{opacity:0.85}
+.login-btn{width:100%;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px #3b82f640}
 .login-err{background:#ef444415;border:1px solid var(--red);color:var(--red);border-radius:9px;padding:9px 12px;font-size:12px;margin-top:10px;display:none;text-align:center}
 
 /* APP */
 #app{display:none;min-height:100vh}
-.header{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:200}
+.header{background:var(--glass);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:200}
 .hbrand{display:flex;align-items:center;gap:10px}
-.hlogo{width:36px;height:36px;border-radius:10px;overflow:hidden;flex-shrink:0;box-shadow:0 0 14px #3b82f640}
+.hlogo{width:36px;height:36px;border-radius:10px;overflow:hidden;flex-shrink:0}
 .hname{font-weight:900;font-size:13px}
 .hsub{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px}
 .hright{display:flex;align-items:center;gap:6px}
-.theme-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px}
+.icon-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px}
 .sync-chip{display:flex;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 9px}
-.sdot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;transition:background 0.3s}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
 .sdot.ing{background:var(--yellow);animation:blink 0.9s infinite}
 .sdot.err{background:var(--red)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 .slbl{font-size:9px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
 .logout-btn{background:transparent;border:1px solid var(--border);color:var(--text3);border-radius:8px;padding:5px 10px;cursor:pointer;font-size:11px;font-weight:600}
 
-/* BACK BTN - улучшенный */
-.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:8px 14px;cursor:pointer;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:14px;transition:all 0.2s;box-shadow:var(--shadow)}
-.back-btn:hover{border-color:var(--accent2);color:var(--accent3);transform:translateX(-2px)}
-.back-btn svg{width:14px;height:14px;flex-shrink:0}
-
-/* BREADCRUMB */
-.breadcrumb{background:var(--bg2);border-bottom:1px solid var(--border);padding:6px 14px;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px;flex-wrap:wrap;overflow-x:auto}
+.breadcrumb{background:var(--bg2);border-bottom:1px solid var(--border);padding:6px 14px;font-size:11px;color:var(--text3);display:flex;align-items:center;gap:4px;flex-wrap:wrap}
 .breadcrumb a{color:var(--accent3);cursor:pointer;font-weight:600}
 
 .container{max-width:900px;margin:0 auto;padding:16px 12px}
 .page{display:none}.page.active{display:block}
 
-/* TOAST */
 .toast{position:fixed;top:64px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;border-radius:10px;padding:9px 18px;font-size:12px;font-weight:700;z-index:999;display:none;box-shadow:0 4px 20px #0008;white-space:nowrap;max-width:90vw;text-align:center}
-.toast.show{display:block}.toast.err{background:var(--red)}.toast.inf{background:var(--accent)}
+.toast.show{display:block}.toast.err{background:var(--red)}.toast.inf{background:var(--accent)}.toast.ai{background:var(--purple)}
 
 .spinner-wrap{text-align:center;padding:50px;color:var(--text3)}
 .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent2);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.sec-title{font-size:20px;font-weight:900;margin-bottom:3px;letter-spacing:-0.3px}
+.sec-title{font-size:20px;font-weight:900;margin-bottom:3px}
 .sec-sub{font-size:12px;color:var(--text3);margin-bottom:18px}
 
 /* CITY GRID */
@@ -111,8 +103,8 @@ input,select,textarea,button{font-family:inherit}
 
 /* WORK GRID */
 .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.work-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:22px 14px;cursor:pointer;text-align:center;box-shadow:var(--shadow);transition:all 0.2s;position:relative;overflow:hidden}
-.work-card:hover{border-color:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,99,235,0.2)}
+.work-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:22px 14px;cursor:pointer;text-align:center;box-shadow:var(--shadow);transition:all 0.2s}
+.work-card:hover{border-color:var(--accent2);transform:translateY(-2px)}
 .work-icon{font-size:34px;margin-bottom:10px}
 .work-name{font-weight:800;font-size:13px;line-height:1.3}
 
@@ -123,11 +115,17 @@ input,select,textarea,button{font-family:inherit}
 .day-date{font-weight:800;font-size:14px}
 .day-meta{font-size:10px;color:var(--text3);margin-top:2px}
 
-/* TABS */
-.tabs-row{display:flex;gap:0;margin-bottom:16px;background:var(--bg3);border-radius:12px;padding:3px}
-.tab-btn{flex:1;background:transparent;border:none;color:var(--text3);border-radius:9px;padding:9px 8px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s}
-.tab-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 10px #3b82f640}
-.tab-content{display:none}.tab-content.active{display:block}
+/* SWIPE PAGES */
+.swipe-container{position:relative;overflow:hidden;width:100%}
+.swipe-pages{display:flex;transition:transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);width:200%}
+.swipe-page{width:50%;flex-shrink:0;padding-right:0}
+.swipe-indicators{display:flex;gap:6px;justify-content:center;margin-bottom:14px}
+.swipe-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:all 0.3s;cursor:pointer}
+.swipe-dot.active{background:var(--accent2);width:20px;border-radius:4px}
+
+/* BACK BTN */
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:8px 14px;cursor:pointer;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:14px;transition:all 0.2s;box-shadow:var(--shadow)}
+.back-btn:hover{border-color:var(--accent2);color:var(--accent3);transform:translateX(-2px)}
 
 /* FORMS */
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
@@ -147,7 +145,9 @@ textarea.bulk:focus{border-color:var(--accent2)}
 .btn-d{background:#ef444412;border:1px solid var(--red);color:var(--red);border-radius:7px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer}
 .btn-g{background:#10b98112;border:1px solid var(--green);color:var(--green);border-radius:7px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer}
 .btn-save{background:linear-gradient(135deg,#047857,#10b981);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 2px 12px #10b98140}
+.btn-ai{background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;border:none;border-radius:10px;padding:10px 18px;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 2px 12px #8b5cf640;display:flex;align-items:center;gap:6px}
 .btn-import{width:100%;background:linear-gradient(135deg,#1d4ed8,#3b82f6);color:#fff;border:none;border-radius:10px;padding:12px;font-size:13px;font-weight:800;cursor:pointer;margin-top:10px;box-shadow:0 2px 12px #3b82f640;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-ai-import{width:100%;background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;border:none;border-radius:10px;padding:12px;font-size:13px;font-weight:800;cursor:pointer;margin-top:8px;box-shadow:0 2px 12px #8b5cf640;display:flex;align-items:center;justify-content:center;gap:8px}
 
 /* NV */
 .nv-block{background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:var(--shadow)}
@@ -165,6 +165,15 @@ textarea.bulk:focus{border-color:var(--accent2)}
 .sbtn.sp{background:#f59e0b18;border-color:var(--yellow);color:var(--yellow)}
 .sbtn.sn{background:#ef444418;border-color:var(--red);color:var(--red)}
 
+/* COMMENT WITH AI */
+.comment-wrap{position:relative;margin-bottom:8px}
+.ai-suggest-btn{position:absolute;right:8px;top:8px;background:var(--purple);border:none;border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;color:#fff;cursor:pointer;z-index:1}
+.ai-suggestion{background:var(--purple)15;border:1px solid var(--purple);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--text);margin-top:4px;display:none}
+.ai-suggestion.show{display:block}
+.ai-suggestion-btns{display:flex;gap:6px;margin-top:6px}
+.ai-accept-btn{background:var(--purple);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer}
+.ai-reject-btn{background:transparent;border:1px solid var(--border);color:var(--text3);border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer}
+
 /* FILES */
 .file-drop{border:2px dashed var(--border);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:8px}
 .file-drop:hover{border-color:var(--accent2);background:#3b82f608}
@@ -172,20 +181,49 @@ textarea.bulk:focus{border-color:var(--accent2)}
 .fitem{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:7px 10px;display:flex;align-items:center;gap:7px;font-size:11px}
 .fitem-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text2);font-weight:600}
 .fthumb{width:34px;height:34px;object-fit:cover;border-radius:6px;cursor:pointer;flex-shrink:0}
-.upload-progress{height:3px;background:var(--border);border-radius:3px;margin-top:5px;overflow:hidden;display:none}
-.upload-progress-bar{height:100%;background:var(--accent2);border-radius:3px;transition:width 0.3s}
+
+/* AUDIO */
+.audio-recorder{background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.audio-recorder-row{display:flex;align-items:center;gap:8px}
+.rec-btn{width:36px;height:36px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:all 0.2s}
+.rec-btn.idle{background:var(--red);box-shadow:0 0 0 0 #ef444440}
+.rec-btn.recording{background:var(--red);animation:recpulse 1s infinite}
+@keyframes recpulse{0%{box-shadow:0 0 0 0 #ef444466}70%{box-shadow:0 0 0 10px #ef444400}100%{box-shadow:0 0 0 0 #ef444400}}
+.rec-time{font-size:13px;font-weight:700;color:var(--text2);min-width:40px}
+.rec-status{font-size:11px;color:var(--text3);flex:1}
+.audio-player{width:100%;margin-top:6px;height:32px;border-radius:6px}
 
 /* ENTRY */
 .entry-block{background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:var(--shadow)}
 .entry-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .entry-lbl{font-weight:800;font-size:12px;color:var(--accent3)}
 
-/* BULK IMPORT */
+/* BULK */
 .bulk-wrap{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
 .bulk-title{font-weight:800;font-size:14px;margin-bottom:4px;color:var(--accent3)}
 .bulk-sub{font-size:11px;color:var(--text3);margin-bottom:12px;line-height:1.5}
-.bulk-stats{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
-.bulk-stat{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:700;color:var(--text2)}
+
+/* AI SEARCH */
+.ai-search-wrap{background:var(--bg2);border:1.5px solid var(--purple);border-radius:14px;padding:14px;margin-bottom:16px}
+.ai-search-title{font-weight:800;font-size:13px;color:var(--purple);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.ai-search-input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-size:13px;outline:none}
+.ai-search-input:focus{border-color:var(--purple)}
+.ai-search-results{margin-top:10px}
+.ai-result-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:6px;font-size:12px}
+.ai-result-title{font-weight:700;color:var(--accent3);margin-bottom:3px}
+.ai-result-meta{color:var(--text3);font-size:11px}
+
+/* AI PREVIEW */
+.ai-preview-wrap{background:var(--purple)10;border:1.5px solid var(--purple);border-radius:12px;padding:14px;margin-top:10px;display:none}
+.ai-preview-wrap.show{display:block}
+.ai-preview-title{font-weight:800;font-size:13px;color:var(--purple);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.ai-preview-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:12px}
+.ai-preview-addr{font-weight:700;color:var(--text)}
+.ai-preview-meta{color:var(--text3);font-size:11px;margin-top:2px;display:flex;gap:10px;flex-wrap:wrap}
+.ai-preview-status{display:inline-block;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700}
+.s-done{background:#10b98120;color:var(--green)}
+.s-partial{background:#f59e0b20;color:var(--yellow)}
+.s-none{background:#ef444420;color:var(--red)}
 
 /* MODAL */
 .modal-bg{position:fixed;inset:0;background:#000c;z-index:500;display:none;align-items:flex-end;justify-content:center}
@@ -220,32 +258,20 @@ textarea.bulk:focus{border-color:var(--accent2)}
 <div id="splash">
   <svg class="splash-logo" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#050e1f"/><stop offset="100%" stop-color="#0d1f40"/></linearGradient>
-      <linearGradient id="fiber" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3b82f6" stop-opacity="0"/><stop offset="20%" stop-color="#3b82f6"/><stop offset="50%" stop-color="#93c5fd"/><stop offset="80%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/></linearGradient>
-      <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-      <filter id="glow2"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <linearGradient id="sbg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#050e1f"/><stop offset="100%" stop-color="#0d1f40"/></linearGradient>
+      <linearGradient id="sf" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#3b82f6" stop-opacity="0"/><stop offset="20%" stop-color="#3b82f6"/><stop offset="50%" stop-color="#93c5fd"/><stop offset="80%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/></linearGradient>
+      <filter id="sg"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
     </defs>
-    <rect width="110" height="110" fill="url(#bg)" rx="24"/>
-    <!-- outer jacket -->
+    <rect width="110" height="110" fill="url(#sbg)" rx="24"/>
     <rect x="8" y="42" width="94" height="26" rx="13" fill="#0a1930" stroke="#1e3a6e" stroke-width="1.5"/>
-    <rect x="8" y="42" width="94" height="10" rx="10" fill="#162a4f" opacity="0.5"/>
-    <!-- fibers -->
-    <line x1="5" y1="55" x2="105" y2="55" stroke="url(#fiber)" stroke-width="3" filter="url(#glow)"/>
-    <line x1="5" y1="50" x2="105" y2="50" stroke="#93c5fd" stroke-width="1" opacity="0.4"/>
-    <line x1="5" y1="60" x2="105" y2="60" stroke="#93c5fd" stroke-width="1" opacity="0.4"/>
-    <!-- left end -->
+    <line x1="5" y1="55" x2="105" y2="55" stroke="url(#sf)" stroke-width="3" filter="url(#sg)"/>
     <circle cx="8" cy="55" r="11" fill="#0a1930" stroke="#1e3a6e" stroke-width="1.5"/>
-    <circle cx="8" cy="55" r="6" fill="#0f2040"/>
-    <circle cx="8" cy="55" r="3.5" fill="#3b82f6" filter="url(#glow2)"/>
-    <!-- right end -->
+    <circle cx="8" cy="55" r="3.5" fill="#3b82f6" filter="url(#sg)"/>
     <circle cx="102" cy="55" r="11" fill="#0a1930" stroke="#1e3a6e" stroke-width="1.5"/>
-    <circle cx="102" cy="55" r="6" fill="#0f2040"/>
-    <circle cx="102" cy="55" r="3.5" fill="#3b82f6" filter="url(#glow2)"/>
-    <!-- light pulses -->
-    <circle cx="30" cy="55" r="2.5" fill="#60a5fa" filter="url(#glow2)"/>
-    <circle cx="55" cy="55" r="3" fill="#93c5fd" filter="url(#glow2)"/>
-    <circle cx="80" cy="55" r="2.5" fill="#60a5fa" filter="url(#glow2)"/>
-    <!-- label -->
+    <circle cx="102" cy="55" r="3.5" fill="#3b82f6" filter="url(#sg)"/>
+    <circle cx="30" cy="55" r="2.5" fill="#60a5fa" filter="url(#sg)"/>
+    <circle cx="55" cy="55" r="3" fill="#93c5fd" filter="url(#sg)"/>
+    <circle cx="80" cy="55" r="2.5" fill="#60a5fa" filter="url(#sg)"/>
     <text x="55" y="89" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="900" fill="#60a5fa" letter-spacing="2.5">GLASFASER</text>
     <text x="55" y="100" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="600" fill="#3b82f6" letter-spacing="1" opacity="0.7">OPTIK · KABEL</text>
   </svg>
@@ -306,7 +332,8 @@ textarea.bulk:focus{border-color:var(--accent2)}
       <div><div class="hname">IK Bautechnik GmbH</div><div class="hsub">Glasfaser Management</div></div>
     </div>
     <div class="hright">
-      <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">🌙</button>
+      <button class="icon-btn" onclick="openSearch()" title="KI-Suche">🔍</button>
+      <button class="icon-btn" onclick="toggleTheme()" id="theme-btn">🌙</button>
       <div class="sync-chip"><div class="sdot" id="sdot"></div><span class="slbl" id="slbl">Sync</span></div>
       <button class="logout-btn" id="btn-logout" onclick="doLogout()">Abmelden</button>
     </div>
@@ -328,8 +355,8 @@ textarea.bulk:focus{border-color:var(--accent2)}
 
     <!-- WORKS -->
     <div class="page" id="page-works">
-      <button class="back-btn" id="b-works" onclick="goTo('cities')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      <button class="back-btn" onclick="goTo('cities')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
         <span id="b-works-lbl">Zurück</span>
       </button>
       <div class="sec-title" id="t-city"></div>
@@ -345,7 +372,7 @@ textarea.bulk:focus{border-color:var(--accent2)}
     <!-- DAYS -->
     <div class="page" id="page-days">
       <button class="back-btn" id="b-days">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
         <span id="b-days-lbl">Zurück</span>
       </button>
       <div class="sec-title" id="t-days"></div>
@@ -356,74 +383,119 @@ textarea.bulk:focus{border-color:var(--accent2)}
       <div id="day-list" class="day-list"></div>
     </div>
 
-    <!-- EINBLASEN -->
+    <!-- EINBLASEN (swipe) -->
     <div class="page" id="page-einblasen">
       <button class="back-btn" id="b-eb">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
         <span id="b-eb-lbl">Zurück</span>
       </button>
       <div class="sec-title" id="t-eb"></div>
       <div class="sec-sub" id="s-eb"></div>
-      <div class="tabs-row">
-        <button class="tab-btn active" onclick="switchTab('eb','bulk',this)" id="tab-eb-bulk">📋 Adressen einfügen</button>
-        <button class="tab-btn" onclick="switchTab('eb','main',this)" id="tab-eb-main">Netzverteiler</button>
+      <div class="swipe-indicators">
+        <div class="swipe-dot active" onclick="goSwipe('eb',0)"></div>
+        <div class="swipe-dot" onclick="goSwipe('eb',1)"></div>
       </div>
-      <div class="tab-content active" id="tc-eb-bulk">
-        <div class="bulk-wrap">
-          <div class="bulk-title" id="bulk-eb-title">Adressen einfügen</div>
-          <div class="bulk-sub" id="bulk-eb-sub">Fügen Sie alle Adressen ein — eine pro Zeile. Nach dem Import werden sie automatisch in der Netzverteiler-Ansicht erstellt.</div>
-          <label class="flabel" id="bulk-eb-lbl">Adressen (eine pro Zeile)</label>
-          <textarea class="bulk" id="bulk-eb-ta" placeholder="Hauptstraße 1&#10;Bahnhofstraße 5&#10;Gartenweg 12&#10;..."></textarea>
-          <div class="bulk-stats" id="bulk-eb-stats"></div>
-          <button class="btn-import" onclick="bulkImport('eb')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
-            <span id="btn-import-eb-lbl">Importieren & Erstellen</span>
-          </button>
+      <div class="swipe-container" id="swipe-eb-container">
+        <div class="swipe-pages" id="swipe-eb">
+          <!-- Page 0: Bulk import -->
+          <div class="swipe-page">
+            <div class="bulk-wrap">
+              <div class="bulk-title">📋 Adressen einfügen</div>
+              <div class="bulk-sub" id="bulk-eb-sub">Fügen Sie alle Adressen ein — eine pro Zeile. KI erkennt automatisch Start/End-Werte und berechnet die Kabellänge.</div>
+              <label class="flabel">Adressen / NVT-Daten</label>
+              <textarea class="bulk" id="bulk-eb-ta" placeholder="HAKA&#10;NVT 3 - ✅ ( start 4625 - end 4335&#10;NVT 5 - ✅ ( start 3845 - end 3465&#10;NVT 7 - keine&#10;..."></textarea>
+              <button class="btn-import" onclick="bulkImport('eb')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                <span id="btn-import-eb-lbl">Importieren & Erstellen</span>
+              </button>
+              <button class="btn-ai-import" onclick="aiImport('eb')">
+                ✨ <span id="btn-ai-eb-lbl">KI-Analyse & Import</span>
+              </button>
+              <div class="ai-preview-wrap" id="ai-preview-eb">
+                <div class="ai-preview-title">✨ KI-Vorschau</div>
+                <div id="ai-preview-eb-content"></div>
+                <div style="display:flex;gap:8px;margin-top:10px">
+                  <button class="btn-save" style="flex:1" onclick="applyAIPreview('eb')">✓ Übernehmen</button>
+                  <button class="btn-s" onclick="document.getElementById('ai-preview-eb').classList.remove('show')">Abbrechen</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 1: NV list -->
+          <div class="swipe-page">
+            <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
+              <button class="btn-save" id="btn-seb" onclick="saveEB()">💾 Speichern</button>
+              <button class="btn-p" id="btn-anv" onclick="addNV()">+ Netzverteiler</button>
+            </div>
+            <div id="nv-list"></div>
+          </div>
         </div>
-      </div>
-      <div class="tab-content" id="tc-eb-main">
-        <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
-          <button class="btn-save" id="btn-seb" onclick="saveEB()">💾 Speichern</button>
-          <button class="btn-p" id="btn-anv" onclick="addNV()">+ Netzverteiler</button>
-        </div>
-        <div id="nv-list"></div>
       </div>
     </div>
 
-    <!-- GENERIC -->
+    <!-- GENERIC (swipe) -->
     <div class="page" id="page-generic">
       <button class="back-btn" id="b-gen">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
         <span id="b-gen-lbl">Zurück</span>
       </button>
       <div class="sec-title" id="t-gen"></div>
       <div class="sec-sub" id="s-gen"></div>
-      <div class="tabs-row">
-        <button class="tab-btn active" onclick="switchTab('gen','bulk',this)">📋 Adressen einfügen</button>
-        <button class="tab-btn" onclick="switchTab('gen','main',this)">Einträge</button>
+      <div class="swipe-indicators">
+        <div class="swipe-dot active" onclick="goSwipe('gen',0)"></div>
+        <div class="swipe-dot" onclick="goSwipe('gen',1)"></div>
       </div>
-      <div class="tab-content active" id="tc-gen-bulk">
-        <div class="bulk-wrap">
-          <div class="bulk-title" id="bulk-gen-title">Adressen einfügen</div>
-          <div class="bulk-sub" id="bulk-gen-sub">Fügen Sie alle Adressen ein — eine pro Zeile. Nach dem Import werden sie automatisch als Einträge erstellt.</div>
-          <label class="flabel" id="bulk-gen-lbl">Adressen (eine pro Zeile)</label>
-          <textarea class="bulk" id="bulk-gen-ta" placeholder="Hauptstraße 1&#10;Bahnhofstraße 5&#10;Gartenweg 12&#10;..."></textarea>
-          <div class="bulk-stats" id="bulk-gen-stats"></div>
-          <button class="btn-import" onclick="bulkImport('gen')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
-            <span id="btn-import-gen-lbl">Importieren & Erstellen</span>
-          </button>
+      <div class="swipe-container" id="swipe-gen-container">
+        <div class="swipe-pages" id="swipe-gen">
+          <!-- Page 0: Bulk import -->
+          <div class="swipe-page">
+            <div class="bulk-wrap">
+              <div class="bulk-title">📋 Adressen einfügen</div>
+              <div class="bulk-sub" id="bulk-gen-sub">Fügen Sie alle Adressen ein — eine pro Zeile. KI erkennt automatisch Start/End-Werte.</div>
+              <label class="flabel">Adressen / Daten</label>
+              <textarea class="bulk" id="bulk-gen-ta" placeholder="Hauptstraße 1&#10;Bahnhofstraße 5 - 150m&#10;Gartenweg 12&#10;..."></textarea>
+              <button class="btn-import" onclick="bulkImport('gen')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                Importieren & Erstellen
+              </button>
+              <button class="btn-ai-import" onclick="aiImport('gen')">
+                ✨ KI-Analyse & Import
+              </button>
+              <div class="ai-preview-wrap" id="ai-preview-gen">
+                <div class="ai-preview-title">✨ KI-Vorschau</div>
+                <div id="ai-preview-gen-content"></div>
+                <div style="display:flex;gap:8px;margin-top:10px">
+                  <button class="btn-save" style="flex:1" onclick="applyAIPreview('gen')">✓ Übernehmen</button>
+                  <button class="btn-s" onclick="document.getElementById('ai-preview-gen').classList.remove('show')">Abbrechen</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Page 1: Entries -->
+          <div class="swipe-page">
+            <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
+              <button class="btn-save" id="btn-sgen" onclick="saveGEN()">💾 Speichern</button>
+              <button class="btn-p" id="btn-ae" onclick="addEntry()">+ Eintrag</button>
+            </div>
+            <div id="gen-list"></div>
+          </div>
         </div>
-      </div>
-      <div class="tab-content" id="tc-gen-main">
-        <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
-          <button class="btn-save" id="btn-sgen" onclick="saveGEN()">💾 Speichern</button>
-          <button class="btn-p" id="btn-ae" onclick="addEntry()">+ Eintrag</button>
-        </div>
-        <div id="gen-list"></div>
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- Modal: AI Search -->
+<div class="modal-bg" id="m-search">
+  <div class="modal" style="border-radius:20px 20px 0 0;max-height:90vh">
+    <div class="modal-handle"></div>
+    <div class="modal-title">✨ KI-Suche</div>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <input type="text" id="ai-search-inp" placeholder="z.B. 'alle erledigten in Hamburg' oder 'Adressen ohne Meter'" style="flex:1" onkeydown="if(event.key==='Enter')runSearch()"/>
+      <button class="btn-ai" onclick="runSearch()">Suchen</button>
+    </div>
+    <div id="ai-search-results"></div>
   </div>
 </div>
 
@@ -432,7 +504,7 @@ textarea.bulk:focus{border-color:var(--accent2)}
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title" id="mt-city">🏙 Neues Objekt</div>
-    <div style="margin-bottom:12px"><label class="flabel" id="ml-cn">Objektname</label><input type="text" id="new-city" placeholder="z.B. Frankfurt"/></div>
+    <div style="margin-bottom:12px"><label class="flabel" id="ml-cn">Objektname</label><input type="text" id="new-city"/></div>
     <div style="display:flex;gap:8px;justify-content:flex-end">
       <button class="btn-s" onclick="closeM('m-city')" id="ml-ca">Abbrechen</button>
       <button class="btn-p" onclick="saveCity()" id="ml-ad">Hinzufügen</button>
@@ -470,26 +542,50 @@ textarea.bulk:focus{border-color:var(--accent2)}
 <script>
 const SB_URL="https://eqahmdpouhchmuazvobi.supabase.co";
 const SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxYWhtZHBvdWhjaG11YXp2b2JpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMDYyMDUsImV4cCI6MjA5Nzc4MjIwNX0.VuJFmgAaA7dBaIDqKKraJW6TH5I-mI7cL8EabASl5jk";
+const AI_URL="https://api.anthropic.com/v1/messages";
 const CRED={login:"Komroni",pass:"Ismon"};
 const DEF_CITIES=["Altmanstein","Scheßlitz","Bad Griesbach","Hamburg","Mühlhausen"];
 const CITY_PHOTOS={"Altmanstein":"https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=400&q=80","Scheßlitz":"https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=80","Bad Griesbach":"https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&q=80","Hamburg":"https://images.unsplash.com/photo-1554254648-2d58a1bc3fd5?w=400&q=80","Mühlhausen":"https://images.unsplash.com/photo-1481018085669-2bc6e4f00eed?w=400&q=80"};
 const WL={Hausanschluss:"Hausanschluss",Einblasen:"Einblasen und Aktivieren",Tiefbau:"Tiefbau",HK:"HK Einblasen"};
 const WI={Hausanschluss:"🏠",Einblasen:"💨",Tiefbau:"🚜",HK:"🔌"};
 
-const TR={
-  de:{obj:"Objekte",selObj:"Objekt auswählen",selWork:"Arbeitsart auswählen",newDay:"+ Neuer Tag",back:"Zurück",save:"💾 Speichern",logout:"Abmelden",addE:"+ Eintrag",addNV:"+ Netzverteiler",confDel:"Möchten Sie diesen Eintrag wirklich löschen?",yes:"Ja, löschen",no:"Nein",saved:"Gespeichert ✓",syncing:"Sync...",synced:"Synchronisiert",addr:"Adresse / Straße, Haus",comment:"Kommentar",vol:"Menge (m)",done:"✓ Erledigt",partial:"⚡ Teilweise",notDone:"✗ Nicht erledigt",addFile:"Foto oder PDF hinzufügen",installTxt:"Zum Startbildschirm: Teilen → 'Zum Home-Bildschirm'",newObj:"Neues Objekt",objName:"Objektname",cancel:"Abbrechen",add:"Hinzufügen",newWD:"Neuer Arbeitstag",date:"Datum",optCom:"Kommentar (optional)",nvNum:"NV-Nummer...",loginLbl:"Benutzername",passLbl:"Passwort",loginBtn:"Anmelden →",loginErr:"Falscher Benutzername oder Passwort",noNV:"Kein Netzverteiler — klicken Sie auf '+ Netzverteiler'",noEntry:"Keine Einträge",noDay:"Keine Einträge — klicken Sie auf '+ Neuer Tag'",recs:"Einträge",nvs:"NV",delQ:"Löschen?",loading:"Wird geladen...",uploading:"Wird hochgeladen...",bulkTitle:"Adressen einfügen",bulkSub:"Fügen Sie alle Adressen ein — eine pro Zeile. Nach dem Import werden sie automatisch erstellt.",bulkLbl:"Adressen (eine pro Zeile)",importBtn:"Importieren & Erstellen",imported:"Einträge importiert"},
-  ru:{obj:"Объекты",selObj:"Выберите объект",selWork:"Выберите вид работ",newDay:"+ Новый день",back:"Назад",save:"💾 Сохранить",logout:"Выйти",addE:"+ Добавить",addNV:"+ Netzverteiler",confDel:"Вы действительно хотите удалить это?",yes:"Да, удалить",no:"Нет",saved:"Сохранено ✓",syncing:"Синхронизация...",synced:"Синхронизировано",addr:"Адрес / улица, дом",comment:"Комментарий",vol:"Объём (м)",done:"✓ Выполнено",partial:"⚡ Частично",notDone:"✗ Не выполнено",addFile:"Добавить фото или PDF",installTxt:"На главный экран: Поделиться → 'На экран Домой'",newObj:"Новый объект",objName:"Название",cancel:"Отмена",add:"Добавить",newWD:"Новый рабочий день",date:"Дата",optCom:"Комментарий (необязательно)",nvNum:"Номер NV...",loginLbl:"Логин",passLbl:"Пароль",loginBtn:"Войти →",loginErr:"Неверный логин или пароль",noNV:"Нет Netzverteiler",noEntry:"Нет записей",noDay:"Нет записей",recs:"записей",nvs:"NV",delQ:"Удалить?",loading:"Загрузка...",uploading:"Загрузка...",bulkTitle:"Вставить адреса",bulkSub:"Вставьте все адреса — по одному на строку. После импорта они автоматически создадутся.",bulkLbl:"Адреса (по одному на строку)",importBtn:"Импортировать и создать",imported:"записей создано"}
-};
-
 let LANG=localStorage.getItem("ik_lang")||"de";
 let THEME=localStorage.getItem("ik_theme")||"dark";
 let DB={cities:DEF_CITIES.map(n=>({name:n})),records:{}};
 let S={city:null,work:null,day:null};
 let delFn=null,saveTimer=null,dbRowId=null;
+let aiPreviews={eb:[],gen:[]};
+let mediaRecorder=null,audioChunks=[],recTimer=null,recSec=0;
+let swipeState={eb:0,gen:0};
+let touchStart={};
 
-function t(k){return TR[LANG][k]||k;}
+// ═══ SWIPE ═══
+function initSwipe(page){
+  const container=document.getElementById(`swipe-${page}-container`);
+  if(!container)return;
+  container.addEventListener("touchstart",e=>{touchStart[page]={x:e.touches[0].clientX,y:e.touches[0].clientY};},{passive:true});
+  container.addEventListener("touchend",e=>{
+    if(!touchStart[page])return;
+    const dx=e.changedTouches[0].clientX-touchStart[page].x;
+    const dy=Math.abs(e.changedTouches[0].clientY-touchStart[page].y);
+    if(Math.abs(dx)>50&&dy<80){
+      const cur=swipeState[page];
+      if(dx<0&&cur===0)goSwipe(page,1);
+      else if(dx>0&&cur===1)goSwipe(page,0);
+    }
+  },{passive:true});
+}
 
-// THEME
+function goSwipe(page,idx){
+  swipeState[page]=idx;
+  const pages=document.getElementById(`swipe-${page}`);
+  if(pages)pages.style.transform=`translateX(${idx===-0?0:-50}%)`;
+  const dots=document.querySelectorAll(`#page-${page==="eb"?"einblasen":"generic"} .swipe-dot`);
+  dots.forEach((d,i)=>d.classList.toggle("active",i===idx));
+  if(idx===1){if(page==="eb")renderNVs();else renderGEN();}
+}
+
+// ═══ THEME ═══
 function applyTheme(){
   document.documentElement.setAttribute("data-theme",THEME);
   const btn=document.getElementById("theme-btn");
@@ -497,55 +593,213 @@ function applyTheme(){
 }
 function toggleTheme(){THEME=THEME==="dark"?"light":"dark";localStorage.setItem("ik_theme",THEME);applyTheme();}
 
-// AUTO-GROW
+// ═══ AUTO-GROW ═══
 function ag(el){el.style.height="auto";el.style.height=el.scrollHeight+"px";}
 
-// TABS
-function switchTab(page,tab,btn){
-  document.querySelectorAll(`#page-${page} .tab-btn`).forEach(b=>b.classList.remove("active"));
-  document.querySelectorAll(`#page-${page} .tab-content`).forEach(c=>c.classList.remove("active"));
-  btn.classList.add("active");
-  document.getElementById(`tc-${page}-${tab}`).classList.add("active");
-  if(tab==="main"){if(page==="eb")renderNVs();else renderGEN();}
-  if(tab==="bulk"){updateBulkStats(page);}
+// ═══ AI FUNCTIONS ═══
+async function callAI(prompt){
+  const res=await fetch(AI_URL,{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({
+      model:"claude-sonnet-4-6",
+      max_tokens:1000,
+      messages:[{role:"user",content:prompt}]
+    })
+  });
+  const data=await res.json();
+  return data.content?.[0]?.text||"";
 }
 
-// BULK IMPORT
-function updateBulkStats(page){
+async function aiImport(page){
   const ta=document.getElementById(`bulk-${page}-ta`);
-  const stats=document.getElementById(`bulk-${page}-stats`);
-  if(!ta||!stats)return;
-  const lines=ta.value.split("\n").map(l=>l.trim()).filter(l=>l.length>0);
-  const day=S.city&&S.work&&S.day?DB.records[S.city]?.[S.work]?.[S.day]:null;
-  const existing=day?(page==="eb"?(day.nvs||[]).reduce((s,nv)=>s+(nv.addresses||[]).length,0):(day.entries||[]).length):0;
-  stats.innerHTML=lines.length>0?`
-    <div class="bulk-stat">📋 ${lines.length} ${LANG==="de"?"Zeilen":"строк"}</div>
-    <div class="bulk-stat">✅ ${existing} ${LANG==="de"?"vorhanden":"уже есть"}</div>`:"";}
+  const text=ta.value.trim();
+  if(!text){toast(LANG==="de"?"Kein Text eingegeben":"Нет текста","err");return;}
+  toast("✨ KI analysiert...","ai");
+  try{
+    const prompt=`Du bist ein Assistent für Glasfaser-Bauarbeiten. Analysiere diesen Text und extrahiere strukturierte Daten.
 
-function bulkImport(page){
-  const ta=document.getElementById(`bulk-${page}-ta`);
-  const lines=ta.value.split("\n").map(l=>l.trim()).filter(l=>l.length>0);
-  if(!lines.length){toast(LANG==="de"?"Keine Adressen eingegeben":"Нет адресов","err");return;}
+Text:
+${text}
+
+Erkenne:
+1. Adressen oder NVT-Nummern
+2. Status: ✅ oder "erledigt" = "done", "keine" oder "nicht fertig" = "no" oder "partial"  
+3. Start- und End-Werte (Kabelmeter) → berechne Länge: start - end = meter
+4. Kommentare
+
+Antworte NUR mit JSON (kein Markdown, keine Erklärung):
+[{"address":"NVT 3","status":"done","volume":290,"comment":"start 4625 end 4335"},...]
+
+Wenn kein Start/End vorhanden, setze volume auf 0.`;
+
+    const result=await callAI(prompt);
+    const clean=result.replace(/```json|```/g,"").trim();
+    const items=JSON.parse(clean);
+    aiPreviews[page]=items;
+
+    const previewEl=document.getElementById(`ai-preview-${page}`);
+    const contentEl=document.getElementById(`ai-preview-${page}-content`);
+
+    contentEl.innerHTML=items.map((item,i)=>{
+      const statusCls=item.status==="done"?"s-done":item.status==="partial"?"s-partial":"s-none";
+      const statusLbl=item.status==="done"?"✓ Erledigt":item.status==="partial"?"⚡ Teilweise":"✗ Keine";
+      return`<div class="ai-preview-item">
+        <div class="ai-preview-addr">${item.address||"—"}</div>
+        <div class="ai-preview-meta">
+          <span class="ai-preview-status ${statusCls}">${statusLbl}</span>
+          ${item.volume?`<span>📏 ${item.volume} m</span>`:""}
+          ${item.comment?`<span>💬 ${item.comment}</span>`:""}
+        </div>
+      </div>`;
+    }).join("");
+
+    previewEl.classList.add("show");
+    toast(`✨ ${items.length} ${LANG==="de"?"Einträge erkannt":"записей найдено"}","ai");
+  }catch(e){
+    toast(LANG==="de"?"KI-Fehler, manueller Import":"Ошибка ИИ","err");
+    bulkImport(page);
+  }
+}
+
+function applyAIPreview(page){
+  const items=aiPreviews[page];
+  if(!items||!items.length)return;
   const day=getDay();
   if(page==="eb"){
     if(!day.nvs)day.nvs=[];
     if(day.nvs.length===0)day.nvs.push({number:"1",addresses:[]});
     const nv=day.nvs[day.nvs.length-1];
-    lines.forEach(addr=>nv.addresses.push({street:addr,status:null,comment:"",files:[]}));
+    items.forEach(item=>nv.addresses.push({
+      street:item.address||"",
+      status:item.status||null,
+      volume:item.volume||"",
+      comment:item.comment||"",
+      files:[]
+    }));
   }else{
     if(!day.entries)day.entries=[];
-    lines.forEach(addr=>day.entries.push({address:addr,volume:"",workers:"",hours:"",comment:"",files:[]}));
+    items.forEach(item=>day.entries.push({
+      address:item.address||"",
+      volume:item.volume||"",
+      status:item.status||null,
+      workers:"",hours:"",
+      comment:item.comment||"",
+      files:[]
+    }));
   }
   scheduleSave();
-  ta.value="";
-  updateBulkStats(page);
-  toast(`${lines.length} ${t("imported")} ✓`);
-  // Switch to main tab
-  const mainBtn=document.querySelector(`#page-${page==="eb"?"einblasen":"generic"} .tab-btn:nth-child(2)`);
-  if(mainBtn)switchTab(page==="eb"?"eb":"gen","main",mainBtn);
+  document.getElementById(`ai-preview-${page}`).classList.remove("show");
+  document.getElementById(`bulk-${page}-ta`).value="";
+  aiPreviews[page]=[];
+  toast(`✓ ${items.length} ${LANG==="de"?"Einträge importiert":"записей импортировано"}`);
+  goSwipe(page,1);
 }
 
-// SUPABASE
+async function aiSuggestComment(address,idx,type){
+  if(!address){toast(LANG==="de"?"Bitte Adresse eingeben":"Введите адрес","err");return;}
+  toast("✨ KI erstellt Kommentar...","ai");
+  try{
+    const prompt=`Du bist ein Assistent für Glasfaser-Bauarbeiten in Deutschland. 
+Erstelle einen kurzen professionellen Kommentar (max 1 Satz, auf Deutsch) für die Glasfaser-${WL[S.work]}-Arbeit an dieser Adresse: "${address}".
+Antworte NUR mit dem Kommentar, ohne Anführungszeichen.`;
+    const result=await callAI(prompt);
+    const ta=document.querySelector(`#comment-${type}-${idx}`);
+    if(ta){ta.value=result.trim();ag(ta);if(type==="nv")updAddr(Math.floor(idx/100),idx%100,"comment",result.trim());else updE(idx,"comment",result.trim());}
+    toast("✨ Kommentar erstellt","ai");
+  }catch(e){toast("KI-Fehler","err");}
+}
+
+async function runSearch(){
+  const q=document.getElementById("ai-search-inp").value.trim();
+  if(!q)return;
+  const resultsEl=document.getElementById("ai-search-results");
+  resultsEl.innerHTML=`<div class="spinner-wrap"><div class="spinner"></div></div>`;
+  try{
+    const dbStr=JSON.stringify(DB.records).substring(0,3000);
+    const prompt=`Du bist ein Suchasistent für eine Baustellendatenbank. 
+Hier sind die Daten (vereinfacht): ${dbStr}
+
+Suchanfrage: "${q}"
+
+Finde relevante Einträge und antworte auf ${LANG==="de"?"Deutsch":"Russisch"} mit einer kurzen Liste der gefundenen Einträge.
+Format: Liste mit Stadtname, Arbeitstyp, Datum und gefundenen Adressen.
+Max 5 Ergebnisse. Wenn nichts gefunden: "Keine Ergebnisse gefunden."`;
+    const result=await callAI(prompt);
+    resultsEl.innerHTML=`<div style="background:var(--bg3);border-radius:10px;padding:14px;font-size:13px;line-height:1.7;white-space:pre-wrap">${result}</div>`;
+  }catch(e){
+    resultsEl.innerHTML=`<div style="color:var(--red);font-size:12px">Fehler bei der KI-Suche</div>`;
+  }
+}
+
+function openSearch(){openM("m-search");setTimeout(()=>document.getElementById("ai-search-inp").focus(),300);}
+
+// ═══ AUDIO RECORDER ═══
+function renderAudioRecorder(id){
+  return`<div class="audio-recorder" id="audio-rec-${id}">
+    <div class="audio-recorder-row">
+      <button class="rec-btn idle" id="rec-btn-${id}" onclick="toggleRecording('${id}')">🎤</button>
+      <span class="rec-time" id="rec-time-${id}">0:00</span>
+      <span class="rec-status" id="rec-status-${id}">${LANG==="de"?"Aufnahme starten":"Начать запись"}</span>
+    </div>
+    <div id="audio-playback-${id}"></div>
+  </div>`;
+}
+
+async function toggleRecording(id){
+  if(mediaRecorder&&mediaRecorder.state==="recording"){
+    stopRecording(id);return;
+  }
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    audioChunks=[];
+    mediaRecorder=new MediaRecorder(stream);
+    mediaRecorder.ondataavailable=e=>audioChunks.push(e.data);
+    mediaRecorder.onstop=()=>{
+      const blob=new Blob(audioChunks,{type:"audio/webm"});
+      const url=URL.createObjectURL(blob);
+      const pb=document.getElementById(`audio-playback-${id}`);
+      if(pb)pb.innerHTML=`<audio class="audio-player" controls src="${url}"></audio>`;
+      // Save to files
+      const reader=new FileReader();
+      reader.onload=ev=>{
+        const parts=id.split("-");
+        if(parts[0]==="nv"&&parts.length>=3){
+          const ni=parseInt(parts[1]),ai=parseInt(parts[2]);
+          getDay().nvs[ni].addresses[ai].files.push({name:`audio_${Date.now()}.webm`,data:ev.target.result,type:"audio"});
+        }else if(parts[0]==="gen"){
+          const i=parseInt(parts[1]);
+          getDay().entries[i].files.push({name:`audio_${Date.now()}.webm`,data:ev.target.result,type:"audio"});
+        }
+        scheduleSave();
+      };
+      reader.readAsDataURL(blob);
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    mediaRecorder.start();
+    recSec=0;
+    const btn=document.getElementById(`rec-btn-${id}`);
+    const status=document.getElementById(`rec-status-${id}`);
+    if(btn)btn.className="rec-btn recording";
+    if(status)status.textContent=LANG==="de"?"Aufnahme läuft...":"Запись...";
+    recTimer=setInterval(()=>{
+      recSec++;
+      const t=document.getElementById(`rec-time-${id}`);
+      if(t)t.textContent=`${Math.floor(recSec/60)}:${String(recSec%60).padStart(2,"0")}`;
+    },1000);
+  }catch(e){toast(LANG==="de"?"Mikrofon nicht verfügbar":"Микрофон недоступен","err");}
+}
+
+function stopRecording(id){
+  if(mediaRecorder)mediaRecorder.stop();
+  clearInterval(recTimer);
+  const btn=document.getElementById(`rec-btn-${id}`);
+  const status=document.getElementById(`rec-status-${id}`);
+  if(btn)btn.className="rec-btn idle";
+  if(status)status.textContent=LANG==="de"?"Gespeichert ✓":"Сохранено ✓";
+}
+
+// ═══ SUPABASE ═══
 async function sbGet(){
   try{
     const r=await fetch(`${SB_URL}/rest/v1/ikbt_data?select=*&limit=1`,{headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY}});
@@ -576,13 +830,13 @@ async function sbSave(){
       const r=await fetch(`${SB_URL}/rest/v1/ikbt_data`,{method:"POST",headers:{...headers,"Prefer":"return=representation"},body:JSON.stringify({data:payload})});
       if(r.ok){const rows=await r.json();if(rows&&rows[0])dbRowId=rows[0].id;}
     }
-    setSS("ok");toast(t("saved"));
+    setSS("ok");toast("💾 Gespeichert ✓");
   }catch(e){setSS("err");toast("Sync-Fehler!","err");}
 }
 
 function stripB64(records){
   const r=JSON.parse(JSON.stringify(records));
-  const strip=files=>(files||[]).forEach(f=>{if(f.storageUrl){delete f.data;}else if(f.data&&f.data.length>500)f.data="[local]";});
+  const strip=files=>(files||[]).forEach(f=>{if(f.storageUrl)delete f.data;else if(f.data&&f.data.length>500)f.data="[local]";});
   Object.values(r).forEach(works=>Object.values(works).forEach(days=>Object.values(days).forEach(day=>{
     (day.nvs||[]).forEach(nv=>(nv.addresses||[]).forEach(a=>strip(a.files)));
     (day.entries||[]).forEach(en=>strip(en.files));
@@ -590,25 +844,56 @@ function stripB64(records){
   return r;
 }
 
-// Upload to Supabase Storage with retry
 async function uploadFile(file){
   const path=`${S.city}/${S.work}/${S.day}/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;
-  for(let attempt=0;attempt<3;attempt++){
+  for(let i=0;i<3;i++){
     try{
-      const r=await fetch(`${SB_URL}/storage/v1/object/files/${path}`,{
-        method:"POST",
-        headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":file.type,"x-upsert":"true"},
-        body:file
-      });
+      const r=await fetch(`${SB_URL}/storage/v1/object/files/${path}`,{method:"POST",headers:{"apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Content-Type":file.type,"x-upsert":"true"},body:file});
       if(r.ok)return`${SB_URL}/storage/v1/object/public/files/${path}`;
-    }catch(e){if(attempt===2)break;await new Promise(res=>setTimeout(res,1000));}
+    }catch(e){if(i===2)break;await new Promise(res=>setTimeout(res,1000));}
   }
   return null;
 }
 
 function scheduleSave(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>localStorage.setItem("ik_db",JSON.stringify({cities:DB.cities,records:DB.records})),300);}
 
-// AUTH
+// ═══ BULK IMPORT ═══
+function bulkImport(page){
+  const ta=document.getElementById(`bulk-${page}-ta`);
+  const lines=ta.value.split("\n").map(l=>l.trim()).filter(l=>l.length>0);
+  if(!lines.length){toast(LANG==="de"?"Keine Daten":"Нет данных","err");return;}
+  const day=getDay();
+  let count=0;
+  if(page==="eb"){
+    if(!day.nvs)day.nvs=[];
+    if(day.nvs.length===0)day.nvs.push({number:"1",addresses:[]});
+    const nv=day.nvs[day.nvs.length-1];
+    lines.forEach(line=>{
+      if(line.toLowerCase().includes("start")&&line.toLowerCase().includes("end")){
+        const m=line.match(/start\s*(\d+).*?end\s*(\d+)/i);
+        const vol=m?Math.abs(parseInt(m[1])-parseInt(m[2])):0;
+        const addr=line.split("-")[0].trim();
+        nv.addresses.push({street:addr,status:null,volume:vol,comment:line,files:[]});
+      }else{
+        nv.addresses.push({street:line,status:null,volume:"",comment:"",files:[]});
+      }
+      count++;
+    });
+  }else{
+    if(!day.entries)day.entries=[];
+    lines.forEach(line=>{
+      const mVol=line.match(/(\d+)\s*m/i);
+      const vol=mVol?parseInt(mVol[1]):"";
+      day.entries.push({address:line.replace(/\s*-?\s*\d+\s*m/i,"").trim(),volume:vol,workers:"",hours:"",comment:"",files:[]});
+      count++;
+    });
+  }
+  scheduleSave();ta.value="";
+  toast(`✓ ${count} ${LANG==="de"?"Einträge importiert":"записей"}`);
+  goSwipe(page,1);
+}
+
+// ═══ AUTH ═══
 function doLogin(){
   const l=document.getElementById("il").value.trim(),p=document.getElementById("ip").value.trim();
   if(l===CRED.login&&p===CRED.pass){
@@ -617,57 +902,53 @@ function doLogin(){
     document.getElementById("app").style.display="block";
     initApp();
   }else{
-    const e=document.getElementById("le");e.textContent=t("loginErr");e.style.display="block";
+    const e=document.getElementById("le");e.textContent=LANG==="de"?"Falscher Benutzername oder Passwort":"Неверный логин или пароль";e.style.display="block";
     setTimeout(()=>e.style.display="none",3000);
   }
 }
 function doLogout(){localStorage.removeItem("ik_sess");document.getElementById("app").style.display="none";document.getElementById("login-page").style.display="flex";}
 
 async function initApp(){
-  applyLang();applyTheme();setSS("ing");
-  document.getElementById("city-grid").innerHTML=`<div class="spinner-wrap"><div class="spinner"></div><div>${t("loading")}</div></div>`;
+  applyTheme();setSS("ing");
+  document.getElementById("city-grid").innerHTML=`<div class="spinner-wrap"><div class="spinner"></div><div>${LANG==="de"?"Wird geladen...":"Загрузка..."}</div></div>`;
   await sbGet();renderCities();setSS("ok");
+  initSwipe("eb");initSwipe("gen");
   const isIOS=/iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
-  if(isIOS&&!window.navigator.standalone){const b=document.getElementById("ibar");if(b){b.style.display="flex";document.getElementById("ibar-txt").textContent=t("installTxt");}}
+  if(isIOS&&!window.navigator.standalone){const b=document.getElementById("ibar");if(b){b.style.display="flex";document.getElementById("ibar-txt").textContent=LANG==="de"?"Zum Startbildschirm: Teilen → 'Zum Home-Bildschirm'":"На главный экран: Поделиться → 'На экран Домой'";}}
 }
 
 function setSS(s){
   const d=document.getElementById("sdot"),l=document.getElementById("slbl");
   if(!d)return;
   d.className="sdot"+(s==="ing"?" ing":s==="err"?" err":"");
-  if(l)l.textContent=s==="ing"?t("syncing"):s==="err"?"⚠":t("synced");
+  if(l)l.textContent=s==="ing"?(LANG==="de"?"Sync...":"Синх..."):s==="err"?"⚠":(LANG==="de"?"Synchronisiert":"Синхронизировано");
 }
 
-// LANG
+// ═══ LANG ═══
 function setLang(lang,btn){
   LANG=lang;localStorage.setItem("ik_lang",lang);
   document.querySelectorAll(".lang-btn").forEach(b=>b.classList.remove("active"));
   if(btn)btn.classList.add("active");
-  applyLang();
-}
-function applyLang(){
-  const m={"ll-l":t("loginLbl"),"ll-p":t("passLbl"),"lb":t("loginBtn"),"btn-logout":t("logout"),"btn-nd":t("newDay"),"btn-seb":t("save"),"btn-anv":t("addNV"),"btn-sgen":t("save"),"btn-ae":t("addE"),"t-obj":t("obj"),"s-obj":t("selObj"),"s-work":t("selWork"),"b-works-lbl":t("back"),"b-days-lbl":t("back"),"b-eb-lbl":t("back"),"b-gen-lbl":t("back"),"mt-city":"🏙 "+t("newObj"),"ml-cn":t("objName"),"ml-ca":t("cancel"),"ml-ad":t("add"),"mt-day":"📅 "+t("newWD"),"ml-dt":t("date"),"ml-cm":t("optCom"),"ct":t("delQ"),"cs":t("confDel"),"cy":t("yes"),"cn":t("no"),"bulk-eb-title":t("bulkTitle"),"bulk-eb-sub":t("bulkSub"),"bulk-eb-lbl":t("bulkLbl"),"btn-import-eb-lbl":t("importBtn"),"bulk-gen-title":t("bulkTitle"),"bulk-gen-sub":t("bulkSub"),"bulk-gen-lbl":t("bulkLbl"),"btn-import-gen-lbl":t("importBtn")};
-  Object.entries(m).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.textContent=v;});
 }
 
-// NAV
+// ═══ NAV ═══
 function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById("page-"+id).classList.add("active");}
 function setBC(items){document.getElementById("bc").innerHTML=items.map((it,i)=>i===items.length-1?`<span>${it.l}</span>`:`<a onclick="${it.fn}">${it.l}</a> <span style="color:var(--border2)">›</span>`).join(" ");}
 
 function goTo(page){
-  if(page==="cities"){S={city:null,work:null,day:null};showPage("cities");setBC([{l:t("obj")}]);renderCities();}
-  if(page==="works"){showPage("works");document.getElementById("t-city").textContent=S.city;setBC([{l:t("obj"),fn:"goTo('cities')"},{l:S.city}]);}
+  if(page==="cities"){S={city:null,work:null,day:null};showPage("cities");setBC([{l:LANG==="de"?"Objekte":"Объекты"}]);renderCities();}
+  if(page==="works"){showPage("works");document.getElementById("t-city").textContent=S.city;setBC([{l:LANG==="de"?"Objekte":"Объекты",fn:"goTo('cities')"},{l:S.city}]);}
 }
 function goWork(work){
   S.work=work;showPage("days");
   document.getElementById("t-days").textContent=WI[work]+" "+WL[work];
   document.getElementById("s-days").textContent=S.city;
   document.getElementById("b-days").onclick=()=>goTo("works");
-  setBC([{l:t("obj"),fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:WL[work]}]);
+  setBC([{l:LANG==="de"?"Objekte":"Объекты",fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:WL[work]}]);
   renderDays();
 }
 
-// CITIES
+// ═══ CITIES ═══
 function renderCities(){
   const g=document.getElementById("city-grid");
   const icons=["🏙","🏘","🌆","🏗","🌇","🏛","🌃"];
@@ -675,9 +956,9 @@ function renderCities(){
     const ph=CITY_PHOTOS[c.name];
     return`<div class="city-card" onclick="selectCity('${esc(c.name)}')">
       ${ph?`<img class="city-img" src="${ph}" alt="${c.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><div class="city-img-ph" style="display:none">${icons[i%icons.length]}</div>`:`<div class="city-img-ph">${icons[i%icons.length]}</div>`}
-      <div class="city-info"><div class="city-name">${c.name}</div><div class="city-count">${countR(c.name)} ${t("recs")}</div></div>
+      <div class="city-info"><div class="city-name">${c.name}</div><div class="city-count">${countR(c.name)} ${LANG==="de"?"Einträge":"записей"}</div></div>
     </div>`;
-  }).join("")+`<div class="add-city-card" onclick="openM('m-city')"><div style="font-size:28px;margin-bottom:8px">＋</div><div style="font-weight:700;font-size:12px">${t("newObj")}</div></div>`;
+  }).join("")+`<div class="add-city-card" onclick="openM('m-city')"><div style="font-size:28px;margin-bottom:8px">＋</div><div style="font-weight:700;font-size:12px">${LANG==="de"?"Neues Objekt":"Новый объект"}</div></div>`;
 }
 function countR(city){let n=0;try{Object.values(DB.records[city]||{}).forEach(w=>Object.keys(w).forEach(()=>n++));}catch{}return n;}
 function selectCity(name){S.city=name;goTo("works");}
@@ -688,17 +969,18 @@ function saveCity(){
   DB.cities.push({name});scheduleSave();closeM("m-city");document.getElementById("new-city").value="";renderCities();
 }
 
-// DAYS
+// ═══ DAYS ═══
 function renderDays(){
   const days=DB.records[S.city]?.[S.work]||{};
   const keys=Object.keys(days).sort((a,b)=>b.localeCompare(a));
   const l=document.getElementById("day-list");
-  if(!keys.length){l.innerHTML=`<div class="empty"><div class="empty-icon">📅</div><div class="empty-title">${t("noDay")}</div></div>`;return;}
+  if(!keys.length){l.innerHTML=`<div class="empty"><div class="empty-icon">📅</div><div class="empty-title">${LANG==="de"?"Keine Einträge":"Нет записей"}</div></div>`;return;}
   l.innerHTML=keys.map(k=>{
     const d=days[k];
-    const nv=(d.nvs||[]).reduce((s,nv)=>s+(nv.addresses||[]).length,0);
-    const en=(d.entries||[]).length;
-    const info=S.work==="Einblasen"?`${(d.nvs||[]).length} NV · ${nv} ${t("addr").split("/")[0].trim()}`:`${en} ${t("recs")}`;
+    const nvCount=(d.nvs||[]).length;
+    const addrCount=(d.nvs||[]).reduce((s,nv)=>s+(nv.addresses||[]).length,0);
+    const enCount=(d.entries||[]).length;
+    const info=S.work==="Einblasen"?`${nvCount} NV · ${addrCount} ${LANG==="de"?"Adressen":"адресов"}`:`${enCount} ${LANG==="de"?"Einträge":"записей"}`;
     return`<div class="day-item" onclick="openDay('${k}')">
       <div><div class="day-date">${fmtD(k)}</div><div class="day-meta">${d.comment?d.comment+" · ":""}${info}</div></div>
       <div style="color:var(--accent3);font-size:20px">›</div>
@@ -716,30 +998,30 @@ function saveDay(){
 }
 function openDay(d){S.day=d;S.work==="Einblasen"?openEB(d):openGEN(d);}
 
-// EINBLASEN
+// ═══ EINBLASEN ═══
 function openEB(d){
   const day=getDay();
   document.getElementById("t-eb").textContent="💨 Einblasen und Aktivieren";
   document.getElementById("s-eb").textContent=S.city+" · "+fmtD(d)+(day.comment?" · "+day.comment:"");
   document.getElementById("b-eb").onclick=()=>{showPage("days");renderDays();};
-  setBC([{l:t("obj"),fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:"Einblasen",fn:"goWork('Einblasen')"},{l:fmtD(d)}]);
-  // Reset to bulk tab
-  document.querySelectorAll("#page-einblasen .tab-btn").forEach((b,i)=>b.classList.toggle("active",i===0));
-  document.querySelectorAll("#page-einblasen .tab-content").forEach((c,i)=>c.classList.toggle("active",i===0));
+  setBC([{l:LANG==="de"?"Objekte":"Объекты",fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:"Einblasen",fn:"goWork('Einblasen')"},{l:fmtD(d)}]);
+  swipeState.eb=0;
+  const pages=document.getElementById("swipe-eb");
+  if(pages)pages.style.transform="translateX(0)";
+  document.querySelectorAll("#page-einblasen .swipe-dot").forEach((d,i)=>d.classList.toggle("active",i===0));
   showPage("einblasen");
-  updateBulkStats("eb");
 }
 
 function renderNVs(){
   const nvs=getDay().nvs||[];
   const c=document.getElementById("nv-list");
-  if(!nvs.length){c.innerHTML=`<div class="empty"><div class="empty-icon">📦</div><div class="empty-title">${t("noNV")}</div></div>`;return;}
+  if(!nvs.length){c.innerHTML=`<div class="empty"><div class="empty-icon">📦</div><div class="empty-title">${LANG==="de"?"Kein Netzverteiler":"Нет Netzverteiler"}</div></div>`;return;}
   c.innerHTML=nvs.map((nv,ni)=>`
     <div class="nv-block">
       <div class="nv-header">
         <div style="flex:1">
           <div class="nv-label">Netzverteiler ${nv.number||ni+1}</div>
-          <input type="text" value="${esc(nv.number||"")}" placeholder="${t("nvNum")}" style="margin-top:6px;max-width:180px;font-weight:700" oninput="updNV(${ni},'number',this.value)"/>
+          <input type="text" value="${esc(nv.number||"")}" placeholder="${LANG==="de"?"NV-Nummer...":"Номер NV..."}" style="margin-top:6px;max-width:180px;font-weight:700" oninput="updNV(${ni},'number',this.value)"/>
         </div>
         <div class="nv-btns">
           <button class="btn-g" onclick="addAddr(${ni})">+ Adresse</button>
@@ -751,31 +1033,37 @@ function renderNVs(){
 }
 
 function renderAddr(ni,ai,addr){
-  const sbs=[{k:"done",l:t("done"),c:"sd"},{k:"partial",l:t("partial"),c:"sp"},{k:"no",l:t("notDone"),c:"sn"}];
-  const files=(addr.files||[]).map((f,fi)=>renderFileItem(f,fi,`rmFile(${ni},${ai},${fi})`,`dlF('${f.storageUrl||f.data||""}','${esc(f.name)}')`)).join("");
+  const sbs=[{k:"done",l:LANG==="de"?"✓ Erledigt":"✓ Выполнено",c:"sd"},{k:"partial",l:LANG==="de"?"⚡ Teilweise":"⚡ Частично",c:"sp"},{k:"no",l:LANG==="de"?"✗ Nicht erledigt":"✗ Нет",c:"sn"}];
+  const files=(addr.files||[]).map((f,fi)=>renderFI(f,fi,`rmFile(${ni},${ai},${fi})`,f.storageUrl||f.data)).join("");
   return`<div class="addr-row">
     <div class="addr-top">
       <div class="addr-num">${ai+1}</div>
-      <input type="text" value="${esc(addr.street||"")}" placeholder="${t("addr")}" style="flex:1" oninput="updAddr(${ni},${ai},'street',this.value)"/>
+      <input type="text" value="${esc(addr.street||"")}" placeholder="${LANG==="de"?"Adresse...":"Адрес..."}" style="flex:1" oninput="updAddr(${ni},${ai},'street',this.value)"/>
       <button class="btn-d" onclick="confirmDel(()=>rmAddr(${ni},${ai}))">🗑</button>
     </div>
+    ${addr.volume!==undefined&&addr.volume!=="0"&&addr.volume?`<div style="font-size:11px;color:var(--green);margin-bottom:6px">📏 ${addr.volume} m</div>`:""}
     <div class="srow">${sbs.map(s=>`<button class="sbtn ${addr.status===s.k?s.c:""}" onclick="setS(${ni},${ai},'${s.k}')">${s.l}</button>`).join("")}</div>
-    <textarea class="ag" placeholder="${t("comment")}" oninput="updAddr(${ni},${ai},'comment',this.value);ag(this)" style="margin-bottom:8px">${esc(addr.comment||"")}</textarea>
+    <div class="comment-wrap">
+      <textarea class="ag" id="comment-nv-${ni*100+ai}" placeholder="${LANG==="de"?"Kommentar...":"Комментарий..."}" oninput="updAddr(${ni},${ai},'comment',this.value);ag(this)">${esc(addr.comment||"")}</textarea>
+      <button class="ai-suggest-btn" onclick="aiSuggestComment('${esc(addr.street||"")}',${ni*100+ai},'nv')">✨ KI</button>
+    </div>
+    ${renderAudioRecorder(`nv-${ni}-${ai}`)}
     <div class="file-drop" onclick="document.getElementById('fu${ni}_${ai}').click()">
       <div style="font-size:18px;margin-bottom:3px">📎</div>
-      <div style="font-size:11px;color:var(--text3)">${t("addFile")}</div>
+      <div style="font-size:11px;color:var(--text3)">${LANG==="de"?"Foto oder PDF":"Фото или PDF"}</div>
     </div>
     <input type="file" id="fu${ni}_${ai}" accept="image/*,.pdf" multiple style="display:none" onchange="handleFiles(event,${ni},${ai})"/>
-    <div class="flist" id="flist-${ni}-${ai}">${files}</div>
+    <div class="flist">${files}</div>
   </div>`;
 }
 
-function renderFileItem(f,fi,rmFn,dlFn){
-  const src=f.storageUrl||(f.data&&!f.data.includes("[local]")?f.data:null);
+function renderFI(f,fi,rmFn,src){
+  const hasData=src&&!String(src||"").includes("[local]");
   return`<div class="fitem">
-    ${f.type==="image"&&src?`<img src="${src}" class="fthumb" onclick="viewImg('${src}')"/>`:`<span style="font-size:20px">${f.type==="image"?"🖼":"📄"}</span>`}
+    ${f.type==="image"&&hasData?`<img src="${src}" class="fthumb" onclick="viewImg('${src}')"/>`:`<span style="font-size:20px">${f.type==="audio"?"🎵":f.type==="image"?"🖼":"📄"}</span>`}
     <span class="fitem-name">${esc(f.name)}</span>
-    ${src?`<button class="btn-g" onclick="${dlFn}">⬇</button>`:`<span style="font-size:10px;color:var(--text3)">local</span>`}
+    ${f.type==="audio"&&hasData?`<audio style="height:28px;flex:1" controls src="${src}"></audio>`:""}
+    ${hasData&&f.type!=="audio"?`<button class="btn-g" onclick="dlF('${src}','${esc(f.name)}')">⬇</button>`:""}
     <button class="btn-d" onclick="confirmDel(()=>${rmFn})">🗑</button>
   </div>`;
 }
@@ -792,61 +1080,59 @@ function setS(ni,ai,s){getDay().nvs[ni].addresses[ai].status=s;scheduleSave();re
 async function handleFiles(e,ni,ai){
   for(const file of Array.from(e.target.files)){
     const isImg=file.type.startsWith("image/"),isPDF=file.type==="application/pdf";
-    if(!isImg&&!isPDF){toast(t("addFile"),"err");continue;}
-    toast(t("uploading"),"inf");
+    if(!isImg&&!isPDF){toast(LANG==="de"?"Nur Fotos und PDF":"Только фото и PDF","err");continue;}
+    toast(LANG==="de"?"Wird hochgeladen...":"Загрузка...","inf");
     const url=await uploadFile(file);
-    if(url){
-      getDay().nvs[ni].addresses[ai].files.push({name:file.name,storageUrl:url,type:isImg?"image":"pdf"});
-      scheduleSave();renderNVs();
-    }else{
-      // Fallback to base64
-      const reader=new FileReader();
-      reader.onload=ev=>{
-        getDay().nvs[ni].addresses[ai].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});
-        scheduleSave();renderNVs();
-      };
-      reader.readAsDataURL(file);
-    }
+    if(url){getDay().nvs[ni].addresses[ai].files.push({name:file.name,storageUrl:url,type:isImg?"image":"pdf"});scheduleSave();renderNVs();}
+    else{const r=new FileReader();r.onload=ev=>{getDay().nvs[ni].addresses[ai].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});scheduleSave();renderNVs();};r.readAsDataURL(file);}
   }
 }
 function rmFile(ni,ai,fi){getDay().nvs[ni].addresses[ai].files.splice(fi,1);scheduleSave();renderNVs();}
 
-// GENERIC
+// ═══ GENERIC ═══
 function openGEN(d){
   const day=getDay();
   document.getElementById("t-gen").textContent=WI[S.work]+" "+WL[S.work];
   document.getElementById("s-gen").textContent=S.city+" · "+fmtD(d)+(day.comment?" · "+day.comment:"");
   document.getElementById("b-gen").onclick=()=>{showPage("days");renderDays();};
-  setBC([{l:t("obj"),fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:WL[S.work],fn:"goWork('"+S.work+"')"},{l:fmtD(d)}]);
-  document.querySelectorAll("#page-generic .tab-btn").forEach((b,i)=>b.classList.toggle("active",i===0));
-  document.querySelectorAll("#page-generic .tab-content").forEach((c,i)=>c.classList.toggle("active",i===0));
+  setBC([{l:LANG==="de"?"Objekte":"Объекты",fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:WL[S.work],fn:"goWork('"+S.work+"')"},{l:fmtD(d)}]);
+  swipeState.gen=0;
+  const pages=document.getElementById("swipe-gen");
+  if(pages)pages.style.transform="translateX(0)";
+  document.querySelectorAll("#page-generic .swipe-dot").forEach((d,i)=>d.classList.toggle("active",i===0));
   showPage("generic");
-  updateBulkStats("gen");
 }
 
 function renderGEN(){
   const entries=getDay().entries||[];
   const c=document.getElementById("gen-list");
   const isHA=S.work==="Hausanschluss";
-  if(!entries.length){c.innerHTML=`<div class="empty"><div class="empty-icon">📝</div><div class="empty-title">${t("noEntry")}</div></div>`;return;}
+  if(!entries.length){c.innerHTML=`<div class="empty"><div class="empty-icon">📝</div><div class="empty-title">${LANG==="de"?"Keine Einträge":"Нет записей"}</div></div>`;return;}
   c.innerHTML=entries.map((en,i)=>{
-    const files=(en.files||[]).map((f,fi)=>renderFileItem(f,fi,`rmGF(${i},${fi})`,`dlF('${f.storageUrl||f.data||""}','${esc(f.name)}')`)).join("");
+    const files=(en.files||[]).map((f,fi)=>renderFI(f,fi,`rmGF(${i},${fi})`,f.storageUrl||f.data)).join("");
     return`<div class="entry-block">
       <div class="entry-hdr">
         <div class="entry-lbl">${WI[S.work]} Eintrag ${i+1}</div>
         <button class="btn-d" onclick="confirmDel(()=>rmEntry(${i}))">🗑</button>
       </div>
       <div class="frow" style="margin-bottom:10px">
-        <div class="ffull"><label class="flabel">${t("addr")}</label><input type="text" value="${esc(en.address||"")}" placeholder="${t("addr")}" oninput="updE(${i},'address',this.value)"/></div>
-        <div><label class="flabel">${t("vol")}</label><input type="number" value="${en.volume||""}" placeholder="45" oninput="updE(${i},'volume',this.value)"/></div>
+        <div class="ffull"><label class="flabel">${LANG==="de"?"Adresse":"Адрес"}</label><input type="text" value="${esc(en.address||"")}" placeholder="${LANG==="de"?"Adresse...":"Адрес..."}" oninput="updE(${i},'address',this.value)"/></div>
+        <div><label class="flabel">${LANG==="de"?"Menge (m)":"Объём (м)"}</label><input type="number" value="${en.volume||""}" placeholder="45" oninput="updE(${i},'volume',this.value)"/></div>
         ${!isHA?`
         <div><label class="flabel">${LANG==="de"?"Arbeiter":"Рабочих"}</label><input type="number" value="${en.workers||""}" placeholder="3" oninput="updE(${i},'workers',this.value)"/></div>
         <div><label class="flabel">${LANG==="de"?"Stunden":"Часы"}</label><input type="number" value="${en.hours||""}" placeholder="8" oninput="updE(${i},'hours',this.value)"/></div>`:""}
-        <div class="ffull"><label class="flabel">${t("comment")}</label><textarea class="ag" placeholder="${t("comment")}" oninput="updE(${i},'comment',this.value);ag(this)">${esc(en.comment||"")}</textarea></div>
+        <div class="ffull">
+          <label class="flabel">${LANG==="de"?"Kommentar":"Комментарий"}</label>
+          <div class="comment-wrap">
+            <textarea class="ag" id="comment-gen-${i}" placeholder="${LANG==="de"?"Kommentar...":"Комментарий..."}" oninput="updE(${i},'comment',this.value);ag(this)">${esc(en.comment||"")}</textarea>
+            <button class="ai-suggest-btn" onclick="aiSuggestComment('${esc(en.address||"")}',${i},'gen')">✨ KI</button>
+          </div>
+        </div>
       </div>
+      ${renderAudioRecorder(`gen-${i}`)}
       <div class="file-drop" onclick="document.getElementById('gfu${i}').click()">
         <div style="font-size:18px;margin-bottom:3px">📎</div>
-        <div style="font-size:11px;color:var(--text3)">${t("addFile")}</div>
+        <div style="font-size:11px;color:var(--text3)">${LANG==="de"?"Foto oder PDF":"Фото или PDF"}</div>
       </div>
       <input type="file" id="gfu${i}" accept="image/*,.pdf" multiple style="display:none" onchange="handleGFiles(event,${i})"/>
       <div class="flist">${files}</div>
@@ -862,40 +1148,33 @@ function updE(i,k,v){getDay().entries[i][k]=v;scheduleSave();}
 async function handleGFiles(e,i){
   for(const file of Array.from(e.target.files)){
     const isImg=file.type.startsWith("image/"),isPDF=file.type==="application/pdf";
-    if(!isImg&&!isPDF){toast(t("addFile"),"err");continue;}
-    toast(t("uploading"),"inf");
+    if(!isImg&&!isPDF){toast(LANG==="de"?"Nur Fotos und PDF":"Только фото и PDF","err");continue;}
+    toast(LANG==="de"?"Wird hochgeladen...":"Загрузка...","inf");
     const url=await uploadFile(file);
-    if(url){
-      getDay().entries[i].files.push({name:file.name,storageUrl:url,type:isImg?"image":"pdf"});
-      scheduleSave();renderGEN();
-    }else{
-      const reader=new FileReader();
-      reader.onload=ev=>{getDay().entries[i].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});scheduleSave();renderGEN();};
-      reader.readAsDataURL(file);
-    }
+    if(url){getDay().entries[i].files.push({name:file.name,storageUrl:url,type:isImg?"image":"pdf"});scheduleSave();renderGEN();}
+    else{const r=new FileReader();r.onload=ev=>{getDay().entries[i].files.push({name:file.name,data:ev.target.result,type:isImg?"image":"pdf"});scheduleSave();renderGEN();};r.readAsDataURL(file);}
   }
 }
 function rmGF(i,fi){getDay().entries[i].files.splice(fi,1);scheduleSave();renderGEN();}
 
-// HELPERS
+// ═══ HELPERS ═══
 function getDay(){return DB.records[S.city][S.work][S.day];}
 function fmtD(d){try{return new Date(d+"T00:00:00").toLocaleDateString(LANG==="de"?"de-DE":"ru-RU",{day:"2-digit",month:"2-digit",year:"numeric"});}catch{return d;}}
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 function dlF(url,name){if(!url||url==="undefined")return;const a=document.createElement("a");a.href=url;a.download=name;a.target="_blank";a.click();}
-function toast(msg,type="ok"){const t2=document.getElementById("toast");t2.textContent=msg;t2.className="toast show"+(type==="err"?" err":type==="inf"?" inf":"");clearTimeout(t2._t);t2._t=setTimeout(()=>t2.className="toast",2500);}
+function toast(msg,type="ok"){const t2=document.getElementById("toast");t2.textContent=msg;t2.className="toast show"+(type==="err"?" err":type==="inf"?" inf":type==="ai"?" ai":"");clearTimeout(t2._t);t2._t=setTimeout(()=>t2.className="toast",3000);}
 function openM(id){document.getElementById(id).classList.add("show");}
 function closeM(id){document.getElementById(id).classList.remove("show");}
-function confirmDel(fn){delFn=fn;document.getElementById("ct").textContent=t("delQ");document.getElementById("cs").textContent=t("confDel");document.getElementById("cy").textContent=t("yes");document.getElementById("cn").textContent=t("no");openM("m-confirm");document.getElementById("cy").onclick=()=>{if(delFn)delFn();closeM("m-confirm");delFn=null;};}
+function confirmDel(fn){delFn=fn;document.getElementById("ct").textContent=LANG==="de"?"Löschen?":"Удалить?";document.getElementById("cs").textContent=LANG==="de"?"Möchten Sie diesen Eintrag wirklich löschen?":"Вы действительно хотите удалить это?";document.getElementById("cy").textContent=LANG==="de"?"Ja, löschen":"Да, удалить";document.getElementById("cn").textContent=LANG==="de"?"Nein":"Нет";openM("m-confirm");document.getElementById("cy").onclick=()=>{if(delFn)delFn();closeM("m-confirm");delFn=null;};}
 function viewImg(src){const d=document.createElement("div");d.style.cssText="position:fixed;inset:0;background:#000d;z-index:9999;display:flex;align-items:center;justify-content:center;cursor:pointer";d.onclick=()=>d.remove();d.innerHTML=`<img src="${src}" style="max-width:95vw;max-height:90vh;border-radius:12px"/>`;document.body.appendChild(d);}
 document.querySelectorAll(".modal-bg").forEach(m=>m.addEventListener("click",function(e){if(e.target===this)this.classList.remove("show");}));
 
-// INIT
+// ═══ INIT ═══
 window.addEventListener("load",()=>{
   LANG=localStorage.getItem("ik_lang")||"de";
   THEME=localStorage.getItem("ik_theme")||"dark";
   applyTheme();
   document.querySelectorAll(".lang-btn").forEach(b=>b.classList.toggle("active",b.textContent.includes(LANG.toUpperCase())));
-  applyLang();
   setTimeout(()=>{
     document.getElementById("splash").classList.add("hide");
     setTimeout(()=>{
