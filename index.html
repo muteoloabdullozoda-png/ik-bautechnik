@@ -61,8 +61,10 @@ input,select,textarea,button{font-family:inherit}
 .header{background:var(--glass);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:200}
 .hbrand{display:flex;align-items:center;gap:10px}
 .hlogo{width:36px;height:36px;border-radius:10px;overflow:hidden;flex-shrink:0}
-.hname{font-weight:900;font-size:13px}
-.hsub{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px}
+.hname{font-weight:900;font-size:13px;line-height:1.2}
+/* FIXED: removed separator line, combined into one clean text block */
+.hname-block{display:flex;flex-direction:column;gap:1px}
+.hsub{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-weight:600}
 .hright{display:flex;align-items:center;gap:6px}
 .icon-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px}
 .sync-chip{display:flex;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 9px}
@@ -100,6 +102,11 @@ input,select,textarea,button{font-family:inherit}
 .city-count{font-size:10px;color:var(--text3)}
 .add-city-card{background:var(--bg2);border:2px dashed var(--border);border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;color:var(--text3);transition:all 0.2s}
 .add-city-card:hover{border-color:var(--accent2);color:var(--accent3)}
+
+/* WORKS PAGE HEADER (city name + report btn) */
+.works-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:8px}
+.btn-report{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;border-radius:10px;padding:9px 16px;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 2px 12px #8b5cf640;white-space:nowrap}
+.btn-report:active{opacity:0.85}
 
 /* WORK GRID */
 .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
@@ -168,11 +175,6 @@ textarea.bulk:focus{border-color:var(--accent2)}
 /* COMMENT WITH AI */
 .comment-wrap{position:relative;margin-bottom:8px}
 .ai-suggest-btn{position:absolute;right:8px;top:8px;background:var(--purple);border:none;border-radius:6px;padding:3px 8px;font-size:10px;font-weight:700;color:#fff;cursor:pointer;z-index:1}
-.ai-suggestion{background:var(--purple)15;border:1px solid var(--purple);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--text);margin-top:4px;display:none}
-.ai-suggestion.show{display:block}
-.ai-suggestion-btns{display:flex;gap:6px;margin-top:6px}
-.ai-accept-btn{background:var(--purple);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;cursor:pointer}
-.ai-reject-btn{background:transparent;border:1px solid var(--border);color:var(--text3);border-radius:6px;padding:4px 10px;font-size:11px;cursor:pointer}
 
 /* FILES */
 .file-drop{border:2px dashed var(--border);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:all 0.2s;margin-bottom:8px}
@@ -203,16 +205,6 @@ textarea.bulk:focus{border-color:var(--accent2)}
 .bulk-title{font-weight:800;font-size:14px;margin-bottom:4px;color:var(--accent3)}
 .bulk-sub{font-size:11px;color:var(--text3);margin-bottom:12px;line-height:1.5}
 
-/* AI SEARCH */
-.ai-search-wrap{background:var(--bg2);border:1.5px solid var(--purple);border-radius:14px;padding:14px;margin-bottom:16px}
-.ai-search-title{font-weight:800;font-size:13px;color:var(--purple);margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.ai-search-input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-size:13px;outline:none}
-.ai-search-input:focus{border-color:var(--purple)}
-.ai-search-results{margin-top:10px}
-.ai-result-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:6px;font-size:12px}
-.ai-result-title{font-weight:700;color:var(--accent3);margin-bottom:3px}
-.ai-result-meta{color:var(--text3);font-size:11px}
-
 /* AI PREVIEW */
 .ai-preview-wrap{background:var(--purple)10;border:1.5px solid var(--purple);border-radius:12px;padding:14px;margin-top:10px;display:none}
 .ai-preview-wrap.show{display:block}
@@ -224,6 +216,32 @@ textarea.bulk:focus{border-color:var(--accent2)}
 .s-done{background:#10b98120;color:var(--green)}
 .s-partial{background:#f59e0b20;color:var(--yellow)}
 .s-none{background:#ef444420;color:var(--red)}
+
+/* ═══ REPORT PAGE ═══ */
+#page-report{padding-bottom:40px}
+.report-week-tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;margin-bottom:16px;scrollbar-width:none}
+.report-week-tabs::-webkit-scrollbar{display:none}
+.week-tab{flex-shrink:0;background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:8px 14px;font-size:11px;font-weight:700;cursor:pointer;color:var(--text3);transition:all 0.2s;white-space:nowrap}
+.week-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.report-section{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.report-section-hdr{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border)}
+.report-section-icon{font-size:20px}
+.report-section-title{font-weight:900;font-size:14px;flex:1}
+.report-section-count{font-size:11px;color:var(--text3);font-weight:600}
+.report-row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid var(--border);gap:8px}
+.report-row:last-child{border-bottom:none}
+.report-addr{font-size:12px;font-weight:600;flex:1}
+.report-meta{font-size:11px;color:var(--accent3);font-weight:700;white-space:nowrap}
+.report-date-badge{font-size:10px;color:var(--text3);background:var(--bg3);border-radius:5px;padding:2px 7px;white-space:nowrap}
+.report-actions{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.btn-pdf{background:linear-gradient(135deg,#dc2626,#ef4444);color:#fff;border:none;border-radius:10px;padding:11px 18px;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:7px;box-shadow:0 2px 12px #ef444440}
+.btn-whatsapp{background:linear-gradient(135deg,#15803d,#22c55e);color:#fff;border:none;border-radius:10px;padding:11px 18px;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:7px;box-shadow:0 2px 12px #22c55e40}
+.report-empty{text-align:center;padding:36px;color:var(--text3)}
+.report-empty-icon{font-size:36px;margin-bottom:8px}
+.report-summary{background:linear-gradient(135deg,var(--bg3),var(--bg4));border:1.5px solid var(--border2);border-radius:14px;padding:14px 16px;margin-bottom:14px;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.report-sum-item{text-align:center}
+.report-sum-val{font-size:22px;font-weight:900;color:var(--accent3)}
+.report-sum-lbl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px}
 
 /* MODAL */
 .modal-bg{position:fixed;inset:0;background:#000c;z-index:500;display:none;align-items:flex-end;justify-content:center}
@@ -245,10 +263,15 @@ textarea.bulk:focus{border-color:var(--accent2)}
 .install-bar{background:linear-gradient(135deg,#3b82f615,var(--bg2));border:1px solid var(--border);border-radius:13px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .install-bar-txt{flex:1;font-size:11px;color:var(--text2);line-height:1.5}
 
+/* AI SEARCH MODAL */
+.ai-search-input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;padding:10px 13px;color:var(--text);font-size:13px;outline:none}
+.ai-search-input:focus{border-color:var(--purple)}
+
 @media(min-width:560px){
   .modal-bg{align-items:center}
   .modal{border-radius:20px}
   .work-grid{grid-template-columns:repeat(4,1fr)}
+  .report-summary{grid-template-columns:repeat(4,1fr)}
 }
 </style>
 </head>
@@ -315,6 +338,7 @@ textarea.bulk:focus{border-color:var(--accent2)}
 
 <!-- APP -->
 <div id="app">
+  <!-- HEADER: fixed - no separator line between Glasfaser and Management -->
   <div class="header">
     <div class="hbrand">
       <div class="hlogo">
@@ -329,7 +353,10 @@ textarea.bulk:focus{border-color:var(--accent2)}
           <circle cx="18" cy="18" r="1.5" fill="#93c5fd"/>
         </svg>
       </div>
-      <div><div class="hname">IK Bautechnik GmbH</div><div class="hsub">Glasfaser Management</div></div>
+      <div class="hname-block">
+        <div class="hname">IK Bautechnik GmbH</div>
+        <div class="hsub">Glasfaser Management</div>
+      </div>
     </div>
     <div class="hright">
       <button class="icon-btn" onclick="openSearch()" title="KI-Suche">🔍</button>
@@ -359,14 +386,50 @@ textarea.bulk:focus{border-color:var(--accent2)}
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
         <span id="b-works-lbl">Zurück</span>
       </button>
-      <div class="sec-title" id="t-city"></div>
-      <div class="sec-sub" id="s-work">Arbeitsart auswählen</div>
+      <!-- City name + Report button side by side -->
+      <div class="works-header">
+        <div>
+          <div class="sec-title" id="t-city"></div>
+          <div class="sec-sub" id="s-work">Arbeitsart auswählen</div>
+        </div>
+        <button class="btn-report" onclick="openReport()">
+          📊 <span id="lbl-report">Bericht</span>
+        </button>
+      </div>
       <div class="work-grid">
         <div class="work-card" onclick="goWork('Hausanschluss')"><div class="work-icon">🏠</div><div class="work-name">Hausanschluss</div></div>
         <div class="work-card" onclick="goWork('Einblasen')"><div class="work-icon">💨</div><div class="work-name">Einblasen und Aktivieren</div></div>
         <div class="work-card" onclick="goWork('Tiefbau')"><div class="work-icon">🚜</div><div class="work-name">Tiefbau</div></div>
         <div class="work-card" onclick="goWork('HK')"><div class="work-icon">🔌</div><div class="work-name">HK Einblasen</div></div>
       </div>
+    </div>
+
+    <!-- REPORT PAGE -->
+    <div class="page" id="page-report">
+      <button class="back-btn" id="b-report" onclick="goTo('works')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        Zurück
+      </button>
+      <div style="margin-bottom:14px">
+        <div class="sec-title" id="t-report">📊 Bericht</div>
+        <div class="sec-sub" id="s-report"></div>
+      </div>
+      <!-- Week tabs -->
+      <div class="report-week-tabs" id="report-week-tabs"></div>
+      <!-- Action buttons -->
+      <div class="report-actions">
+        <button class="btn-pdf" onclick="exportPDF()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          PDF herunterladen
+        </button>
+        <button class="btn-whatsapp" onclick="shareWhatsApp()">
+          💬 WhatsApp
+        </button>
+      </div>
+      <!-- Summary -->
+      <div class="report-summary" id="report-summary"></div>
+      <!-- Sections -->
+      <div id="report-content"></div>
     </div>
 
     <!-- DAYS -->
@@ -397,20 +460,17 @@ textarea.bulk:focus{border-color:var(--accent2)}
       </div>
       <div class="swipe-container" id="swipe-eb-container">
         <div class="swipe-pages" id="swipe-eb">
-          <!-- Page 0: Bulk import -->
           <div class="swipe-page">
             <div class="bulk-wrap">
               <div class="bulk-title">📋 Adressen einfügen</div>
-              <div class="bulk-sub" id="bulk-eb-sub">Fügen Sie alle Adressen ein — eine pro Zeile. KI erkennt automatisch Start/End-Werte und berechnet die Kabellänge.</div>
+              <div class="bulk-sub" id="bulk-eb-sub">Fügen Sie alle Adressen ein — eine pro Zeile.</div>
               <label class="flabel">Adressen / NVT-Daten</label>
-              <textarea class="bulk" id="bulk-eb-ta" placeholder="HAKA&#10;NVT 3 - ✅ ( start 4625 - end 4335&#10;NVT 5 - ✅ ( start 3845 - end 3465&#10;NVT 7 - keine&#10;..."></textarea>
+              <textarea class="bulk" id="bulk-eb-ta" placeholder="HAKA&#10;NVT 3 - ✅ ( start 4625 - end 4335&#10;..."></textarea>
               <button class="btn-import" onclick="bulkImport('eb')">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
-                <span id="btn-import-eb-lbl">Importieren & Erstellen</span>
+                <span>Importieren &amp; Erstellen</span>
               </button>
-              <button class="btn-ai-import" onclick="aiImport('eb')">
-                ✨ <span id="btn-ai-eb-lbl">KI-Analyse & Import</span>
-              </button>
+              <button class="btn-ai-import" onclick="aiImport('eb')">✨ KI-Analyse &amp; Import</button>
               <div class="ai-preview-wrap" id="ai-preview-eb">
                 <div class="ai-preview-title">✨ KI-Vorschau</div>
                 <div id="ai-preview-eb-content"></div>
@@ -421,7 +481,6 @@ textarea.bulk:focus{border-color:var(--accent2)}
               </div>
             </div>
           </div>
-          <!-- Page 1: NV list -->
           <div class="swipe-page">
             <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
               <button class="btn-save" id="btn-seb" onclick="saveEB()">💾 Speichern</button>
@@ -447,20 +506,17 @@ textarea.bulk:focus{border-color:var(--accent2)}
       </div>
       <div class="swipe-container" id="swipe-gen-container">
         <div class="swipe-pages" id="swipe-gen">
-          <!-- Page 0: Bulk import -->
           <div class="swipe-page">
             <div class="bulk-wrap">
               <div class="bulk-title">📋 Adressen einfügen</div>
-              <div class="bulk-sub" id="bulk-gen-sub">Fügen Sie alle Adressen ein — eine pro Zeile. KI erkennt automatisch Start/End-Werte.</div>
+              <div class="bulk-sub" id="bulk-gen-sub">Fügen Sie alle Adressen ein — eine pro Zeile.</div>
               <label class="flabel">Adressen / Daten</label>
-              <textarea class="bulk" id="bulk-gen-ta" placeholder="Hauptstraße 1&#10;Bahnhofstraße 5 - 150m&#10;Gartenweg 12&#10;..."></textarea>
+              <textarea class="bulk" id="bulk-gen-ta" placeholder="Hauptstraße 1&#10;Bahnhofstraße 5 - 150m&#10;..."></textarea>
               <button class="btn-import" onclick="bulkImport('gen')">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
-                Importieren & Erstellen
+                Importieren &amp; Erstellen
               </button>
-              <button class="btn-ai-import" onclick="aiImport('gen')">
-                ✨ KI-Analyse & Import
-              </button>
+              <button class="btn-ai-import" onclick="aiImport('gen')">✨ KI-Analyse &amp; Import</button>
               <div class="ai-preview-wrap" id="ai-preview-gen">
                 <div class="ai-preview-title">✨ KI-Vorschau</div>
                 <div id="ai-preview-gen-content"></div>
@@ -471,7 +527,6 @@ textarea.bulk:focus{border-color:var(--accent2)}
               </div>
             </div>
           </div>
-          <!-- Page 1: Entries -->
           <div class="swipe-page">
             <div style="display:flex;gap:7px;justify-content:flex-end;margin-bottom:12px;flex-wrap:wrap">
               <button class="btn-save" id="btn-sgen" onclick="saveGEN()">💾 Speichern</button>
@@ -492,7 +547,7 @@ textarea.bulk:focus{border-color:var(--accent2)}
     <div class="modal-handle"></div>
     <div class="modal-title">✨ KI-Suche</div>
     <div style="display:flex;gap:8px;margin-bottom:12px">
-      <input type="text" id="ai-search-inp" placeholder="z.B. 'alle erledigten in Hamburg' oder 'Adressen ohne Meter'" style="flex:1" onkeydown="if(event.key==='Enter')runSearch()"/>
+      <input type="text" id="ai-search-inp" class="ai-search-input" placeholder="z.B. 'alle erledigten in Hamburg'" style="flex:1" onkeydown="if(event.key==='Enter')runSearch()"/>
       <button class="btn-ai" onclick="runSearch()">Suchen</button>
     </div>
     <div id="ai-search-results"></div>
@@ -503,11 +558,11 @@ textarea.bulk:focus{border-color:var(--accent2)}
 <div class="modal-bg" id="m-city">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title" id="mt-city">🏙 Neues Objekt</div>
-    <div style="margin-bottom:12px"><label class="flabel" id="ml-cn">Objektname</label><input type="text" id="new-city"/></div>
+    <div class="modal-title">🏙 Neues Objekt</div>
+    <div style="margin-bottom:12px"><label class="flabel">Objektname</label><input type="text" id="new-city"/></div>
     <div style="display:flex;gap:8px;justify-content:flex-end">
-      <button class="btn-s" onclick="closeM('m-city')" id="ml-ca">Abbrechen</button>
-      <button class="btn-p" onclick="saveCity()" id="ml-ad">Hinzufügen</button>
+      <button class="btn-s" onclick="closeM('m-city')">Abbrechen</button>
+      <button class="btn-p" onclick="saveCity()">Hinzufügen</button>
     </div>
   </div>
 </div>
@@ -516,9 +571,9 @@ textarea.bulk:focus{border-color:var(--accent2)}
 <div class="modal-bg" id="m-day">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title" id="mt-day">📅 Neuer Arbeitstag</div>
-    <div style="margin-bottom:12px"><label class="flabel" id="ml-dt">Datum</label><input type="date" id="new-date"/></div>
-    <div style="margin-bottom:12px"><label class="flabel" id="ml-cm">Kommentar (optional)</label><textarea class="ag" id="new-comment" oninput="ag(this)"></textarea></div>
+    <div class="modal-title">📅 Neuer Arbeitstag</div>
+    <div style="margin-bottom:12px"><label class="flabel">Datum</label><input type="date" id="new-date"/></div>
+    <div style="margin-bottom:12px"><label class="flabel">Kommentar (optional)</label><textarea class="ag" id="new-comment" oninput="ag(this)"></textarea></div>
     <div style="display:flex;gap:8px;justify-content:flex-end">
       <button class="btn-s" onclick="closeM('m-day')">Abbrechen</button>
       <button class="btn-p" onclick="saveDay()">Erstellen</button>
@@ -558,6 +613,274 @@ let aiPreviews={eb:[],gen:[]};
 let mediaRecorder=null,audioChunks=[],recTimer=null,recSec=0;
 let swipeState={eb:0,gen:0};
 let touchStart={};
+let currentReportWeek=null;
+
+// ═══ WEEK HELPERS ═══
+function getMondayOf(date){
+  const d=new Date(date);
+  const day=d.getDay();
+  const diff=day===0?-6:1-day;
+  d.setDate(d.getDate()+diff);
+  d.setHours(0,0,0,0);
+  return d;
+}
+function getSaturdayOf(monday){
+  const d=new Date(monday);
+  d.setDate(d.getDate()+5);
+  return d;
+}
+function dateToStr(d){return d.toISOString().split("T")[0];}
+function strToDate(s){return new Date(s+"T00:00:00");}
+function fmtShort(d){return new Date(d+"T00:00:00").toLocaleDateString("de-DE",{day:"2-digit",month:"2-digit"});}
+function weekKey(monday){return dateToStr(monday);}
+function weekLabel(mondayStr){
+  const mon=strToDate(mondayStr);
+  const sat=getSaturdayOf(mon);
+  return`${fmtShort(mondayStr)} – ${dateToStr(sat).split("-").reverse().slice(0,2).join(".")}`;
+}
+function isDateInWeek(dateStr,mondayStr){
+  const d=strToDate(dateStr);
+  const mon=strToDate(mondayStr);
+  const sat=getSaturdayOf(mon);
+  sat.setHours(23,59,59,999);
+  return d>=mon&&d<=sat;
+}
+
+// ═══ REPORT ═══
+function openReport(){
+  // collect all weeks from this city's data
+  S.work=null;
+  const allDates=[];
+  const cityRec=DB.records[S.city]||{};
+  ['Hausanschluss','Einblasen','Tiefbau','HK'].forEach(work=>{
+    Object.keys(cityRec[work]||{}).forEach(d=>allDates.push(d));
+  });
+  // also add current week even if empty
+  const todayMonday=getMondayOf(new Date());
+  const allMondays=new Set();
+  allMondays.add(dateToStr(todayMonday));
+  allDates.forEach(d=>{
+    const mon=getMondayOf(strToDate(d));
+    allMondays.add(dateToStr(mon));
+  });
+  const sortedMondays=[...allMondays].sort((a,b)=>b.localeCompare(a));
+  currentReportWeek=sortedMondays[0];
+
+  document.getElementById("t-report").textContent="📊 "+LANG==="de"?"Wochenbericht":"Недельный отчёт";
+  document.getElementById("s-report").textContent=S.city;
+  document.getElementById("lbl-report").textContent=LANG==="de"?"Bericht":"Отчёт";
+
+  // Render week tabs
+  const tabs=document.getElementById("report-week-tabs");
+  tabs.innerHTML=sortedMondays.map((m,i)=>{
+    const isCurrent=i===0;
+    return`<div class="week-tab${i===0?" active":""}" onclick="selectReportWeek('${m}',this)">${isCurrent?(LANG==="de"?"Diese Woche":"Эта неделя")+" · ":""}<b>${weekLabel(m)}</b></div>`;
+  }).join("");
+
+  setBC([{l:LANG==="de"?"Objekte":"Объекты",fn:"goTo('cities')"},{l:S.city,fn:"goTo('works')"},{l:LANG==="de"?"Bericht":"Отчёт"}]);
+  showPage("report");
+  renderReport(currentReportWeek);
+}
+
+function selectReportWeek(mondayStr,tabEl){
+  currentReportWeek=mondayStr;
+  document.querySelectorAll(".week-tab").forEach(t=>t.classList.remove("active"));
+  tabEl.classList.add("active");
+  renderReport(mondayStr);
+}
+
+function renderReport(mondayStr){
+  const cityRec=DB.records[S.city]||{};
+  const sections=[
+    {key:"Hausanschluss",icon:"🏠",label:"Hausanschluss",hasMeters:true},
+    {key:"Einblasen",icon:"💨",label:"Einblasen und Aktivieren",hasMeters:false},
+    {key:"HK",icon:"🔌",label:"HK Einblasen",hasMeters:true},
+    {key:"Tiefbau",icon:"🚜",label:"Tiefbau",hasMeters:true}
+  ];
+
+  let totalAddresses=0,totalMeters=0,totalHausanschluss=0,totalEinblasen=0;
+  let html="";
+
+  sections.forEach(sec=>{
+    const workDays=cityRec[sec.key]||{};
+    const rows=[];
+    Object.keys(workDays).filter(d=>isDateInWeek(d,mondayStr)).forEach(dateStr=>{
+      const day=workDays[dateStr];
+      if(sec.key==="Einblasen"){
+        // addresses from nvs
+        (day.nvs||[]).forEach(nv=>{
+          (nv.addresses||[]).forEach(a=>{
+            if(a.street&&a.street.trim()){
+              rows.push({addr:a.street,meters:null,date:dateStr});
+              totalAddresses++;
+              totalEinblasen++;
+            }
+          });
+        });
+      }else{
+        // addresses + meters from entries
+        (day.entries||[]).forEach(en=>{
+          if(en.address&&en.address.trim()){
+            const m=en.volume?parseInt(en.volume)||0:0;
+            rows.push({addr:en.address,meters:m||null,date:dateStr});
+            totalAddresses++;
+            totalMeters+=m;
+            if(sec.key==="Hausanschluss")totalHausanschluss++;
+          }
+        });
+      }
+    });
+    if(!rows.length)return; // skip empty sections
+    html+=`<div class="report-section">
+      <div class="report-section-hdr">
+        <span class="report-section-icon">${sec.icon}</span>
+        <span class="report-section-title">${sec.label}</span>
+        <span class="report-section-count">${rows.length} ${LANG==="de"?"Adressen":"адресов"}</span>
+      </div>
+      ${rows.map(r=>`<div class="report-row">
+        <span class="report-addr">${esc(r.addr)}</span>
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0">
+          ${r.meters?`<span class="report-meta">📏 ${r.meters} m</span>`:""}
+          <span class="report-date-badge">${fmtShort(r.date)}</span>
+        </div>
+      </div>`).join("")}
+    </div>`;
+  });
+
+  // Summary
+  const mon=strToDate(mondayStr);
+  const sat=getSaturdayOf(mon);
+  document.getElementById("report-summary").innerHTML=`
+    <div class="report-sum-item"><div class="report-sum-val">${totalAddresses}</div><div class="report-sum-lbl">${LANG==="de"?"Adressen":"Адресов"}</div></div>
+    <div class="report-sum-item"><div class="report-sum-val">${totalMeters}</div><div class="report-sum-lbl">${LANG==="de"?"Meter":"Метров"}</div></div>
+    <div class="report-sum-item"><div class="report-sum-val">${totalHausanschluss}</div><div class="report-sum-lbl">Hausanschluss</div></div>
+    <div class="report-sum-item"><div class="report-sum-val">${totalEinblasen}</div><div class="report-sum-lbl">Einblasen</div></div>
+  `;
+
+  document.getElementById("report-content").innerHTML=html||`<div class="report-empty"><div class="report-empty-icon">📋</div><div style="font-weight:700;font-size:14px">${LANG==="de"?"Keine Daten für diese Woche":"Нет данных за эту неделю"}</div></div>`;
+}
+
+// ═══ PDF EXPORT ═══
+function exportPDF(){
+  const mondayStr=currentReportWeek;
+  const cityRec=DB.records[S.city]||{};
+  const sections=[
+    {key:"Hausanschluss",icon:"🏠",label:"Hausanschluss",hasMeters:true},
+    {key:"Einblasen",icon:"💨",label:"Einblasen und Aktivieren",hasMeters:false},
+    {key:"HK",icon:"🔌",label:"HK Einblasen",hasMeters:true},
+    {key:"Tiefbau",icon:"🚜",label:"Tiefbau",hasMeters:true}
+  ];
+  const mon=strToDate(mondayStr);
+  const sat=getSaturdayOf(mon);
+  const weekStr=`${fmtShort(mondayStr)} – ${dateToStr(sat).split("-").reverse().slice(0,2).join(".")}`;
+
+  let allRows=[];
+  sections.forEach(sec=>{
+    const workDays=cityRec[sec.key]||{};
+    const rows=[];
+    Object.keys(workDays).filter(d=>isDateInWeek(d,mondayStr)).forEach(dateStr=>{
+      const day=workDays[dateStr];
+      if(sec.key==="Einblasen"){
+        (day.nvs||[]).forEach(nv=>{
+          (nv.addresses||[]).forEach(a=>{
+            if(a.street&&a.street.trim())rows.push({addr:a.street,meters:"",date:dateStr});
+          });
+        });
+      }else{
+        (day.entries||[]).forEach(en=>{
+          if(en.address&&en.address.trim())rows.push({addr:en.address,meters:en.volume||"",date:dateStr});
+        });
+      }
+    });
+    if(rows.length)allRows.push({...sec,rows});
+  });
+
+  const w=window.open("","_blank");
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"/>
+  <style>
+    body{font-family:Arial,sans-serif;padding:24px;color:#111;max-width:800px;margin:0 auto}
+    h1{font-size:20px;margin-bottom:4px}
+    .sub{color:#555;font-size:13px;margin-bottom:20px}
+    .section{margin-bottom:20px}
+    .sec-title{font-size:15px;font-weight:bold;margin-bottom:8px;padding:6px 10px;background:#f0f4ff;border-left:4px solid #2563eb;border-radius:4px}
+    table{width:100%;border-collapse:collapse;font-size:12px}
+    th{background:#1e3a6e;color:#fff;padding:7px 10px;text-align:left}
+    td{padding:6px 10px;border-bottom:1px solid #e5e7eb}
+    tr:last-child td{border-bottom:none}
+    .summary{display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+    .sum-box{background:#f0f4ff;border-radius:8px;padding:12px 18px;text-align:center;min-width:100px}
+    .sum-val{font-size:22px;font-weight:900;color:#1d4ed8}
+    .sum-lbl{font-size:11px;color:#555;margin-top:2px}
+    @media print{body{padding:0}button{display:none}}
+  </style></head><body>
+  <button onclick="window.print()" style="margin-bottom:16px;padding:8px 16px;background:#1d4ed8;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:bold">🖨 Drucken / PDF</button>
+  <h1>📊 Wochenbericht — ${S.city}</h1>
+  <div class="sub">Woche: ${weekStr} · Erstellt: ${new Date().toLocaleDateString("de-DE")}</div>
+  `);
+
+  // Summary
+  let totalA=0,totalM=0;
+  allRows.forEach(sec=>{totalA+=sec.rows.length;sec.rows.forEach(r=>totalM+=parseInt(r.meters)||0);});
+  w.document.write(`<div class="summary">
+    <div class="sum-box"><div class="sum-val">${totalA}</div><div class="sum-lbl">Adressen gesamt</div></div>
+    <div class="sum-box"><div class="sum-val">${totalM}</div><div class="sum-lbl">Meter gesamt</div></div>
+  </div>`);
+
+  allRows.forEach(sec=>{
+    w.document.write(`<div class="section"><div class="sec-title">${sec.icon} ${sec.label} (${sec.rows.length})</div>
+    <table><tr><th>#</th><th>Adresse</th>${sec.hasMeters?"<th>Meter</th>":""}<th>Datum</th></tr>`);
+    sec.rows.forEach((r,i)=>{
+      w.document.write(`<tr><td>${i+1}</td><td>${r.addr}</td>${sec.hasMeters?`<td>${r.meters?r.meters+" m":"-"}</td>`:""}<td>${fmtShort(r.date)}</td></tr>`);
+    });
+    w.document.write(`</table></div>`);
+  });
+  w.document.write(`</body></html>`);
+  w.document.close();
+  setTimeout(()=>w.print(),400);
+}
+
+// ═══ WHATSAPP SHARE ═══
+function shareWhatsApp(){
+  const mondayStr=currentReportWeek;
+  const cityRec=DB.records[S.city]||{};
+  const sections=[
+    {key:"Hausanschluss",label:"🏠 Hausanschluss"},
+    {key:"Einblasen",label:"💨 Einblasen"},
+    {key:"HK",label:"🔌 HK Einblasen"},
+    {key:"Tiefbau",label:"🚜 Tiefbau"}
+  ];
+  const mon=strToDate(mondayStr);
+  const sat=getSaturdayOf(mon);
+  const weekStr=`${fmtShort(mondayStr)} – ${dateToStr(sat).split("-").reverse().slice(0,2).join(".")}`;
+
+  let msg=`📊 *Wochenbericht — ${S.city}*\n🗓 Woche: ${weekStr}\n\n`;
+  let totalA=0,totalM=0;
+
+  sections.forEach(sec=>{
+    const workDays=cityRec[sec.key]||{};
+    const rows=[];
+    Object.keys(workDays).filter(d=>isDateInWeek(d,mondayStr)).forEach(dateStr=>{
+      const day=workDays[dateStr];
+      if(sec.key==="Einblasen"){
+        (day.nvs||[]).forEach(nv=>(nv.addresses||[]).forEach(a=>{if(a.street&&a.street.trim())rows.push({addr:a.street,meters:null});}));
+      }else{
+        (day.entries||[]).forEach(en=>{if(en.address&&en.address.trim())rows.push({addr:en.address,meters:en.volume||null});});
+      }
+    });
+    if(!rows.length)return;
+    msg+=`*${sec.label}* (${rows.length})\n`;
+    rows.forEach((r,i)=>{
+      msg+=`${i+1}. ${r.addr}${r.meters?" — "+r.meters+"m":""}\n`;
+      totalA++;
+      totalM+=parseInt(r.meters)||0;
+    });
+    msg+="\n";
+  });
+  msg+=`📌 *Gesamt: ${totalA} Adressen · ${totalM} m*`;
+
+  const url="https://wa.me/?text="+encodeURIComponent(msg);
+  window.open(url,"_blank");
+}
 
 // ═══ SWIPE ═══
 function initSwipe(page){
@@ -575,22 +898,17 @@ function initSwipe(page){
     }
   },{passive:true});
 }
-
 function goSwipe(page,idx){
   swipeState[page]=idx;
   const pages=document.getElementById(`swipe-${page}`);
-  if(pages)pages.style.transform=`translateX(${idx===-0?0:-50}%)`;
+  if(pages)pages.style.transform=`translateX(${idx===0?0:-50}%)`;
   const dots=document.querySelectorAll(`#page-${page==="eb"?"einblasen":"generic"} .swipe-dot`);
   dots.forEach((d,i)=>d.classList.toggle("active",i===idx));
   if(idx===1){if(page==="eb")renderNVs();else renderGEN();}
 }
 
 // ═══ THEME ═══
-function applyTheme(){
-  document.documentElement.setAttribute("data-theme",THEME);
-  const btn=document.getElementById("theme-btn");
-  if(btn)btn.textContent=THEME==="dark"?"☀️":"🌙";
-}
+function applyTheme(){document.documentElement.setAttribute("data-theme",THEME);const btn=document.getElementById("theme-btn");if(btn)btn.textContent=THEME==="dark"?"☀️":"🌙";}
 function toggleTheme(){THEME=THEME==="dark"?"light":"dark";localStorage.setItem("ik_theme",THEME);applyTheme();}
 
 // ═══ AUTO-GROW ═══
@@ -598,15 +916,7 @@ function ag(el){el.style.height="auto";el.style.height=el.scrollHeight+"px";}
 
 // ═══ AI FUNCTIONS ═══
 async function callAI(prompt){
-  const res=await fetch(AI_URL,{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({
-      model:"claude-sonnet-4-6",
-      max_tokens:1000,
-      messages:[{role:"user",content:prompt}]
-    })
-  });
+  const res=await fetch(AI_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,messages:[{role:"user",content:prompt}]})});
   const data=await res.json();
   return data.content?.[0]?.text||"";
 }
@@ -618,34 +928,20 @@ async function aiImport(page){
   toast("✨ KI analysiert...","ai");
   try{
     const prompt="Analysiere diesen Baustellentext und extrahiere strukturierte Daten.\n\nText:\n"+text+"\n\nErkenne: Adressen/NVT-Nummern, Status (erledigt=done, keine=no, nicht fertig=partial), Start/End-Kabelmeter (berechne Laenge: start-end=meter), Kommentare.\n\nAntworte NUR mit JSON-Array: [{address,status,volume,comment}]. Kein Markdown.";
-
     const result=await callAI(prompt);
     const clean=result.replace(/```json|```/g,"").trim();
     const items=JSON.parse(clean);
     aiPreviews[page]=items;
-
     const previewEl=document.getElementById(`ai-preview-${page}`);
     const contentEl=document.getElementById(`ai-preview-${page}-content`);
-
-    contentEl.innerHTML=items.map((item,i)=>{
+    contentEl.innerHTML=items.map((item)=>{
       const statusCls=item.status==="done"?"s-done":item.status==="partial"?"s-partial":"s-none";
       const statusLbl=item.status==="done"?"✓ Erledigt":item.status==="partial"?"⚡ Teilweise":"✗ Keine";
-      return`<div class="ai-preview-item">
-        <div class="ai-preview-addr">${item.address||"—"}</div>
-        <div class="ai-preview-meta">
-          <span class="ai-preview-status ${statusCls}">${statusLbl}</span>
-          ${item.volume?`<span>📏 ${item.volume} m</span>`:""}
-          ${item.comment?`<span>💬 ${item.comment}</span>`:""}
-        </div>
-      </div>`;
+      return`<div class="ai-preview-item"><div class="ai-preview-addr">${item.address||"—"}</div><div class="ai-preview-meta"><span class="ai-preview-status ${statusCls}">${statusLbl}</span>${item.volume?`<span>📏 ${item.volume} m</span>`:""}${item.comment?`<span>💬 ${item.comment}</span>`:""}</div></div>`;
     }).join("");
-
     previewEl.classList.add("show");
     toast("✨ "+items.length+" "+(LANG==="de"?"Einträge erkannt":"записей найдено"),"ai");
-  }catch(e){
-    toast(LANG==="de"?"KI-Fehler, manueller Import":"Ошибка ИИ","err");
-    bulkImport(page);
-  }
+  }catch(e){toast(LANG==="de"?"KI-Fehler, manueller Import":"Ошибка ИИ","err");bulkImport(page);}
 }
 
 function applyAIPreview(page){
@@ -656,23 +952,10 @@ function applyAIPreview(page){
     if(!day.nvs)day.nvs=[];
     if(day.nvs.length===0)day.nvs.push({number:"1",addresses:[]});
     const nv=day.nvs[day.nvs.length-1];
-    items.forEach(item=>nv.addresses.push({
-      street:item.address||"",
-      status:item.status||null,
-      volume:item.volume||"",
-      comment:item.comment||"",
-      files:[]
-    }));
+    items.forEach(item=>nv.addresses.push({street:item.address||"",status:item.status||null,volume:item.volume||"",comment:item.comment||"",files:[]}));
   }else{
     if(!day.entries)day.entries=[];
-    items.forEach(item=>day.entries.push({
-      address:item.address||"",
-      volume:item.volume||"",
-      status:item.status||null,
-      workers:"",hours:"",
-      comment:item.comment||"",
-      files:[]
-    }));
+    items.forEach(item=>day.entries.push({address:item.address||"",volume:item.volume||"",status:item.status||null,workers:"",hours:"",comment:item.comment||"",files:[]}));
   }
   scheduleSave();
   document.getElementById(`ai-preview-${page}`).classList.remove("show");
@@ -701,14 +984,11 @@ async function runSearch(){
   resultsEl.innerHTML=`<div class="spinner-wrap"><div class="spinner"></div></div>`;
   try{
     const dbStr=JSON.stringify(DB.records).substring(0,3000);
-    const prompt="Suche in diesen Baudaten (vereinfacht): "+dbStr+"\n\nSuchanfrage: "+q+"\n\nFinde relevante Eintraege und antworte auf "+(LANG==="de"?"Deutsch":"Russisch")+" mit kurzer Liste der Ergebnisse (max 5). Wenn nichts: Keine Ergebnisse.";
+    const prompt="Suche in diesen Baudaten: "+dbStr+"\n\nSuchanfrage: "+q+"\n\nFinde relevante Eintraege und antworte auf "+(LANG==="de"?"Deutsch":"Russisch")+" mit kurzer Liste der Ergebnisse (max 5).";
     const result=await callAI(prompt);
     resultsEl.innerHTML=`<div style="background:var(--bg3);border-radius:10px;padding:14px;font-size:13px;line-height:1.7;white-space:pre-wrap">${result}</div>`;
-  }catch(e){
-    resultsEl.innerHTML=`<div style="color:var(--red);font-size:12px">Fehler bei der KI-Suche</div>`;
-  }
+  }catch(e){resultsEl.innerHTML=`<div style="color:var(--red);font-size:12px">Fehler bei der KI-Suche</div>`;}
 }
-
 function openSearch(){openM("m-search");setTimeout(()=>document.getElementById("ai-search-inp").focus(),300);}
 
 // ═══ AUDIO RECORDER ═══
@@ -724,9 +1004,7 @@ function renderAudioRecorder(id){
 }
 
 async function toggleRecording(id){
-  if(mediaRecorder&&mediaRecorder.state==="recording"){
-    stopRecording(id);return;
-  }
+  if(mediaRecorder&&mediaRecorder.state==="recording"){stopRecording(id);return;}
   try{
     const stream=await navigator.mediaDevices.getUserMedia({audio:true});
     audioChunks=[];
@@ -737,7 +1015,6 @@ async function toggleRecording(id){
       const url=URL.createObjectURL(blob);
       const pb=document.getElementById(`audio-playback-${id}`);
       if(pb)pb.innerHTML=`<audio class="audio-player" controls src="${url}"></audio>`;
-      // Save to files
       const reader=new FileReader();
       reader.onload=ev=>{
         const parts=id.split("-");
@@ -753,23 +1030,16 @@ async function toggleRecording(id){
       reader.readAsDataURL(blob);
       stream.getTracks().forEach(t=>t.stop());
     };
-    mediaRecorder.start();
-    recSec=0;
+    mediaRecorder.start();recSec=0;
     const btn=document.getElementById(`rec-btn-${id}`);
     const status=document.getElementById(`rec-status-${id}`);
     if(btn)btn.className="rec-btn recording";
     if(status)status.textContent=LANG==="de"?"Aufnahme läuft...":"Запись...";
-    recTimer=setInterval(()=>{
-      recSec++;
-      const t=document.getElementById(`rec-time-${id}`);
-      if(t)t.textContent=`${Math.floor(recSec/60)}:${String(recSec%60).padStart(2,"0")}`;
-    },1000);
+    recTimer=setInterval(()=>{recSec++;const t=document.getElementById(`rec-time-${id}`);if(t)t.textContent=`${Math.floor(recSec/60)}:${String(recSec%60).padStart(2,"0")}`;},1000);
   }catch(e){toast(LANG==="de"?"Mikrofon nicht verfügbar":"Микрофон недоступен","err");}
 }
-
 function stopRecording(id){
-  if(mediaRecorder)mediaRecorder.stop();
-  clearInterval(recTimer);
+  if(mediaRecorder)mediaRecorder.stop();clearInterval(recTimer);
   const btn=document.getElementById(`rec-btn-${id}`);
   const status=document.getElementById(`rec-status-${id}`);
   if(btn)btn.className="rec-btn idle";
@@ -832,15 +1102,21 @@ async function uploadFile(file){
   return null;
 }
 
-function scheduleSave(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>localStorage.setItem("ik_db",JSON.stringify({cities:DB.cities,records:DB.records})),300);}
+function scheduleSave(){
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(()=>localStorage.setItem("ik_db",JSON.stringify({cities:DB.cities,records:DB.records})),300);
+  // Auto-refresh report if open
+  if(document.getElementById("page-report").classList.contains("active")&&currentReportWeek){
+    renderReport(currentReportWeek);
+  }
+}
 
 // ═══ BULK IMPORT ═══
 function bulkImport(page){
   const ta=document.getElementById(`bulk-${page}-ta`);
   const lines=ta.value.split("\n").map(l=>l.trim()).filter(l=>l.length>0);
   if(!lines.length){toast(LANG==="de"?"Keine Daten":"Нет данных","err");return;}
-  const day=getDay();
-  let count=0;
+  const day=getDay();let count=0;
   if(page==="eb"){
     if(!day.nvs)day.nvs=[];
     if(day.nvs.length===0)day.nvs.push({number:"1",addresses:[]});
@@ -849,11 +1125,8 @@ function bulkImport(page){
       if(line.toLowerCase().includes("start")&&line.toLowerCase().includes("end")){
         const m=line.match(/start\s*(\d+).*?end\s*(\d+)/i);
         const vol=m?Math.abs(parseInt(m[1])-parseInt(m[2])):0;
-        const addr=line.split("-")[0].trim();
-        nv.addresses.push({street:addr,status:null,volume:vol,comment:line,files:[]});
-      }else{
-        nv.addresses.push({street:line,status:null,volume:"",comment:"",files:[]});
-      }
+        nv.addresses.push({street:line.split("-")[0].trim(),status:null,volume:vol,comment:line,files:[]});
+      }else{nv.addresses.push({street:line,status:null,volume:"",comment:"",files:[]});}
       count++;
     });
   }else{
@@ -914,7 +1187,12 @@ function setBC(items){document.getElementById("bc").innerHTML=items.map((it,i)=>
 
 function goTo(page){
   if(page==="cities"){S={city:null,work:null,day:null};showPage("cities");setBC([{l:LANG==="de"?"Objekte":"Объекты"}]);renderCities();}
-  if(page==="works"){showPage("works");document.getElementById("t-city").textContent=S.city;setBC([{l:LANG==="de"?"Objekte":"Объекты",fn:"goTo('cities')"},{l:S.city}]);}
+  if(page==="works"){
+    S.work=null;S.day=null;
+    showPage("works");
+    document.getElementById("t-city").textContent=S.city;
+    setBC([{l:LANG==="de"?"Objekte":"Объекты",fn:"goTo('cities')"},{l:S.city}]);
+  }
 }
 function goWork(work){
   S.work=work;showPage("days");
@@ -1109,7 +1387,7 @@ function renderGEN(){
       ${renderAudioRecorder(`gen-${i}`)}
       <div class="file-drop" onclick="document.getElementById('gfu${i}').click()">
         <div style="font-size:18px;margin-bottom:3px">📎</div>
-        <div style="font-size:11px;color:var(--text3)">${LANG==="de"?"Foto oder PDF":"Фото или PDF"}</div>
+        <div style="font-size:11px;color:var(--text3)">${LANG==="de"?"Foto oder PDF":"Фото oder PDF"}</div>
       </div>
       <input type="file" id="gfu${i}" accept="image/*,.pdf" multiple style="display:none" onchange="handleGFiles(event,${i})"/>
       <div class="flist">${files}</div>
@@ -1166,8 +1444,7 @@ window.addEventListener("load",()=>{
   setTimeout(hideSplash,1800);
   setTimeout(hideSplash,3500);
 });
-// Click splash to skip
-try{ document.getElementById("splash").addEventListener("click",hideSplash); }catch(e){}
+try{document.getElementById("splash").addEventListener("click",hideSplash);}catch(e){}
 </script>
 </body>
 </html>
